@@ -14,9 +14,9 @@ export class LoginComponentComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.loginData = new FormGroup({
-      UserID: new FormGroup(''),
-      Password: new FormGroup(''),
+    this.loginData = this.fb.group({
+      UserID: '',
+      Password: '',
     });
     // this.loginData.valueChanges.subscribe(console.log);
   }

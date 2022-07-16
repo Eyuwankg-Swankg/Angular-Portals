@@ -2,16 +2,18 @@
 <div class="login-box-container">
   <div class="login-box">
     <h2 class="login-heading">{{portal_name}} Portal</h2>
-    <form [formGroup]="loginData" (ngSubmit)="onLogin()">
+    <form [formGroup]="loginData" (ngSubmit)="onLogin()" class="login-form">
     <mat-form-field class="login-userid" appearance="fill">
       <mat-label>User ID</mat-label>
-      <input matInput placeholder="Enter User ID" formControlName="UserID">
+      <input matInput placeholder="Enter User ID" formControlName="UserID" name="username" autofocus required>
     </mat-form-field>
     <mat-form-field class="login-password" appearance="fill">
       <mat-label>Password</mat-label>
-      <input matInput placeholder="Enter Password" value="" type="password" formControlName="Password">
+      <input matInput placeholder="Enter Password" value="" type="password" formControlName="Password" required>
     </mat-form-field>
-    <button class="btn login-btn" type="submit">LOGIN</button>
+    <button class="login-btn" type="submit" [disabled]="!loginData.valid" 
+    [ngStyle]="{backgroundColor:loginData.valid? '#20346e' : 'rgba(32, 52, 110, 0.7)' }"
+    >LOGIN</button>
     </form>
   </div>
 </div>
