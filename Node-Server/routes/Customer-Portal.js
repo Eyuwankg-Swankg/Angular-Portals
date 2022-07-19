@@ -13,7 +13,6 @@ router.post("/login", (req, res) => {
   const requestURL3 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_status`;
   const requestURL4 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_profile`;
   const requestURL5 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_invoice_list`;
-  // INVOICE DETAIL NOT WORKING
   const requestURL6 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_invoice_detail`;
   const requestURL7 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_list`;
   const requestURL8 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_detail`;
@@ -21,7 +20,6 @@ router.post("/login", (req, res) => {
   const requestURL10 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_debit_memo`;
   const requestURL11 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_credit_memo`;
   const requestURL12 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_list`;
-  // DELIVERY DETAIL NOT WORKING
   const requestURL13 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_detail`
   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_LOGIN_SAKTHI_PORTAL xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
@@ -2105,7 +2103,7 @@ router.post("/login", (req, res) => {
     headers: { "Content-Type": "text/xml" },
   };
   axios
-    .post(requestURL12, bodyRequest12, config)
+    .post(requestURL13, bodyRequest13, config)
     .then(function (response) {
       console.log("response", response);
       res.send(response.data);
