@@ -7,7 +7,6 @@ const router = express.Router();
 //@desc      route to authenticate login
 //@access    PUBLIC
 router.post("/login", (req, res) => {
-  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/sakthi_portal_login`;
   const requestURL1 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_login`;
   const requestURL2 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_list`;
   const requestURL3 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_status`;
@@ -21,11 +20,6 @@ router.post("/login", (req, res) => {
   const requestURL11 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_credit_memo`;
   const requestURL12 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_list`;
   const requestURL13 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_detail`
-  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_LOGIN_SAKTHI_PORTAL xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <PASSWORD>sakthi123</PASSWORD>
-     <USERNAME>Customer@A1</USERNAME>
-  </ns0:ZFM_LOGIN_SAKTHI_PORTAL>`;
   const bodyRequest1 = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUSTOMER_LOGIN_EYUWANKG xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
   <PASSWORD>EYUWANKG123</PASSWORD>
@@ -2103,7 +2097,7 @@ router.post("/login", (req, res) => {
     headers: { "Content-Type": "text/xml" },
   };
   axios
-    .post(requestURL13, bodyRequest13, config)
+    .post(requestURL1, bodyRequest1, config)
     .then(function (response) {
       console.log("response", response);
       res.send(response.data);

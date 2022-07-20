@@ -79,3 +79,28 @@
     transform: translateY(0);
   }
 }
+
+
+/* login back button */
+.login-back-button {
+  border-radius: 16px;
+  background-color: #20346e;
+  width: 5%;
+  padding: 2px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+.login-back-button:hover {
+  background-color: #20346e;
+  cursor: pointer;
+}
+
+.login-back-button:active {
+  transform: translateY(2px);
+  box-shadow: 0px 0.6rem 1rem rgba(0, 0, 0, 0.4);
+}
+.login-back-container{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 95%;
+}

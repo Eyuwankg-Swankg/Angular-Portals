@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-login-component',
   templateUrl: './login-component.component.html',
@@ -14,7 +14,7 @@ export class LoginComponentComponent implements OnInit {
   @Output() onLoginEvent: EventEmitter<any> = new EventEmitter();
 
   loginData: FormGroup = new FormGroup({});
-  constructor(private fb: FormBuilder, private toaster: ToastrService) {}
+  constructor(private fb: FormBuilder, private toaster: ToastrService,private router:Router) {}
 
   ngOnInit(): void {
     this.loginData = this.fb.group({
@@ -31,5 +31,10 @@ export class LoginComponentComponent implements OnInit {
 
   onLogin(): void {
     this.onLoginEvent.emit(this.loginData.value);
+  }
+  
+  goBack(): void{
+    console.log("dfwwrf");
+    this.router.navigate(["/"]);
   }
 }
