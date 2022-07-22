@@ -1,0 +1,20 @@
+<div class="breadcrumb-container" [ngClass]="style_class[0]">
+  <i class="fa-solid fa-house breadcrumb-icon" (click)="onPressHome()"></i>
+  <ng-container *ngFor="let text of breadcrumb_text; let i = index">
+    <span *ngIf="i < breadcrumb_text.length - 1" class="breadcrumb-text">
+      {{ text }}
+    </span>
+
+    <span *ngIf="i < breadcrumb_text.length - 1" class="breadcrumb-text">
+      >>
+    </span>
+
+    <span
+      *ngIf="i == breadcrumb_text.length - 1"
+      class="breadcrumb-text"
+      [ngClass]="style_class[1]"
+    >
+      {{ text }}
+    </span>
+  </ng-container>
+</div>

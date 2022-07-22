@@ -16,4 +16,8 @@ export class CustomerService {
     return this.httpClient.post<any>('http://localhost:5000/customer/inquiryList',data);
   }
 
+  public getSaleOrderData(data:Object): Observable<any> {
+    return this.httpClient.post<any>('http://localhost:5000/customer/saleorderlist',data);
+  }
+
 }

@@ -2291,6 +2291,84 @@ router.post("/inquiryList", (req, res) => {
       console.log(error);
     });
 });
+
+//@type      POST
+//@route     /saleorderlist
+//@desc      route to get inquiryList data
+//@access    PUBLIC
+router.post("/saleorderlist", (req, res) => {
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_list`;
+  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+  <ns0:ZFM_CUST_SALES_ORDER_DATA xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+  <CUSTOMER_NO>${req.body.customer_id}</CUSTOMER_NO>
+     <IT_SALES_ORDER>
+        <item>
+        <SD_DOC/>
+         <ITM_NUMBER/>
+         <MATERIAL/>
+         <SHORT_TEXT/>
+         <DOC_TYPE/>
+         <DOC_DATE/>
+         <REQ_QTY/>
+         <REQ_DATE/>
+         <PURCH_NO/>
+         <BATCH/>
+         <VALID_FROM/>
+         <VALID_TO/>
+         <BILL_BLOCK/>
+         <DLV_BLOCK/>
+         <SOLD_TO/>
+         <NAME/>
+         <EXCHG_RATE/>
+         <DLV_QTY/>
+         <BASE_UOM/>
+         <NET_PRICE/>
+         <COND_P_UNT/>
+         <COND_UNIT/>
+         <NET_VAL_HD/>
+         <NET_VALUE/>
+         <DIVISION/>
+         <DOC_STATUS/>
+         <SALES_GRP/>
+         <SALES_OFF/>
+         <SALES_ORG/>
+         <SALES_UNIT/>
+         <SHIP_POINT/>
+         <DISTR_CHAN/>
+         <GI_DATE/>
+         <CURRENCY/>
+         <PLANT/>
+         <STORE_LOC/>
+         <ORD_REASON/>
+         <REASON_REJ/>
+         <B_UOM_ISO/>
+         <CD_UNT_ISO/>
+         <S_UNIT_ISO/>
+         <CURR_ISO/>
+         <PURCH_NO_C/>
+         <EXCHG_RATE_V/>
+         <MAT_EXT/>
+         <MAT_GUID/>
+         <MAT_VERS/>
+         <CREATION_DATE/>
+         <CREATION_TIME/>
+         <STATUS_DOC/>
+         <REQ_SEGMENT/>
+         <MATERIAL_LONG/>
+        </item>
+     </IT_SALES_ORDER>
+  </ns0:ZFM_CUST_SALES_ORDER_DATA>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      res.send(response.data.IT_SALES_ORDER.item);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
 router.get("/", (req, res) => res.send("Customer portal"));
 
 module.exports = router;

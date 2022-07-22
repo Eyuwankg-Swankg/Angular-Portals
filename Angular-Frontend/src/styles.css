@@ -109,4 +109,61 @@ body {
 .table-row:hover {
   transform: scale(1.01);
 }
+/* COMMON TABLE STYLING BASED ON COMPONENT */
+/* Zebra s.table-rowiping */
+.customer-table-row:nth-of-type(odd) {
+  background: #dee6ff;
+}
+.customer-table-heading {
+  background: var(--customer-blue);
+}
+
+.customer-table-row:hover .table-element {
+  background: #253152;
+}
+/*          */
 /* END OF TABLE STYLES */
+
+/* BREADCRUMB STYLE */
+.breadcrumb-outer-container {
+  width: 100%;
+}
+.breadcrumb-container {
+  width: fit-content;
+  margin: 40px 0px 10px 8%;
+  display: flex;
+  align-content: flex-end;
+  padding-right: 30px;
+  transition: all 0.5s;
+}
+.breadcrumb-container:hover {
+  padding-right: 50px;
+}
+.breadcrumb-icon {
+  display: flex;
+  align-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.breadcrumb-icon:hover {
+  transform: translateY(-4px);
+}
+.breadcrumb-title {
+  text-align: center;
+  font-size: 25px;
+}
+.breadcrumb-text {
+  margin-left: 10px;
+  font-weight: bold;
+  font-size: 17px;
+  text-transform: uppercase;
+}
+
+.breadcrumb-border-customer {
+  border-bottom: 3px solid var(--customer-blue);
+}
+.breadcrumb-text-color-customer {
+  color: var(--customer-blue);
+}

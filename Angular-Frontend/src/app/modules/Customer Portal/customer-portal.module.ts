@@ -10,9 +10,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component'
 import { SharedModule } from '../components/shared.module';
 import { CustomerInquiryComponent } from './customer-inquiry/customer-inquiry.component';
+import { CustomerSaleorderComponent } from './customer-saleorder/customer-saleorder.component';
 
 @NgModule({
-  declarations: [CustomerLoginComponent, LoginComponentComponent, CustomerDashboardComponent,NavbarComponentComponent, CustomerInquiryComponent],
+  declarations: [CustomerLoginComponent, LoginComponentComponent, CustomerDashboardComponent,NavbarComponentComponent, CustomerInquiryComponent, CustomerSaleorderComponent],
   imports: [
     CommonModule,
     CustomerPortalRoutingModule,

@@ -8,6 +8,7 @@ import { Component, OnInit ,Input} from '@angular/core';
 export class TableComponentComponent implements OnInit {
 
   @Input() table_data:any=[];
+  @Input() style_class:string[]=[];
   constructor() { }
 
   ngOnInit(): void {
