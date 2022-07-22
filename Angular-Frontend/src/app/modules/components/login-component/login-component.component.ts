@@ -34,7 +34,6 @@ export class LoginComponentComponent implements OnInit {
   }
   
   goBack(): void{
-    console.log("dfwwrf");
-    this.router.navigate(["/"]);
+    this.router.navigate([""]);
   }
 }

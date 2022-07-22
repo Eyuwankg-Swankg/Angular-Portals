@@ -9,6 +9,7 @@ export class PortalCardComponent implements OnInit {
 
   @Input() portal_name='';
   @Input() overlay_color='';
+  @Input() image_path='';
 
   constructor() { }
 

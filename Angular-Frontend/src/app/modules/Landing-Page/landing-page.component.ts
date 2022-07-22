@@ -6,6 +6,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./landing-page.component.css']
 })
 export class LandingPageComponent implements OnInit {
+  PortalCardImage:any={
+    Customer:"Customer/Customer-Card.png",
+    Vendor:"Vendor/Vendor-Card.png",
+    Employee:"Customer/Customer-Card.png"
+  }
   CustomerPortal:string = 'Customer'
   VendorPortal:string = 'Vendor'
   EmployeePortal:string = 'Employee'

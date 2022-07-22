@@ -4,6 +4,69 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  --customer-blue:#20346e;
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Navbar */
+.navbar-container{
+  width:100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  background-color: rgb(192, 217, 239);
+}
+
+/* Card  */
+.card-container{
+  width: 30%;
+  height: 40vh;
+  border-radius: 7px;
+  transition: all 0.5s;
+  padding: 0;
+  margin:0 auto;
+  cursor: pointer;
+}
+
+.card-container:hover {
+  transform: scale(1.03);
+}
+
+.card-container:hover .card-container-heading{
+  animation: go_center 0.4s ease-in;
+  transform: translateY(-400%) translateX(0%);
+  color:rgba(255,255,255);
+  z-index: 1;
+}
+
+ .card-container:not(:hover) .card-container-heading{
+  animation: go_bottom 0.4s ease-out;
+  transform: translateY(0%) translateX(0%);
+}
+
+@keyframes go_center{
+  0%{
+    transform: translateY(0%) translateX(0%);
+  }
+  100%
+  {
+    transform: translateY(-400%) translateX(0%);
+  }
+}
+
+@keyframes go_bottom{
+  0%{
+    transform: translateY(-400%) translateX(0%);
+  }
+  100%{
+    transform: translateY(0%) translateX(0%);
+  }
+}
+.card-container:hover .card-overlay{
+  height: 40vh;
+}
+
+

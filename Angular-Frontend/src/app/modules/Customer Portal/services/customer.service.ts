@@ -9,7 +9,11 @@ export class CustomerService {
   constructor(private httpClient: HttpClient) {}
 
   public makeLoginRequest(data: Object): Observable<any> {
-    console.log(data);
     return this.httpClient.post<any>('http://localhost:5000/customer/login', data);
   }
+  
+  public getInquiryData(data:Object): Observable<any> {
+    return this.httpClient.post<any>('http://localhost:5000/customer/inquiryList',data);
+  }
+
 }

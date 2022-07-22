@@ -2,6 +2,14 @@ const axios = require("axios");
 const express = require("express");
 const router = express.Router();
 
+const config = {
+  auth: {
+    username: "POUSER@1",
+    password: "Tech@2022",
+  },
+  headers: { "Content-Type": "text/xml" },
+};
+
 //@type      POST
 //@route     /login
 //@desc      route to authenticate login
@@ -19,7 +27,7 @@ router.post("/login", (req, res) => {
   const requestURL10 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_debit_memo`;
   const requestURL11 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_credit_memo`;
   const requestURL12 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_list`;
-  const requestURL13 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_detail`
+  const requestURL13 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_detail`;
   const bodyRequest1 = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUSTOMER_LOGIN_EYUWANKG xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
   <PASSWORD>EYUWANKG123</PASSWORD>
@@ -967,7 +975,7 @@ router.post("/login", (req, res) => {
         </item>
      </IT_INQUIRY_DETAILS>
   </ns0:ZFM_CUST_INQUIRY_DETAILS_SD>`;
-  const bodyRequest9=`<?xml version="1.0" encoding="UTF-8"?>
+  const bodyRequest9 = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUST_FS_PAYMENT_AGING xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
      <CUSTOMER_NO>12</CUSTOMER_NO>
      <IT_LINEITEM>
@@ -1086,7 +1094,7 @@ router.post("/login", (req, res) => {
         </item>
      </IT_LINEITEM>
   </ns0:ZFM_CUST_FS_PAYMENT_AGING>`;
-  const bodyRequest10=`<?xml version="1.0" encoding="UTF-8"?>
+  const bodyRequest10 = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUST_FS_DEBIT_MEMO xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
      <CUSTOMER_ID>12</CUSTOMER_ID>
      <IT_DEBIT_RESULT>
@@ -2097,7 +2105,7 @@ router.post("/login", (req, res) => {
     headers: { "Content-Type": "text/xml" },
   };
   axios
-    .post(requestURL1, bodyRequest1, config)
+    .post(requestURL10, bodyRequest10, config)
     .then(function (response) {
       console.log("response", response);
       res.send(response.data);
@@ -2107,6 +2115,182 @@ router.post("/login", (req, res) => {
     });
 });
 
+//@type      POST
+//@route     /inquiryList
+//@desc      route to get inquiryList data
+//@access    PUBLIC
+router.post("/inquiryList", (req, res) => {
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_list`;
+  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+  <ns0:ZFM_CUST_INQUIRY_LIST_SD xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+  <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
+     <IT_INQUIRY_LIST>
+        <item>
+           <MANDT/>
+           <VBELN/>
+           <ERDAT/>
+           <ERZET/>
+           <ERNAM/>
+           <ANGDT/>
+           <BNDDT/>
+           <AUDAT/>
+           <VBTYP/>
+           <TRVOG/>
+           <AUART/>
+           <AUGRU/>
+           <GWLDT/>
+           <SUBMI/>
+           <LIFSK/>
+           <FAKSK/>
+           <NETWR/>
+           <WAERK/>
+           <VKORG/>
+           <VTWEG/>
+           <SPART/>
+           <VKGRP/>
+           <VKBUR/>
+           <GSBER/>
+           <GSKST/>
+           <GUEBG/>
+           <GUEEN/>
+           <KNUMV/>
+           <VDATU/>
+           <VPRGR/>
+           <AUTLF/>
+           <VBKLA/>
+           <VBKLT/>
+           <KALSM/>
+           <VSBED/>
+           <FKARA/>
+           <AWAHR/>
+           <KTEXT/>
+           <BSTNK/>
+           <BSARK/>
+           <BSTDK/>
+           <BSTZD/>
+           <IHREZ/>
+           <BNAME/>
+           <TELF1/>
+           <MAHZA/>
+           <MAHDT/>
+           <KUNNR/>
+           <KOSTL/>
+           <STAFO/>
+           <STWAE/>
+           <AEDAT/>
+           <KVGR1/>
+           <KVGR2/>
+           <KVGR3/>
+           <KVGR4/>
+           <KVGR5/>
+           <KNUMA/>
+           <KOKRS/>
+           <PS_PSP_PNR/>
+           <KURST/>
+           <KKBER/>
+           <KNKLI/>
+           <GRUPP/>
+           <SBGRP/>
+           <CTLPC/>
+           <CMWAE/>
+           <CMFRE/>
+           <CMNUP/>
+           <CMNGV/>
+           <AMTBL/>
+           <HITYP_PR/>
+           <ABRVW/>
+           <ABDIS/>
+           <VGBEL/>
+           <OBJNR/>
+           <BUKRS_VF/>
+           <TAXK1/>
+           <TAXK2/>
+           <TAXK3/>
+           <TAXK4/>
+           <TAXK5/>
+           <TAXK6/>
+           <TAXK7/>
+           <TAXK8/>
+           <TAXK9/>
+           <XBLNR/>
+           <ZUONR/>
+           <VGTYP/>
+           <KALSM_CH/>
+           <AGRZR/>
+           <AUFNR/>
+           <QMNUM/>
+           <VBELN_GRP/>
+           <SCHEME_GRP/>
+           <ABRUF_PART/>
+           <ABHOD/>
+           <ABHOV/>
+           <ABHOB/>
+           <RPLNR/>
+           <VZEIT/>
+           <STCEG_L/>
+           <LANDTX/>
+           <XEGDR/>
+           <ENQUEUE_GRP/>
+           <DAT_FZAU/>
+           <FMBDAT/>
+           <VSNMR_V/>
+           <HANDLE/>
+           <PROLI/>
+           <CONT_DG/>
+           <CRM_GUID/>
+           <UPD_TMSTMP/>
+           <MSR_ID/>
+           <TM_CTRL_KEY/>
+           <HANDOVERLOC/>
+           <_DATAAGING/>
+           <PSM_BUDAT/>
+           <FSH_KVGR6/>
+           <FSH_KVGR7/>
+           <FSH_KVGR8/>
+           <FSH_KVGR9/>
+           <FSH_KVGR10/>
+           <FSH_REREG/>
+           <FSH_CQ_CHECK/>
+           <FSH_VRSN_STATUS/>
+           <FSH_TRANSACTION/>
+           <FSH_VAS_CG/>
+           <FSH_CANDATE/>
+           <FSH_SS/>
+           <FSH_OS_STG_CHANGE/>
+           <SWENR/>
+           <SMENR/>
+           <PHASE/>
+           <MTLAUR/>
+           <STAGE/>
+           <HB_CONT_REASON/>
+           <HB_EXPDATE/>
+           <HB_RESDATE/>
+           <MILL_APPL_ID/>
+           <TAS/>
+           <BETC/>
+           <MOD_ALLOW/>
+           <CANCEL_ALLOW/>
+           <PAY_METHOD/>
+           <BPN/>
+           <REP_FREQ/>
+           <LOGSYSB/>
+           <KALCD/>
+           <MULTI/>
+           <SPPAYM/>
+           <WTYSC_CLM_HDR/>
+        </item>
+     </IT_INQUIRY_LIST>
+  </ns0:ZFM_CUST_INQUIRY_LIST_SD>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      res.send(response.data.IT_INQUIRY_LIST.item);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
 router.get("/", (req, res) => res.send("Customer portal"));
 
 module.exports = router;

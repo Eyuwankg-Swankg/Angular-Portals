@@ -7,6 +7,7 @@
   <app-portal-card
     class="card card-container"
     (click)="goToCustomer()"
+    [image_path]="PortalCardImage.Customer"
     [portal_name]="CustomerPortal"
     [overlay_color]="CustomerOverlayColor"
     style="box-shadow: 4px 4px 5px 3px #1d2054; border: 1px solid #1d2054"
@@ -15,6 +16,7 @@
   <app-portal-card
     class="card card-container"
     (click)="goToVendor()"
+    [image_path]="PortalCardImage.Vendor"
     [portal_name]="VendorPortal"
     [overlay_color]="VendorOverlayColor"
     style="box-shadow: 4px 4px 5px 3px #258469; border: 1px solid #258469"
@@ -23,9 +25,11 @@
   <app-portal-card
     class="card card-container"
     (click)="goToEmployee()"
+    [image_path]="PortalCardImage.Employee"
     [portal_name]="EmployeePortal"
     [overlay_color]="EmployeeOverlayColor"
     style="box-shadow: 4px 4px 5px 3px #1d2054; border: 1px solid #1d2054"
-  >
+  > 
   </app-portal-card>
+  
 </div>

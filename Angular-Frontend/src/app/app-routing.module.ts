@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core"
 import { RouterModule,Routes } from "@angular/router"
 const routes:Routes=[
   {
-    path:"l",
+    path:"land",
     loadChildren:()=>import("./modules/Landing-Page/landing-page.module").then(m=>m.LandingPageModule)
   },
   {

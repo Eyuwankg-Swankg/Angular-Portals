@@ -1,0 +1,15 @@
+.navbar-heading {
+  font-size: 23px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding-top: 14px;
+}
+.navbar-icon {
+  width: 45px;
+}
+.navbar-profile-icon {
+  width: 45px;
+  border: 2.5px solid var(--customer-blue);
+  border-radius: 25px;
+  padding: 2px;
+}
