@@ -1,0 +1,14 @@
+.breadcrumb-outer-container{
+  width: 100%;
+}
+.breadcrumb-container{
+  width: fit-content;
+  margin:40px 0px 10px 8%;
+  border-bottom: 2px solid var(--customer-blue);
+  display: flex;
+  align-content: flex-end;
+}
+.breadcrumb-title{
+  text-align: center;
+  font-size: 25px;
+}

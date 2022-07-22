@@ -1,1 +1,19 @@
-<p>works!!</p>
+
+<table class="table">
+  <tr class="table-row">
+    <th class="table-heading">STWAE</th>
+    <th class="table-heading">ERNAM</th>
+    <th class="table-heading">ERDAT</th>
+    <th class="table-heading">ERZET</th>
+    <th class="table-heading">ANGDT</th>
+    <th class="table-heading">AUDAT</th>
+  </tr>
+  <tr class="table-row" *ngFor="let item of table_data; let i = index">
+    <td class="table-element">{{item.STWAE}}</td>
+    <td class="table-element">{{item.ERNAM}}</td>
+    <td class="table-element">{{item.ERDAT}}</td>
+    <td class="table-element">{{item.ERZET}}</td>
+    <td class="table-element">{{item.ANGDT}}</td>
+    <td class="table-element">{{item.AUDAT}}</td>
+  </tr>
+</table>

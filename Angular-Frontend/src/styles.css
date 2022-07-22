@@ -1,17 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
-*,*::before,*::after{
+*,
+*::before,
+*::after {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  --customer-blue:#20346e;
+  --customer-blue: #20346e;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 /* Navbar */
-.navbar-container{
-  width:100%;
+.navbar-container {
+  width: 100%;
   height: 10vh;
   display: flex;
   align-items: center;
@@ -20,14 +28,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: rgb(192, 217, 239);
 }
 
+/* END OF NAVBAR */
+
 /* Card  */
-.card-container{
+.card-container {
   width: 30%;
   height: 40vh;
   border-radius: 7px;
   transition: all 0.5s;
   padding: 0;
-  margin:0 auto;
+  margin: 0 auto;
   cursor: pointer;
 }
 
@@ -35,38 +45,68 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   transform: scale(1.03);
 }
 
-.card-container:hover .card-container-heading{
+.card-container:hover .card-container-heading {
   animation: go_center 0.4s ease-in;
   transform: translateY(-400%) translateX(0%);
-  color:rgba(255,255,255);
+  color: rgba(255, 255, 255);
   z-index: 1;
 }
 
- .card-container:not(:hover) .card-container-heading{
+.card-container:not(:hover) .card-container-heading {
   animation: go_bottom 0.4s ease-out;
   transform: translateY(0%) translateX(0%);
 }
 
-@keyframes go_center{
-  0%{
+@keyframes go_center {
+  0% {
     transform: translateY(0%) translateX(0%);
   }
-  100%
-  {
+  100% {
     transform: translateY(-400%) translateX(0%);
   }
 }
 
-@keyframes go_bottom{
-  0%{
+@keyframes go_bottom {
+  0% {
     transform: translateY(-400%) translateX(0%);
   }
-  100%{
+  100% {
     transform: translateY(0%) translateX(0%);
   }
 }
-.card-container:hover .card-overlay{
+.card-container:hover .card-overlay {
   height: 40vh;
 }
 
+/* END OF CARD */
 
+/* TABLE STYLES */
+.table {
+  width: 83%;
+  border-collapse: collapse;
+  margin: 50px auto;
+}
+
+.table-heading {
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+.table > :not(:first-child) {
+  border-top: none;
+}
+.table-element,
+.table-heading {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid rgb(39, 4, 4);
+  font-size: 18px;
+}
+.table-row:hover .table-element {
+  border-right: 1px solid #ccc;
+  color: white;
+}
+.table-row:hover {
+  transform: scale(1.01);
+}
+/* END OF TABLE STYLES */
