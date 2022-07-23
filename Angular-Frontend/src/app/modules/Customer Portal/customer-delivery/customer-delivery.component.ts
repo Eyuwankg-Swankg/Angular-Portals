@@ -3,25 +3,26 @@ import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
-  selector: 'app-customer-saleorder',
-  templateUrl: './customer-saleorder.component.html',
-  styleUrls: ['./customer-saleorder.component.css'],
+  selector: 'app-customer-delivery',
+  templateUrl: './customer-delivery.component.html',
+  styleUrls: ['./customer-delivery.component.css'],
 })
-export class CustomerSaleorderComponent implements OnInit {
-  saleOrderData = {};
-  customerDetails: any = {};
-  loadingScreenToggle: boolean = true;
-  modalTitle = 'SALE ORDER DETAILS';
-  modalToggle: boolean = false;
+export class CustomerDeliveryComponent implements OnInit {
+  modalTitle = 'DELIVERY DETAILS';
+  modalToggle = false;
   modalData = {};
+  loadingScreenToggle: boolean = true;
+  DeliveryList = [];
+  customerDetails: any = {};
   columnValues = {
-    SD_DOC: '',
-    ITM_NUMBER: '',
-    MATERIAL: '',
-    DOC_TYPE: '',
-    DOC_DATE: '',
-    REQ_QTY: '',
-    REQ_DATE: '',
+    MANDT: '',
+    VBELN: '',
+    ERNAM: '',
+    ERZET: '',
+    ERDAT: '',
+    BZIRK: '',
+    VSTEL: '',
+    VKORG: '',
   };
   modalStyleClass = CommonValues.modalStyleClass;
   tableStyleClass = CommonValues.tableStyleClass;
@@ -36,20 +37,17 @@ export class CustomerSaleorderComponent implements OnInit {
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);
-    this.customerService.getSaleOrderData(this.customerDetails).subscribe(
+    this.customerService.getDeliveryData(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data.IT_SALES_ORDER != '') {
-          if (Array.isArray(responseData.data.IT_SALES_ORDER.item) == false)
-            this.saleOrderData = [responseData.data.IT_SALES_ORDER.item];
-          else this.saleOrderData = responseData.data.IT_SALES_ORDER.item;
-          console.log('Sale Order Data', this.saleOrderData);
-          this.loadingScreenToggle = !this.loadingScreenToggle;
-        }
+        console.log('Delivery Data', responseData);
+        this.DeliveryList = responseData.data.RESULT_DELIVERY_ITEM.item;
+        this.loadingScreenToggle = !this.loadingScreenToggle;
       },
       (error) => {
         this.loadingScreenToggle = !this.loadingScreenToggle;
       }
     );
+    console.log('Delivery List Data', this.DeliveryList);
   }
   toDashboard(): void {
     this.router.navigate(['dashboard']);

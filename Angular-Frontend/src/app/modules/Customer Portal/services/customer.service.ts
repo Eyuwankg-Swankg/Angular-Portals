@@ -8,16 +8,34 @@ import { HttpClient } from '@angular/common/http';
 export class CustomerService {
   constructor(private httpClient: HttpClient) {}
 
+  public getCustomerDetails(): Object {
+    return { customer_id: 12 };
+  }
   public makeLoginRequest(data: Object): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:5000/customer/login', data);
-  }
-  
-  public getInquiryData(data:Object): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:5000/customer/inquiryList',data);
-  }
-
-  public getSaleOrderData(data:Object): Observable<any> {
-    return this.httpClient.post<any>('http://localhost:5000/customer/saleorderlist',data);
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/login',
+      data
+    );
   }
 
+  public getInquiryData(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/inquiryList',
+      data
+    );
+  }
+
+  public getSaleOrderData(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/saleorderlist',
+      data
+    );
+  }
+
+  public getDeliveryData(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/deliverylist',
+      data
+    );
+  }
 }

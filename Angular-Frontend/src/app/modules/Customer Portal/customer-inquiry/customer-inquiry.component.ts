@@ -8,8 +8,10 @@ import CommonValues from '../Customer-CommonValues.json';
   styleUrls: ['./customer-inquiry.component.css'],
 })
 export class CustomerInquiryComponent implements OnInit {
+  modalTitle = 'INQUIRY DETAILS';
   modalToggle = false;
   modalData = {};
+  loadingScreenToggle: boolean = true;
   InquiryList = [
     {
       ABDIS: '',
@@ -320,33 +322,44 @@ export class CustomerInquiryComponent implements OnInit {
       _DATAAGING: '00000-00-00',
     },
   ];
-  customerDetails = {
-    customer_id: '12',
+  customerDetails: any = {};
+  columnValues = {
+    STWAE: '',
+    ERNAM: '',
+    ERDAT: '',
+    ERZET: '',
+    ANGDT: '',
+    AUDAT: '',
   };
-  
-  breadCrumbText = ['Customer', 'Inquiry List'];
-  styleClass = ['breadcrumb-border-customer', 'breadcrumb-text-color-customer'];
-  tableStyleClass = ['customer-table-row', 'customer-table-heading'];
-  modalStyleClass = [
-    'customer-modal-box-text-color',
-    'customer-modal-box-title-bottom',
-    'customer-modal-box-close',
-  ];
+  modalStyleClass = CommonValues.modalStyleClass;
+  tableStyleClass = CommonValues.tableStyleClass;
+  breadCrumbStyleClass = CommonValues.breadCrumbStyleClass;
+
   constructor(
     private customerService: CustomerService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
+    this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
+    console.log('Customer Details', this.customerDetails);
+    //TODO: uncomment this
+    // this.customerService.getInquiryData(this.customerDetails).subscribe(
+    //   (responseData) => {
+    //     if (responseData.data.IT_INQUIRY_LIST != "") {
+    //       this.InquiryList = responseData.data.IT_INQUIRY_LIST.item;
+    //     }
+    //     this.loadingScreenToggle = !this.loadingScreenToggle;
+    //     console.log('Inquiry List', this.InquiryList);
+    //   },
+    //   (error) => {
+    //     this.loadingScreenToggle = !this.loadingScreenToggle;
+    //   }
+    // );
+    // TODO: remove this
+    this.loadingScreenToggle = !this.loadingScreenToggle;
     console.log('Inquiry Data', this.InquiryList);
-    this.customerService
-      .getInquiryData(this.customerDetails)
-      .subscribe((responseData) => {
-        console.log('Inquiry Data', responseData);
-        // this.InquiryList = responseData;
-      });
-    console.log(CommonValues);
   }
   toDashboard(): void {
     this.router.navigate(['dashboard']);

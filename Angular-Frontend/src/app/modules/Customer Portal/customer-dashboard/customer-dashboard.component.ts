@@ -19,7 +19,6 @@ export class CustomerDashboardComponent implements OnInit {
     financialSheet: 'rgba(29, 32, 84, 0.68)',
   };
   cardName: string[] = ['Inquiry', 'Sale Order', 'Delivery', 'Financial Sheet'];
-  CustomerOverlayColor: string = 'rgba(29, 32, 84, 0.68)';
   constructor(private router: Router) {}
 
   ngOnInit(): void {}

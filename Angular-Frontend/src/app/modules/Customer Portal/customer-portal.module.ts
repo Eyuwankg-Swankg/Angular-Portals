@@ -11,9 +11,10 @@ import { CustomerDashboardComponent } from './customer-dashboard/customer-dashbo
 import { SharedModule } from '../components/shared.module';
 import { CustomerInquiryComponent } from './customer-inquiry/customer-inquiry.component';
 import { CustomerSaleorderComponent } from './customer-saleorder/customer-saleorder.component';
+import { CustomerDeliveryComponent } from './customer-delivery/customer-delivery.component';
 
 @NgModule({
-  declarations: [CustomerLoginComponent, LoginComponentComponent, CustomerDashboardComponent,NavbarComponentComponent, CustomerInquiryComponent, CustomerSaleorderComponent],
+  declarations: [CustomerLoginComponent, LoginComponentComponent, CustomerDashboardComponent,NavbarComponentComponent, CustomerInquiryComponent, CustomerSaleorderComponent, CustomerDeliveryComponent],
   imports: [
     CommonModule,
     CustomerPortalRoutingModule,

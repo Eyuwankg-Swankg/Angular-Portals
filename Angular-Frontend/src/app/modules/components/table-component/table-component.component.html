@@ -1,11 +1,10 @@
 <table class="table">
   <tr class="table-row" [ngClass]="style_class[0]">
-    <th class="table-heading" [ngClass]="style_class[1]">STWAE</th>
-    <th class="table-heading" [ngClass]="style_class[1]">ERNAM</th>
-    <th class="table-heading" [ngClass]="style_class[1]">ERDAT</th>
-    <th class="table-heading" [ngClass]="style_class[1]">ERZET</th>
-    <th class="table-heading" [ngClass]="style_class[1]">ANGDT</th>
-    <th class="table-heading" [ngClass]="style_class[1]">AUDAT</th>
+    <ng-container *ngFor="let columnValue of column_values | keyvalue">
+      <th class="table-heading" [ngClass]="style_class[1]">
+        {{ columnValue.key }}
+      </th>
+    </ng-container>
   </tr>
   <tr
     class="table-row"
@@ -13,11 +12,10 @@
     *ngFor="let item of table_data; let i = index"
     (click)="sendToOpenModal(item)"
   >
-    <td class="table-element">{{ item.STWAE }}</td>
-    <td class="table-element">{{ item.ERNAM }}</td>
-    <td class="table-element">{{ item.ERDAT }}</td>
-    <td class="table-element">{{ item.ERZET }}</td>
-    <td class="table-element">{{ item.ANGDT }}</td>
-    <td class="table-element">{{ item.AUDAT }}</td>
+    <ng-container *ngFor="let key of columnKeyValues;">
+      <td class="table-element">
+        {{item[key]=="" ?'--':item[key]}}
+      </td>
+    </ng-container>
   </tr>
 </table>

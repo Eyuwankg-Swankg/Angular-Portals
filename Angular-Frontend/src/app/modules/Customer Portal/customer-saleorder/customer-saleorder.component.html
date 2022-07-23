@@ -2,6 +2,31 @@
   class="navbar-container"
   [portal_name]="'Customer'"
 ></app-navbar-component>
-<app-bread-crumb class="breadcrumb-outer-container" [style_class]="styleClass" [breadcrumb_text]="breadCrumbText" (onToDashboard)="toDashboard()"></app-bread-crumb>  
+<app-bread-crumb
+  class="breadcrumb-outer-container"
+  [style_class]="breadCrumbStyleClass"
+  [breadcrumb_text]="['Customer', 'Sale Order List']"
+  (onToDashboard)="toDashboard()"
+></app-bread-crumb>
+
 <h2 class="breadcrumb-title">SALE ORDER LIST</h2>
-<app-table-component [table_data]="saleOrderData" [style_class]="tableStyleClass"> </app-table-component>
+<app-table-component
+  [table_data]="saleOrderData"
+  [style_class]="tableStyleClass"
+  (display_modal)="showModal($event)"
+  [column_values]="columnValues"
+>
+</app-table-component>
+<app-modal-box
+  *ngIf="modalToggle"
+  class="modal-box-outer-container"
+  [modal_data]="modalData"
+  [modal_title]="modalTitle"
+  (close_modal)="closeModal()"
+  [modal_style_class]="modalStyleClass"
+></app-modal-box>
+<app-loading-screen
+  class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
+  [loading_class]="'customer-loading-screeen'"
+  *ngIf="loadingScreenToggle"
+></app-loading-screen>

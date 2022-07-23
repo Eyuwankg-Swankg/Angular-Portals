@@ -5,12 +5,12 @@
 <app-bread-crumb
   class="breadcrumb-outer-container"
   [style_class]="breadCrumbStyleClass"
-  [breadcrumb_text]="['Customer', 'Inquiry List']"
+  [breadcrumb_text]="['Customer', 'Delivery List']"
   (onToDashboard)="toDashboard()"
 ></app-bread-crumb>
-<h2 class="breadcrumb-title">INQUIRY LIST</h2>
+<h2 class="breadcrumb-title">DELIVERY LIST</h2>
 <app-table-component
-  [table_data]="InquiryList"
+  [table_data]="DeliveryList"
   [style_class]="tableStyleClass"
   (display_modal)="showModal($event)"
   [column_values]="columnValues"
@@ -29,4 +29,3 @@
   [loading_class]="'customer-loading-screeen'"
   *ngIf="loadingScreenToggle"
 ></app-loading-screen>
-

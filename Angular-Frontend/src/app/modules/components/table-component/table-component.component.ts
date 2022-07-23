@@ -8,11 +8,14 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class TableComponentComponent implements OnInit {
   @Input() table_data: any = [];
   @Input() style_class: string[] = [];
-  
+  @Input() column_values: any = {};
+  columnKeyValues: string[] = [];
   @Output() display_modal: EventEmitter<any> = new EventEmitter();
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.columnKeyValues = Object.keys(this.column_values);
+  }
   sendToOpenModal(rowData: any): void {
     this.display_modal.emit(rowData);
   }
