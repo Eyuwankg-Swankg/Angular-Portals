@@ -5,6 +5,6 @@
 <app-bread-crumb class="breadcrumb-outer-container" [style_class]="styleClass" [breadcrumb_text]="breadCrumbText" (onToDashboard)="toDashboard()"></app-bread-crumb>  
 <h2 class="breadcrumb-title">INQUIRY LIST</h2>
 <app-table-component [table_data]="InquiryList" [style_class]="tableStyleClass"
-(displayFragment)="showFragment($event)"
+(display_modal)="showModal($event)"
 > </app-table-component>
-<app-modal-box *ngIf="modalToggle" class="modal-box-outer-container" [modal_data]="modalData"></app-modal-box>
+<app-modal-box *ngIf="modalToggle" class="modal-box-outer-container" [modal_data]="modalData" (close_modal)="closeModal()" [modal_style_class]="modalStyleClass"></app-modal-box>

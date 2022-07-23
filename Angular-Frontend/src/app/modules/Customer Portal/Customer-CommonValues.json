@@ -1,0 +1,8 @@
+{
+  "tableStyleClass": ["customer-table-row", "customer-table-heading"],
+  "modalStyleClass": [
+    "customer-modal-box-text-color",
+    "customer-modal-box-title-bottom",
+    "customer-modal-box-close"
+  ]
+}

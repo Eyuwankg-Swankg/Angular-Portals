@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
+import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-inquiry',
   templateUrl: './customer-inquiry.component.html',
   styleUrls: ['./customer-inquiry.component.css'],
 })
 export class CustomerInquiryComponent implements OnInit {
+  modalToggle = false;
+  modalData = {};
   InquiryList = [
     {
       ABDIS: '',
@@ -320,12 +323,15 @@ export class CustomerInquiryComponent implements OnInit {
   customerDetails = {
     customer_id: '12',
   };
+  
   breadCrumbText = ['Customer', 'Inquiry List'];
   styleClass = ['breadcrumb-border-customer', 'breadcrumb-text-color-customer'];
   tableStyleClass = ['customer-table-row', 'customer-table-heading'];
-  modalToggle = false;
-  modalData={};
-
+  modalStyleClass = [
+    'customer-modal-box-text-color',
+    'customer-modal-box-title-bottom',
+    'customer-modal-box-close',
+  ];
   constructor(
     private customerService: CustomerService,
     private router: Router
@@ -340,12 +346,16 @@ export class CustomerInquiryComponent implements OnInit {
         console.log('Inquiry Data', responseData);
         // this.InquiryList = responseData;
       });
+    console.log(CommonValues);
   }
   toDashboard(): void {
     this.router.navigate(['dashboard']);
   }
-  showFragment(rowData: any): void {
-    this.modalToggle=!this.modalToggle;
-    this.modalData=rowData;
+  showModal(rowData: any): void {
+    this.modalToggle = !this.modalToggle;
+    this.modalData = rowData;
+  }
+  closeModal(): void {
+    this.modalToggle = !this.modalToggle;
   }
 }

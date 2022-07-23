@@ -1,7 +1,25 @@
+<div class="modal-box-title">
+  <span class="modal-box-title-text" [ngClass]="modal_style_class[0]"
+    >INQUIRY DETAILS</span
+  >
+  <div
+    class="modal-box-close"
+    [ngClass]="[modal_style_class[0],modal_style_class[2]]"
+    (click)="closeModalBtn()"
+  >
+    X
+  </div>
+</div>
 <div class="modal-box-container">
   <ng-container *ngFor="let item of modal_data | keyvalue">
-    <span>{{ item.key }}</span>
-    <span>{{ item.value==''?'-':item.value }}</span>
-    <span>------------------------------------------</span>
+    <div class="modal-box-item" [ngClass]="modal_style_class[1]">
+      <span class="modal-box-item-title" [ngClass]="modal_style_class[0]">{{
+        item.key
+      }}</span>
+      :
+      <span class="modal-box-item-value">{{
+        item.value == "" ? "--" : item.value
+      }}</span>
+    </div>
   </ng-container>
 </div>

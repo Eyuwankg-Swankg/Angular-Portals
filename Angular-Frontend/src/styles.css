@@ -167,3 +167,101 @@ body {
 .breadcrumb-text-color-customer {
   color: var(--customer-blue);
 }
+/*                       */
+
+/* MODAL COMMON STYLING*/
+.modal-box-container {
+  width: 80%;
+  height: 80vh;
+  background-color: aliceblue;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  animation: showModal 0.5s ease-in-out;
+  overflow-y: scroll;
+}
+
+@keyframes showModal {
+  0% {
+    transform: scale(0.1);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes showModalTitle {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+.modal-box-title {
+  width: 80%;
+  display: flex;
+  background-color: aliceblue;
+  animation: showModalTitle 0.7s ease-in-out;
+  justify-content: center;
+  padding: 15px 0px;
+  border-bottom: 3px solid #000;
+}
+
+.modal-box-title-text {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  width: 94%;
+}
+.modal-box-close {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #000;
+  border-radius: 20px;
+  width: 3%;
+  padding: 2px;
+  cursor: pointer;
+}
+.modal-box-close:hover {
+  border: none;
+  color: snow;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+.modal-box-close:active {
+  transform: translateY(2px);
+  box-shadow: 0px 0.6rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+.modal-box-item {
+  padding: 15px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-weight: bold;
+}
+.modal-box-item:nth-of-type(odd) {
+  border-right: 3px solid #000;
+}
+.modal-box-item-title {
+  font-weight: bold;
+}
+
+/* CUSTOMER MODAL STYLING */
+.customer-modal-box-text-color {
+  color: var(--customer-blue);
+}
+.customer-modal-box-title-bottom {
+  border-bottom: 1.5px solid var(--customer-blue);
+}
+.customer-modal-box-close:hover {
+  background-color: var(--customer-blue);
+  color: snow;
+}
+/*                      */
+/* END OF MODAL COMMON STYLING*/

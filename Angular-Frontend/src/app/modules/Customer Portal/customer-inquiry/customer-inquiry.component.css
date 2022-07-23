@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
   left: 0;

@@ -9,11 +9,11 @@ export class TableComponentComponent implements OnInit {
   @Input() table_data: any = [];
   @Input() style_class: string[] = [];
   
-  @Output() displayFragment: EventEmitter<any> = new EventEmitter();
+  @Output() display_modal: EventEmitter<any> = new EventEmitter();
   constructor() {}
 
   ngOnInit(): void {}
-  sendToOpenFragment(rowData: any): void {
-    this.displayFragment.emit(rowData);
+  sendToOpenModal(rowData: any): void {
+    this.display_modal.emit(rowData);
   }
 }
