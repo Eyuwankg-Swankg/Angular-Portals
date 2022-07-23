@@ -12,9 +12,12 @@ import { SharedModule } from '../components/shared.module';
 import { CustomerInquiryComponent } from './customer-inquiry/customer-inquiry.component';
 import { CustomerSaleorderComponent } from './customer-saleorder/customer-saleorder.component';
 import { CustomerDeliveryComponent } from './customer-delivery/customer-delivery.component';
+import { CustomerFinancialSheetComponent } from './customer-financial-sheet/customer-financial-sheet.component';
+import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
+import { CustomerPaymentAgingComponent } from './customer-payment-aging/customer-payment-aging.component';
 
 @NgModule({
-  declarations: [CustomerLoginComponent, LoginComponentComponent, CustomerDashboardComponent,NavbarComponentComponent, CustomerInquiryComponent, CustomerSaleorderComponent, CustomerDeliveryComponent],
+  declarations: [CustomerLoginComponent, LoginComponentComponent, CustomerDashboardComponent,NavbarComponentComponent, CustomerInquiryComponent, CustomerSaleorderComponent, CustomerDeliveryComponent, CustomerFinancialSheetComponent, CustomerInvoiceComponent, CustomerPaymentAgingComponent],
   imports: [
     CommonModule,
     CustomerPortalRoutingModule,

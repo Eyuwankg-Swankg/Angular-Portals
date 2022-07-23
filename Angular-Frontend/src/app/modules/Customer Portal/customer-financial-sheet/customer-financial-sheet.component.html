@@ -1,0 +1,48 @@
+<app-navbar-component
+  class="navbar-container"
+  [portal_name]="'Customer'"
+></app-navbar-component>
+<app-bread-crumb
+  class="breadcrumb-outer-container"
+  [style_class]="breadCrumbStyleClass"
+  [breadcrumb_text]="['Customer', 'Financial Sheet']"
+  (onToDashboard)="toDashboard()"
+></app-bread-crumb>
+<div class="dashboard-content">
+  <app-portal-card
+    class="card card-container"
+    (click)="goToInvoice()"
+    [image_path]="cardImage.invoice"
+    [portal_name]="cardName[0]"
+    [overlay_color]="cardOverlayColor.invoice"
+    style="box-shadow: 4px 4px 5px 3px #1d2054; border: 1px solid #1d2054"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToCreditDebit()"
+    [image_path]="cardImage.creditdebit"
+    [portal_name]="cardName[2]"
+    [overlay_color]="cardOverlayColor.creditdebit"
+    style="box-shadow: 4px 4px 5px 3px #1d2054; border: 1px solid #1d2054"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToPaymentAging()"
+    [image_path]="cardImage.paymentaging"
+    [portal_name]="cardName[1]"
+    [overlay_color]="cardOverlayColor.paymentaging"
+    style="box-shadow: 4px 4px 5px 3px #1d2054; border: 1px solid #1d2054"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToSalesData()"
+    [image_path]="cardImage.salesdata"
+    [portal_name]="cardName[3]"
+    [overlay_color]="cardOverlayColor.salesdata"
+    style="box-shadow: 4px 4px 5px 3px #1d2054; border: 1px solid #1d2054"
+  >
+  </app-portal-card>
+</div>

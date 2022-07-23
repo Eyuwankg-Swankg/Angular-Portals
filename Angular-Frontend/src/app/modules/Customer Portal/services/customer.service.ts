@@ -38,4 +38,18 @@ export class CustomerService {
       data
     );
   }
+
+  public getInvoiceData(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/invoicelist',
+      data
+    );
+  }
+
+  public getPaymentAging(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/paymentaging',
+      data
+    );
+  }
 }

@@ -30,6 +30,19 @@ body {
 
 /* END OF NAVBAR */
 
+/* DASHBOARD */
+.dashboard-content{
+  width:80%;
+  height: 110vh;
+  display: flex;
+  align-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction:column;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}
+/* END OF DASHBOARD */
+
 /* Card  */
 .card-container {
   width: 30%;

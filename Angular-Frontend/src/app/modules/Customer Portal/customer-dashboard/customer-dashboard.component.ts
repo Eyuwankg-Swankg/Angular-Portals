@@ -26,6 +26,6 @@ export class CustomerDashboardComponent implements OnInit {
     this.router.navigate(['/inquiry']);
   }
   goToSaleOrder(): void {this.router.navigate(['/saleorder']);}
-  goToDelivery(): void {}
-  goToFinancialSheet(): void {}
+  goToDelivery(): void {this.router.navigate(['/delivery']);}
+  goToFinancialSheet(): void {this.router.navigate(['/financialsheet']);}
 }
