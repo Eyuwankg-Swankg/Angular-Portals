@@ -1,0 +1,7 @@
+<div class="modal-box-container">
+  <ng-container *ngFor="let item of modal_data | keyvalue">
+    <span>{{ item.key }}</span>
+    <span>{{ item.value==''?'-':item.value }}</span>
+    <span>------------------------------------------</span>
+  </ng-container>
+</div>

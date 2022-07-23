@@ -4,4 +4,7 @@
 ></app-navbar-component>
 <app-bread-crumb class="breadcrumb-outer-container" [style_class]="styleClass" [breadcrumb_text]="breadCrumbText" (onToDashboard)="toDashboard()"></app-bread-crumb>  
 <h2 class="breadcrumb-title">INQUIRY LIST</h2>
-<app-table-component [table_data]="InquiryList" [style_class]="tableStyleClass"> </app-table-component>
+<app-table-component [table_data]="InquiryList" [style_class]="tableStyleClass"
+(displayFragment)="showFragment($event)"
+> </app-table-component>
+<app-modal-box *ngIf="modalToggle" class="modal-box-outer-container" [modal_data]="modalData"></app-modal-box>

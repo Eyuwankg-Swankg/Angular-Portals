@@ -15,27 +15,570 @@ const config = {
 //@desc      route to authenticate login
 //@access    PUBLIC
 router.post("/login", (req, res) => {
-  const requestURL1 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_login`;
-  const requestURL2 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_list`;
-  const requestURL3 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_status`;
-  const requestURL4 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_profile`;
-  const requestURL5 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_invoice_list`;
-  const requestURL6 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_invoice_detail`;
-  const requestURL7 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_list`;
-  const requestURL8 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_detail`;
-  const requestURL9 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_payment_aging`;
-  const requestURL10 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_debit_memo`;
-  const requestURL11 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_credit_memo`;
-  const requestURL12 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_list`;
-  const requestURL13 = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_detail`;
-  const bodyRequest1 = `<?xml version="1.0" encoding="UTF-8"?>
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_login`;
+  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUSTOMER_LOGIN_EYUWANKG xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
   <PASSWORD>EYUWANKG123</PASSWORD>
   <USERNAME>CUSTOMER@A1</USERNAME>
   </ns0:ZFM_CUSTOMER_LOGIN_EYUWANKG>`;
-  const bodyRequest2 = `<?xml version="1.0" encoding="UTF-8"?>
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      console.log("response", response);
+      res.send(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+//@type      POST
+//@route     /customerprofile
+//@desc      route to get customerprofile data
+//@access    PUBLIC
+router.post("/customerprofile", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_profile`;
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+   <ns0:ZFM_CUST_PROFILE_EYUWANKG xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+      <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
+      <CUSTOMERBANKDETAIL>
+         <item>
+            <CUSTOMER/>
+            <BANK_CTRY/>
+            <BANK_KEY/>
+            <BANK_ACCT/>
+            <CTRL_KEY/>
+            <PARTNER_BK/>
+            <COLL_AUTH/>
+            <BANK_REF/>
+         </item>
+      </CUSTOMERBANKDETAIL>
+      <CUSTOMERIBANDETAIL>
+         <item>
+            <CUSTOMER/>
+            <BANK_CTRY/>
+            <BANK_KEY/>
+            <BANK_ACCT/>
+            <CTRL_KEY/>
+            <IBAN/>
+            <VALID_FROM/>
+            <DUMMY/>
+         </item>
+      </CUSTOMERIBANDETAIL>
+      <CUSTOMERSEPADETAIL>
+         <item>
+            <CUSTOMER/>
+            <IBAN/>
+            <APPLICATION/>
+            <SEPA_CREDITOR_ID/>
+            <SEPA_MANDATE_ID/>
+            <DUMMY/>
+         </item>
+      </CUSTOMERSEPADETAIL>
+   </ns0:ZFM_CUST_PROFILE_EYUWANKG>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      res.send({data:response.data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+// INQUIRY DATA
+
+//@type      POST
+//@route     /inquiryList
+//@desc      route to get inquiryList data
+//@access    PUBLIC
+router.post("/inquiryList", (req, res) => {
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_list`;
+  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+  <ns0:ZFM_CUST_INQUIRY_LIST_SD xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+  <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
+     <IT_INQUIRY_LIST>
+        <item>
+           <MANDT/>
+           <VBELN/>
+           <ERDAT/>
+           <ERZET/>
+           <ERNAM/>
+           <ANGDT/>
+           <BNDDT/>
+           <AUDAT/>
+           <VBTYP/>
+           <TRVOG/>
+           <AUART/>
+           <AUGRU/>
+           <GWLDT/>
+           <SUBMI/>
+           <LIFSK/>
+           <FAKSK/>
+           <NETWR/>
+           <WAERK/>
+           <VKORG/>
+           <VTWEG/>
+           <SPART/>
+           <VKGRP/>
+           <VKBUR/>
+           <GSBER/>
+           <GSKST/>
+           <GUEBG/>
+           <GUEEN/>
+           <KNUMV/>
+           <VDATU/>
+           <VPRGR/>
+           <AUTLF/>
+           <VBKLA/>
+           <VBKLT/>
+           <KALSM/>
+           <VSBED/>
+           <FKARA/>
+           <AWAHR/>
+           <KTEXT/>
+           <BSTNK/>
+           <BSARK/>
+           <BSTDK/>
+           <BSTZD/>
+           <IHREZ/>
+           <BNAME/>
+           <TELF1/>
+           <MAHZA/>
+           <MAHDT/>
+           <KUNNR/>
+           <KOSTL/>
+           <STAFO/>
+           <STWAE/>
+           <AEDAT/>
+           <KVGR1/>
+           <KVGR2/>
+           <KVGR3/>
+           <KVGR4/>
+           <KVGR5/>
+           <KNUMA/>
+           <KOKRS/>
+           <PS_PSP_PNR/>
+           <KURST/>
+           <KKBER/>
+           <KNKLI/>
+           <GRUPP/>
+           <SBGRP/>
+           <CTLPC/>
+           <CMWAE/>
+           <CMFRE/>
+           <CMNUP/>
+           <CMNGV/>
+           <AMTBL/>
+           <HITYP_PR/>
+           <ABRVW/>
+           <ABDIS/>
+           <VGBEL/>
+           <OBJNR/>
+           <BUKRS_VF/>
+           <TAXK1/>
+           <TAXK2/>
+           <TAXK3/>
+           <TAXK4/>
+           <TAXK5/>
+           <TAXK6/>
+           <TAXK7/>
+           <TAXK8/>
+           <TAXK9/>
+           <XBLNR/>
+           <ZUONR/>
+           <VGTYP/>
+           <KALSM_CH/>
+           <AGRZR/>
+           <AUFNR/>
+           <QMNUM/>
+           <VBELN_GRP/>
+           <SCHEME_GRP/>
+           <ABRUF_PART/>
+           <ABHOD/>
+           <ABHOV/>
+           <ABHOB/>
+           <RPLNR/>
+           <VZEIT/>
+           <STCEG_L/>
+           <LANDTX/>
+           <XEGDR/>
+           <ENQUEUE_GRP/>
+           <DAT_FZAU/>
+           <FMBDAT/>
+           <VSNMR_V/>
+           <HANDLE/>
+           <PROLI/>
+           <CONT_DG/>
+           <CRM_GUID/>
+           <UPD_TMSTMP/>
+           <MSR_ID/>
+           <TM_CTRL_KEY/>
+           <HANDOVERLOC/>
+           <_DATAAGING/>
+           <PSM_BUDAT/>
+           <FSH_KVGR6/>
+           <FSH_KVGR7/>
+           <FSH_KVGR8/>
+           <FSH_KVGR9/>
+           <FSH_KVGR10/>
+           <FSH_REREG/>
+           <FSH_CQ_CHECK/>
+           <FSH_VRSN_STATUS/>
+           <FSH_TRANSACTION/>
+           <FSH_VAS_CG/>
+           <FSH_CANDATE/>
+           <FSH_SS/>
+           <FSH_OS_STG_CHANGE/>
+           <SWENR/>
+           <SMENR/>
+           <PHASE/>
+           <MTLAUR/>
+           <STAGE/>
+           <HB_CONT_REASON/>
+           <HB_EXPDATE/>
+           <HB_RESDATE/>
+           <MILL_APPL_ID/>
+           <TAS/>
+           <BETC/>
+           <MOD_ALLOW/>
+           <CANCEL_ALLOW/>
+           <PAY_METHOD/>
+           <BPN/>
+           <REP_FREQ/>
+           <LOGSYSB/>
+           <KALCD/>
+           <MULTI/>
+           <SPPAYM/>
+           <WTYSC_CLM_HDR/>
+        </item>
+     </IT_INQUIRY_LIST>
+  </ns0:ZFM_CUST_INQUIRY_LIST_SD>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      res.send({data:response.data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+//@type      POST
+//@route     /inquirydetail
+//@desc      route to get inquirydetail data
+//@access    PUBLIC
+router.post("/inquirydetail", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_detail`;
+   //90000000
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+   <ns0:ZFM_CUST_INQUIRY_DETAILS_SD xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+      <INQUIRY_NO>${req.body.inquiry_no}</INQUIRY_NO>
+      <IT_INQUIRY_DETAILS>
+         <item>
+            <MANDT/>
+            <VBELN/>
+            <POSNR/>
+            <MATNR/>
+            <MATWA/>
+            <PMATN/>
+            <CHARG/>
+            <MATKL/>
+            <ARKTX/>
+            <PSTYV/>
+            <POSAR/>
+            <LFREL/>
+            <FKREL/>
+            <UEPOS/>
+            <GRPOS/>
+            <ABGRU/>
+            <PRODH/>
+            <ZWERT/>
+            <ZMENG/>
+            <ZIEME/>
+            <UMZIZ/>
+            <UMZIN/>
+            <MEINS/>
+            <SMENG/>
+            <ABLFZ/>
+            <ABDAT/>
+            <ABSFZ/>
+            <POSEX/>
+            <KDMAT/>
+            <KBVER/>
+            <KEVER/>
+            <VKGRU/>
+            <VKAUS/>
+            <GRKOR/>
+            <FMENG/>
+            <UEBTK/>
+            <UEBTO/>
+            <UNTTO/>
+            <FAKSP/>
+            <ATPKZ/>
+            <RKFKF/>
+            <SPART/>
+            <GSBER/>
+            <NETWR/>
+            <WAERK/>
+            <ANTLF/>
+            <KZTLF/>
+            <CHSPL/>
+            <KWMENG/>
+            <LSMENG/>
+            <KBMENG/>
+            <KLMENG/>
+            <VRKME/>
+            <UMVKZ/>
+            <UMVKN/>
+            <BRGEW/>
+            <NTGEW/>
+            <GEWEI/>
+            <VOLUM/>
+            <VOLEH/>
+            <VBELV/>
+            <POSNV/>
+            <VGBEL/>
+            <VGPOS/>
+            <VOREF/>
+            <UPFLU/>
+            <ERLRE/>
+            <LPRIO/>
+            <WERKS/>
+            <LGORT/>
+            <VSTEL/>
+            <ROUTE/>
+            <STKEY/>
+            <STDAT/>
+            <STLNR/>
+            <STPOS/>
+            <AWAHR/>
+            <ERDAT/>
+            <ERNAM/>
+            <ERZET/>
+            <TAXM1/>
+            <TAXM2/>
+            <TAXM3/>
+            <TAXM4/>
+            <TAXM5/>
+            <TAXM6/>
+            <TAXM7/>
+            <TAXM8/>
+            <TAXM9/>
+            <VBEAF/>
+            <VBEAV/>
+            <VGREF/>
+            <NETPR/>
+            <KPEIN/>
+            <KMEIN/>
+            <SHKZG/>
+            <SKTOF/>
+            <MTVFP/>
+            <SUMBD/>
+            <KONDM/>
+            <KTGRM/>
+            <BONUS/>
+            <PROVG/>
+            <EANNR/>
+            <PRSOK/>
+            <BWTAR/>
+            <BWTEX/>
+            <XCHPF/>
+            <XCHAR/>
+            <LFMNG/>
+            <STAFO/>
+            <WAVWR/>
+            <KZWI1/>
+            <KZWI2/>
+            <KZWI3/>
+            <KZWI4/>
+            <KZWI5/>
+            <KZWI6/>
+            <STCUR/>
+            <AEDAT/>
+            <EAN11/>
+            <FIXMG/>
+            <PRCTR/>
+            <MVGR1/>
+            <MVGR2/>
+            <MVGR3/>
+            <MVGR4/>
+            <MVGR5/>
+            <KMPMG/>
+            <SUGRD/>
+            <SOBKZ/>
+            <VPZUO/>
+            <PAOBJNR/>
+            <PS_PSP_PNR/>
+            <AUFNR/>
+            <VPMAT/>
+            <VPWRK/>
+            <PRBME/>
+            <UMREF/>
+            <KNTTP/>
+            <KZVBR/>
+            <SERNR/>
+            <OBJNR/>
+            <ABGRS/>
+            <BEDAE/>
+            <CMPRE/>
+            <CMTFG/>
+            <CMPNT/>
+            <CMKUA/>
+            <CUOBJ/>
+            <CUOBJ_CH/>
+            <CEPOK/>
+            <KOUPD/>
+            <SERAIL/>
+            <ANZSN/>
+            <NACHL/>
+            <MAGRV/>
+            <MPROK/>
+            <VGTYP/>
+            <PROSA/>
+            <UEPVW/>
+            <KALNR/>
+            <KLVAR/>
+            <SPOSN/>
+            <KOWRR/>
+            <STADAT/>
+            <EXART/>
+            <PREFE/>
+            <KNUMH/>
+            <CLINT/>
+            <CHMVS/>
+            <STLTY/>
+            <STLKN/>
+            <STPOZ/>
+            <STMAN/>
+            <ZSCHL_K/>
+            <KALSM_K/>
+            <KALVAR/>
+            <KOSCH/>
+            <UPMAT/>
+            <UKONM/>
+            <MFRGR/>
+            <PLAVO/>
+            <KANNR/>
+            <CMPRE_FLT/>
+            <ABFOR/>
+            <ABGES/>
+            <J_1BCFOP/>
+            <J_1BTAXLW1/>
+            <J_1BTAXLW2/>
+            <J_1BTXSDC/>
+            <WKTNR/>
+            <WKTPS/>
+            <SKOPF/>
+            <KZBWS/>
+            <WGRU1/>
+            <WGRU2/>
+            <KNUMA_PI/>
+            <KNUMA_AG/>
+            <KZFME/>
+            <LSTANR/>
+            <TECHS/>
+            <MWSBP/>
+            <BERID/>
+            <PCTRF/>
+            <LOGSYS_EXT/>
+            <J_1BTAXLW3/>
+            <J_1BTAXLW4/>
+            <J_1BTAXLW5/>
+            <STOCKLOC/>
+            <SLOCTYPE/>
+            <MSR_RET_REASON/>
+            <MSR_REFUND_CODE/>
+            <MSR_APPROV_BLOCK/>
+            <NRAB_KNUMH/>
+            <TRMRISK_RELEVANT/>
+            <SGT_RCAT/>
+            <HANDOVERLOC/>
+            <HANDOVERDATE/>
+            <HANDOVERTIME/>
+            <TC_AUT_DET/>
+            <MANUAL_TC_REASON/>
+            <FISCAL_INCENTIVE/>
+            <TAX_SUBJECT_ST/>
+            <FISCAL_INCENTIVE_ID/>
+            <SPCSTO/>
+            <_DATAAGING/>
+            <REVACC_REFID/>
+            <REVACC_REFTYPE/>
+            <_-BEV1_-SRFUND/>
+            <AUFPL_OLC/>
+            <APLZL_OLC/>
+            <FERC_IND/>
+            <FSH_SEASON_YEAR/>
+            <FSH_SEASON/>
+            <FSH_COLLECTION/>
+            <FSH_THEME/>
+            <FSH_CRSD/>
+            <FSH_SEAREF/>
+            <FSH_CANDATE/>
+            <FSH_PSM_PFM_SPLIT/>
+            <FSH_VAS_REL/>
+            <FSH_VAS_PRNT_ID/>
+            <FSH_TRANSACTION/>
+            <FSH_ITEM_GROUP/>
+            <FSH_ITEM/>
+            <FSH_VASREF/>
+            <FSH_GRID_COND_REC/>
+            <KOSTL/>
+            <FONDS/>
+            <FISTL/>
+            <FKBER/>
+            <GRANT_NBR/>
+            <BUDGET_PD/>
+            <IUID_RELEVANT/>
+            <MILL_SE_GPOSN/>
+            <PRS_OBJNR/>
+            <PRS_SD_SPSNR/>
+            <PRS_WORK_PERIOD/>
+            <TAS/>
+            <BETC/>
+            <MOD_ALLOW/>
+            <CANCEL_ALLOW/>
+            <PAY_METHOD/>
+            <BPN/>
+            <REP_FREQ/>
+            <FMFGUS_KEY/>
+            <PARGB/>
+            <AUFPL_OAA/>
+            <APLZL_OAA/>
+            <WRF_CHARSTC1/>
+            <WRF_CHARSTC2/>
+            <WRF_CHARSTC3/>
+            <ARSNUM/>
+            <ARSPOS/>
+            <WTYSC_CLMITEM/>
+         </item>
+      </IT_INQUIRY_DETAILS>
+   </ns0:ZFM_CUST_INQUIRY_DETAILS_SD>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      res.send({data:response.data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+// SALES DATA
+
+//@type      POST
+//@route     /saleorderlist
+//@desc      route to get saleorderlist data
+//@access    PUBLIC
+router.post("/saleorderlist", (req, res) => {
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_list`;
+  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUST_SALES_ORDER_DATA xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-  <CUSTOMER_NO>12</CUSTOMER_NO>
+  <CUSTOMER_NO>${req.body.customer_id}</CUSTOMER_NO>
      <IT_SALES_ORDER>
         <item>
         <SD_DOC/>
@@ -93,94 +636,92 @@ router.post("/login", (req, res) => {
         </item>
      </IT_SALES_ORDER>
   </ns0:ZFM_CUST_SALES_ORDER_DATA>`;
-  const bodyRequest3 = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_SALES_STATUS xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <SALES_DOC_NO>70000002</SALES_DOC_NO>
-     <ET_RESULT>
-        <item>
-           <DOC_NUMBER/>
-           <DOC_DATE/>
-           <PURCH_NO/>
-           <PRC_STAT_H/>
-           <DLV_STAT_H/>
-           <REQ_DATE_H/>
-           <DLV_BLOCK/>
-           <ITM_NUMBER/>
-           <MATERIAL/>
-           <SHORT_TEXT/>
-           <REQ_DATE/>
-           <REQ_QTY/>
-           <CUM_CF_QTY/>
-           <SALES_UNIT/>
-           <NET_VALUE/>
-           <CURRENCY/>
-           <NET_PRICE/>
-           <COND_P_UNT/>
-           <COND_UNIT/>
-           <DLV_STAT_I/>
-           <DELIV_NUMB/>
-           <DELIV_ITEM/>
-           <DELIV_DATE/>
-           <DLV_QTY/>
-           <REF_QTY/>
-           <S_UNIT_ISO/>
-           <CD_UNT_ISO/>
-           <CURR_ISO/>
-           <MATERIAL_EXTERNAL/>
-           <MATERIAL_GUID/>
-           <MATERIAL_VERSION/>
-           <PO_ITM_NO/>
-           <CREATION_DATE/>
-           <CREATION_TIME/>
-           <S_UNIT_DLV/>
-           <DLV_UNIT_ISO/>
-           <REA_FOR_RE/>
-           <PURCH_NO_C/>
-           <MATERIAL_LONG/>
-        </item>
-     </ET_RESULT>
-  </ns0:ZFM_CUST_SALES_STATUS>`;
-  const bodyRequest4 = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_PROFILE_EYUWANKG xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <CUSTOMER_ID>12</CUSTOMER_ID>
-     <CUSTOMERBANKDETAIL>
-        <item>
-           <CUSTOMER/>
-           <BANK_CTRY/>
-           <BANK_KEY/>
-           <BANK_ACCT/>
-           <CTRL_KEY/>
-           <PARTNER_BK/>
-           <COLL_AUTH/>
-           <BANK_REF/>
-        </item>
-     </CUSTOMERBANKDETAIL>
-     <CUSTOMERIBANDETAIL>
-        <item>
-           <CUSTOMER/>
-           <BANK_CTRY/>
-           <BANK_KEY/>
-           <BANK_ACCT/>
-           <CTRL_KEY/>
-           <IBAN/>
-           <VALID_FROM/>
-           <DUMMY/>
-        </item>
-     </CUSTOMERIBANDETAIL>
-     <CUSTOMERSEPADETAIL>
-        <item>
-           <CUSTOMER/>
-           <IBAN/>
-           <APPLICATION/>
-           <SEPA_CREDITOR_ID/>
-           <SEPA_MANDATE_ID/>
-           <DUMMY/>
-        </item>
-     </CUSTOMERSEPADETAIL>
-  </ns0:ZFM_CUST_PROFILE_EYUWANKG>`;
-  const bodyRequest5 = `<?xml version="1.0" encoding="UTF-8"?>
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      res.send({data:response.data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+//@type      POST
+//@route     /salestatus
+//@desc      route to get salestatus data
+//@access    PUBLIC
+router.post("/salestatus", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_status`;
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+   <ns0:ZFM_CUST_SALES_STATUS xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+      <SALES_DOC_NO>${req.body.sales_doc_no}</SALES_DOC_NO>
+      <ET_RESULT>
+         <item>
+            <DOC_NUMBER/>
+            <DOC_DATE/>
+            <PURCH_NO/>
+            <PRC_STAT_H/>
+            <DLV_STAT_H/>
+            <REQ_DATE_H/>
+            <DLV_BLOCK/>
+            <ITM_NUMBER/>
+            <MATERIAL/>
+            <SHORT_TEXT/>
+            <REQ_DATE/>
+            <REQ_QTY/>
+            <CUM_CF_QTY/>
+            <SALES_UNIT/>
+            <NET_VALUE/>
+            <CURRENCY/>
+            <NET_PRICE/>
+            <COND_P_UNT/>
+            <COND_UNIT/>
+            <DLV_STAT_I/>
+            <DELIV_NUMB/>
+            <DELIV_ITEM/>
+            <DELIV_DATE/>
+            <DLV_QTY/>
+            <REF_QTY/>
+            <S_UNIT_ISO/>
+            <CD_UNT_ISO/>
+            <CURR_ISO/>
+            <MATERIAL_EXTERNAL/>
+            <MATERIAL_GUID/>
+            <MATERIAL_VERSION/>
+            <PO_ITM_NO/>
+            <CREATION_DATE/>
+            <CREATION_TIME/>
+            <S_UNIT_DLV/>
+            <DLV_UNIT_ISO/>
+            <REA_FOR_RE/>
+            <PURCH_NO_C/>
+            <MATERIAL_LONG/>
+         </item>
+      </ET_RESULT>
+   </ns0:ZFM_CUST_SALES_STATUS>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      res.send({data:response.data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+// INVOICE DATA
+
+//@type      POST
+//@route     /invoicelist
+//@desc      route to get invoicelist data
+//@access    PUBLIC
+router.post("/invoicelist", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_invoice_list`;
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUSTOMER_INVOICE_LIST xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-  <CUSTOMER_NO>12</CUSTOMER_NO>
+  <CUSTOMER_NO>${req.body.customer_id}</CUSTOMER_NO>
      <IT_INVOICE_LIST>
         <item>
            <MANDT/>
@@ -300,9 +841,27 @@ router.post("/login", (req, res) => {
         </item>
      </IT_INVOICE_LIST>
   </ns0:ZFM_CUSTOMER_INVOICE_LIST>`;
-  const bodyRequest6 = `<?xml version="1.0" encoding="UTF-8"?>
+ 
+   axios
+     .post(requestURL, bodyRequest, config)
+     .then(function (response) {
+      res.send({data:response.data});
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+ });
+
+//@type      POST
+//@route     /invoicedetail
+//@desc      route to get invoicedetail data
+//@access    PUBLIC
+router.post("/invoicedetail", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_invoice_detail`;  
+   //90000000
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUST_INVOICE_DETAIL xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <INVOICE_NO>90000000</INVOICE_NO>
+     <INVOICE_NO>${req.body.invoice_no}</INVOICE_NO>
      <IT_INVOICE_DATA>
         <item>
            <MANDT/>
@@ -531,810 +1090,29 @@ router.post("/login", (req, res) => {
         </item>
      </IT_INVOICE_DATA>
   </ns0:ZFM_CUST_INVOICE_DETAIL>`;
-  const bodyRequest7 = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_INQUIRY_LIST_SD xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-  <CUSTOMER_ID>12</CUSTOMER_ID>
-     <IT_INQUIRY_LIST>
-        <item>
-           <MANDT/>
-           <VBELN/>
-           <ERDAT/>
-           <ERZET/>
-           <ERNAM/>
-           <ANGDT/>
-           <BNDDT/>
-           <AUDAT/>
-           <VBTYP/>
-           <TRVOG/>
-           <AUART/>
-           <AUGRU/>
-           <GWLDT/>
-           <SUBMI/>
-           <LIFSK/>
-           <FAKSK/>
-           <NETWR/>
-           <WAERK/>
-           <VKORG/>
-           <VTWEG/>
-           <SPART/>
-           <VKGRP/>
-           <VKBUR/>
-           <GSBER/>
-           <GSKST/>
-           <GUEBG/>
-           <GUEEN/>
-           <KNUMV/>
-           <VDATU/>
-           <VPRGR/>
-           <AUTLF/>
-           <VBKLA/>
-           <VBKLT/>
-           <KALSM/>
-           <VSBED/>
-           <FKARA/>
-           <AWAHR/>
-           <KTEXT/>
-           <BSTNK/>
-           <BSARK/>
-           <BSTDK/>
-           <BSTZD/>
-           <IHREZ/>
-           <BNAME/>
-           <TELF1/>
-           <MAHZA/>
-           <MAHDT/>
-           <KUNNR/>
-           <KOSTL/>
-           <STAFO/>
-           <STWAE/>
-           <AEDAT/>
-           <KVGR1/>
-           <KVGR2/>
-           <KVGR3/>
-           <KVGR4/>
-           <KVGR5/>
-           <KNUMA/>
-           <KOKRS/>
-           <PS_PSP_PNR/>
-           <KURST/>
-           <KKBER/>
-           <KNKLI/>
-           <GRUPP/>
-           <SBGRP/>
-           <CTLPC/>
-           <CMWAE/>
-           <CMFRE/>
-           <CMNUP/>
-           <CMNGV/>
-           <AMTBL/>
-           <HITYP_PR/>
-           <ABRVW/>
-           <ABDIS/>
-           <VGBEL/>
-           <OBJNR/>
-           <BUKRS_VF/>
-           <TAXK1/>
-           <TAXK2/>
-           <TAXK3/>
-           <TAXK4/>
-           <TAXK5/>
-           <TAXK6/>
-           <TAXK7/>
-           <TAXK8/>
-           <TAXK9/>
-           <XBLNR/>
-           <ZUONR/>
-           <VGTYP/>
-           <KALSM_CH/>
-           <AGRZR/>
-           <AUFNR/>
-           <QMNUM/>
-           <VBELN_GRP/>
-           <SCHEME_GRP/>
-           <ABRUF_PART/>
-           <ABHOD/>
-           <ABHOV/>
-           <ABHOB/>
-           <RPLNR/>
-           <VZEIT/>
-           <STCEG_L/>
-           <LANDTX/>
-           <XEGDR/>
-           <ENQUEUE_GRP/>
-           <DAT_FZAU/>
-           <FMBDAT/>
-           <VSNMR_V/>
-           <HANDLE/>
-           <PROLI/>
-           <CONT_DG/>
-           <CRM_GUID/>
-           <UPD_TMSTMP/>
-           <MSR_ID/>
-           <TM_CTRL_KEY/>
-           <HANDOVERLOC/>
-           <_DATAAGING/>
-           <PSM_BUDAT/>
-           <FSH_KVGR6/>
-           <FSH_KVGR7/>
-           <FSH_KVGR8/>
-           <FSH_KVGR9/>
-           <FSH_KVGR10/>
-           <FSH_REREG/>
-           <FSH_CQ_CHECK/>
-           <FSH_VRSN_STATUS/>
-           <FSH_TRANSACTION/>
-           <FSH_VAS_CG/>
-           <FSH_CANDATE/>
-           <FSH_SS/>
-           <FSH_OS_STG_CHANGE/>
-           <SWENR/>
-           <SMENR/>
-           <PHASE/>
-           <MTLAUR/>
-           <STAGE/>
-           <HB_CONT_REASON/>
-           <HB_EXPDATE/>
-           <HB_RESDATE/>
-           <MILL_APPL_ID/>
-           <TAS/>
-           <BETC/>
-           <MOD_ALLOW/>
-           <CANCEL_ALLOW/>
-           <PAY_METHOD/>
-           <BPN/>
-           <REP_FREQ/>
-           <LOGSYSB/>
-           <KALCD/>
-           <MULTI/>
-           <SPPAYM/>
-           <WTYSC_CLM_HDR/>
-        </item>
-     </IT_INQUIRY_LIST>
-  </ns0:ZFM_CUST_INQUIRY_LIST_SD>`;
-  const bodyRequest8 = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_INQUIRY_DETAILS_SD xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <INQUIRY_NO>90000000</INQUIRY_NO>
-     <IT_INQUIRY_DETAILS>
-        <item>
-           <MANDT/>
-           <VBELN/>
-           <POSNR/>
-           <MATNR/>
-           <MATWA/>
-           <PMATN/>
-           <CHARG/>
-           <MATKL/>
-           <ARKTX/>
-           <PSTYV/>
-           <POSAR/>
-           <LFREL/>
-           <FKREL/>
-           <UEPOS/>
-           <GRPOS/>
-           <ABGRU/>
-           <PRODH/>
-           <ZWERT/>
-           <ZMENG/>
-           <ZIEME/>
-           <UMZIZ/>
-           <UMZIN/>
-           <MEINS/>
-           <SMENG/>
-           <ABLFZ/>
-           <ABDAT/>
-           <ABSFZ/>
-           <POSEX/>
-           <KDMAT/>
-           <KBVER/>
-           <KEVER/>
-           <VKGRU/>
-           <VKAUS/>
-           <GRKOR/>
-           <FMENG/>
-           <UEBTK/>
-           <UEBTO/>
-           <UNTTO/>
-           <FAKSP/>
-           <ATPKZ/>
-           <RKFKF/>
-           <SPART/>
-           <GSBER/>
-           <NETWR/>
-           <WAERK/>
-           <ANTLF/>
-           <KZTLF/>
-           <CHSPL/>
-           <KWMENG/>
-           <LSMENG/>
-           <KBMENG/>
-           <KLMENG/>
-           <VRKME/>
-           <UMVKZ/>
-           <UMVKN/>
-           <BRGEW/>
-           <NTGEW/>
-           <GEWEI/>
-           <VOLUM/>
-           <VOLEH/>
-           <VBELV/>
-           <POSNV/>
-           <VGBEL/>
-           <VGPOS/>
-           <VOREF/>
-           <UPFLU/>
-           <ERLRE/>
-           <LPRIO/>
-           <WERKS/>
-           <LGORT/>
-           <VSTEL/>
-           <ROUTE/>
-           <STKEY/>
-           <STDAT/>
-           <STLNR/>
-           <STPOS/>
-           <AWAHR/>
-           <ERDAT/>
-           <ERNAM/>
-           <ERZET/>
-           <TAXM1/>
-           <TAXM2/>
-           <TAXM3/>
-           <TAXM4/>
-           <TAXM5/>
-           <TAXM6/>
-           <TAXM7/>
-           <TAXM8/>
-           <TAXM9/>
-           <VBEAF/>
-           <VBEAV/>
-           <VGREF/>
-           <NETPR/>
-           <KPEIN/>
-           <KMEIN/>
-           <SHKZG/>
-           <SKTOF/>
-           <MTVFP/>
-           <SUMBD/>
-           <KONDM/>
-           <KTGRM/>
-           <BONUS/>
-           <PROVG/>
-           <EANNR/>
-           <PRSOK/>
-           <BWTAR/>
-           <BWTEX/>
-           <XCHPF/>
-           <XCHAR/>
-           <LFMNG/>
-           <STAFO/>
-           <WAVWR/>
-           <KZWI1/>
-           <KZWI2/>
-           <KZWI3/>
-           <KZWI4/>
-           <KZWI5/>
-           <KZWI6/>
-           <STCUR/>
-           <AEDAT/>
-           <EAN11/>
-           <FIXMG/>
-           <PRCTR/>
-           <MVGR1/>
-           <MVGR2/>
-           <MVGR3/>
-           <MVGR4/>
-           <MVGR5/>
-           <KMPMG/>
-           <SUGRD/>
-           <SOBKZ/>
-           <VPZUO/>
-           <PAOBJNR/>
-           <PS_PSP_PNR/>
-           <AUFNR/>
-           <VPMAT/>
-           <VPWRK/>
-           <PRBME/>
-           <UMREF/>
-           <KNTTP/>
-           <KZVBR/>
-           <SERNR/>
-           <OBJNR/>
-           <ABGRS/>
-           <BEDAE/>
-           <CMPRE/>
-           <CMTFG/>
-           <CMPNT/>
-           <CMKUA/>
-           <CUOBJ/>
-           <CUOBJ_CH/>
-           <CEPOK/>
-           <KOUPD/>
-           <SERAIL/>
-           <ANZSN/>
-           <NACHL/>
-           <MAGRV/>
-           <MPROK/>
-           <VGTYP/>
-           <PROSA/>
-           <UEPVW/>
-           <KALNR/>
-           <KLVAR/>
-           <SPOSN/>
-           <KOWRR/>
-           <STADAT/>
-           <EXART/>
-           <PREFE/>
-           <KNUMH/>
-           <CLINT/>
-           <CHMVS/>
-           <STLTY/>
-           <STLKN/>
-           <STPOZ/>
-           <STMAN/>
-           <ZSCHL_K/>
-           <KALSM_K/>
-           <KALVAR/>
-           <KOSCH/>
-           <UPMAT/>
-           <UKONM/>
-           <MFRGR/>
-           <PLAVO/>
-           <KANNR/>
-           <CMPRE_FLT/>
-           <ABFOR/>
-           <ABGES/>
-           <J_1BCFOP/>
-           <J_1BTAXLW1/>
-           <J_1BTAXLW2/>
-           <J_1BTXSDC/>
-           <WKTNR/>
-           <WKTPS/>
-           <SKOPF/>
-           <KZBWS/>
-           <WGRU1/>
-           <WGRU2/>
-           <KNUMA_PI/>
-           <KNUMA_AG/>
-           <KZFME/>
-           <LSTANR/>
-           <TECHS/>
-           <MWSBP/>
-           <BERID/>
-           <PCTRF/>
-           <LOGSYS_EXT/>
-           <J_1BTAXLW3/>
-           <J_1BTAXLW4/>
-           <J_1BTAXLW5/>
-           <STOCKLOC/>
-           <SLOCTYPE/>
-           <MSR_RET_REASON/>
-           <MSR_REFUND_CODE/>
-           <MSR_APPROV_BLOCK/>
-           <NRAB_KNUMH/>
-           <TRMRISK_RELEVANT/>
-           <SGT_RCAT/>
-           <HANDOVERLOC/>
-           <HANDOVERDATE/>
-           <HANDOVERTIME/>
-           <TC_AUT_DET/>
-           <MANUAL_TC_REASON/>
-           <FISCAL_INCENTIVE/>
-           <TAX_SUBJECT_ST/>
-           <FISCAL_INCENTIVE_ID/>
-           <SPCSTO/>
-           <_DATAAGING/>
-           <REVACC_REFID/>
-           <REVACC_REFTYPE/>
-           <_-BEV1_-SRFUND/>
-           <AUFPL_OLC/>
-           <APLZL_OLC/>
-           <FERC_IND/>
-           <FSH_SEASON_YEAR/>
-           <FSH_SEASON/>
-           <FSH_COLLECTION/>
-           <FSH_THEME/>
-           <FSH_CRSD/>
-           <FSH_SEAREF/>
-           <FSH_CANDATE/>
-           <FSH_PSM_PFM_SPLIT/>
-           <FSH_VAS_REL/>
-           <FSH_VAS_PRNT_ID/>
-           <FSH_TRANSACTION/>
-           <FSH_ITEM_GROUP/>
-           <FSH_ITEM/>
-           <FSH_VASREF/>
-           <FSH_GRID_COND_REC/>
-           <KOSTL/>
-           <FONDS/>
-           <FISTL/>
-           <FKBER/>
-           <GRANT_NBR/>
-           <BUDGET_PD/>
-           <IUID_RELEVANT/>
-           <MILL_SE_GPOSN/>
-           <PRS_OBJNR/>
-           <PRS_SD_SPSNR/>
-           <PRS_WORK_PERIOD/>
-           <TAS/>
-           <BETC/>
-           <MOD_ALLOW/>
-           <CANCEL_ALLOW/>
-           <PAY_METHOD/>
-           <BPN/>
-           <REP_FREQ/>
-           <FMFGUS_KEY/>
-           <PARGB/>
-           <AUFPL_OAA/>
-           <APLZL_OAA/>
-           <WRF_CHARSTC1/>
-           <WRF_CHARSTC2/>
-           <WRF_CHARSTC3/>
-           <ARSNUM/>
-           <ARSPOS/>
-           <WTYSC_CLMITEM/>
-        </item>
-     </IT_INQUIRY_DETAILS>
-  </ns0:ZFM_CUST_INQUIRY_DETAILS_SD>`;
-  const bodyRequest9 = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_FS_PAYMENT_AGING xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <CUSTOMER_NO>12</CUSTOMER_NO>
-     <IT_LINEITEM>
-        <item>
-           <COMP_CODE/>
-           <CUSTOMER/>
-           <SP_GL_IND/>
-           <CLEAR_DATE/>
-           <CLR_DOC_NO/>
-           <ALLOC_NMBR/>
-           <FISC_YEAR/>
-           <DOC_NO/>
-           <ITEM_NUM/>
-           <PSTNG_DATE/>
-           <DOC_DATE/>
-           <ENTRY_DATE/>
-           <CURRENCY/>
-           <LOC_CURRCY/>
-           <REF_DOC_NO/>
-           <DOC_TYPE/>
-           <FIS_PERIOD/>
-           <POST_KEY/>
-           <DB_CR_IND/>
-           <BUS_AREA/>
-           <TAX_CODE/>
-           <LC_AMOUNT/>
-           <AMT_DOCCUR/>
-           <LC_TAX/>
-           <TX_DOC_CUR/>
-           <ITEM_TEXT/>
-           <BRANCH/>
-           <BLINE_DATE/>
-           <PMNTTRMS/>
-           <DSCT_DAYS1/>
-           <DSCT_DAYS2/>
-           <NETTERMS/>
-           <DSCT_PCT1/>
-           <DSCT_PCT2/>
-           <DISC_BASE/>
-           <DSC_AMT_LC/>
-           <DSC_AMT_DC/>
-           <PYMT_METH/>
-           <PMNT_BLOCK/>
-           <FIXEDTERMS/>
-           <INV_REF/>
-           <INV_YEAR/>
-           <INV_ITEM/>
-           <DUNN_BLOCK/>
-           <DUNN_KEY/>
-           <LAST_DUNN/>
-           <DUNN_LEVEL/>
-           <DUNN_AREA/>
-           <DOC_STATUS/>
-           <NXT_DOCTYP/>
-           <VAT_REG_NO/>
-           <REASON_CDE/>
-           <PMTMTHSUPL/>
-           <REF_KEY_1/>
-           <REF_KEY_2/>
-           <T_CURRENCY/>
-           <AMOUNT/>
-           <NET_AMOUNT/>
-           <NAME/>
-           <NAME_2/>
-           <NAME_3/>
-           <NAME_4/>
-           <POSTL_CODE/>
-           <CITY/>
-           <COUNTRY/>
-           <STREET/>
-           <PO_BOX/>
-           <POBX_PCD/>
-           <POBK_CURAC/>
-           <BANK_ACCT/>
-           <BANK_KEY/>
-           <BANK_CTRY/>
-           <TAX_NO_1/>
-           <TAX_NO_2/>
-           <TAX/>
-           <EQUAL_TAX/>
-           <REGION/>
-           <CTRL_KEY/>
-           <INSTR_KEY/>
-           <PAYEE_CODE/>
-           <LANGU/>
-           <BILL_LIFE/>
-           <BE_TAXCODE/>
-           <BILLTAX_LC/>
-           <BILLTAX_FC/>
-           <LC_COL_CHG/>
-           <COLL_CHARG/>
-           <CHGS_TX_CD/>
-           <ISSUE_DATE/>
-           <USAGEDATE/>
-           <BILL_USAGE/>
-           <DOMICILE/>
-           <DRAWER/>
-           <CTRBNK_LOC/>
-           <DRAW_CITY1/>
-           <DRAWEE/>
-           <DRAW_CITY2/>
-           <DISCT_DAYS/>
-           <DISCT_RATE/>
-           <ACCEPTED/>
-           <BILLSTATUS/>
-           <PRTEST_IND/>
-           <BE_DEMAND/>
-           <OBJ_TYPE/>
-           <REF_DOC/>
-           <REF_ORG_UN/>
-           <REVERSAL_DOC/>
-           <SP_GL_TYPE/>
-           <NEG_POSTNG/>
-           <REF_DOC_NO_LONG/>
-           <BILL_DOC/>
-        </item>
-     </IT_LINEITEM>
-  </ns0:ZFM_CUST_FS_PAYMENT_AGING>`;
-  const bodyRequest10 = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_FS_DEBIT_MEMO xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <CUSTOMER_ID>12</CUSTOMER_ID>
-     <IT_DEBIT_RESULT>
-        <item>
-           <COMP_CODE/>
-           <CUSTOMER/>
-           <SP_GL_IND/>
-           <CLEAR_DATE/>
-           <CLR_DOC_NO/>
-           <ALLOC_NMBR/>
-           <FISC_YEAR/>
-           <DOC_NO/>
-           <ITEM_NUM/>
-           <PSTNG_DATE/>
-           <DOC_DATE/>
-           <ENTRY_DATE/>
-           <CURRENCY/>
-           <LOC_CURRCY/>
-           <REF_DOC_NO/>
-           <DOC_TYPE/>
-           <FIS_PERIOD/>
-           <POST_KEY/>
-           <DB_CR_IND/>
-           <BUS_AREA/>
-           <TAX_CODE/>
-           <LC_AMOUNT/>
-           <AMT_DOCCUR/>
-           <LC_TAX/>
-           <TX_DOC_CUR/>
-           <ITEM_TEXT/>
-           <BRANCH/>
-           <BLINE_DATE/>
-           <PMNTTRMS/>
-           <DSCT_DAYS1/>
-           <DSCT_DAYS2/>
-           <NETTERMS/>
-           <DSCT_PCT1/>
-           <DSCT_PCT2/>
-           <DISC_BASE/>
-           <DSC_AMT_LC/>
-           <DSC_AMT_DC/>
-           <PYMT_METH/>
-           <PMNT_BLOCK/>
-           <FIXEDTERMS/>
-           <INV_REF/>
-           <INV_YEAR/>
-           <INV_ITEM/>
-           <DUNN_BLOCK/>
-           <DUNN_KEY/>
-           <LAST_DUNN/>
-           <DUNN_LEVEL/>
-           <DUNN_AREA/>
-           <DOC_STATUS/>
-           <NXT_DOCTYP/>
-           <VAT_REG_NO/>
-           <REASON_CDE/>
-           <PMTMTHSUPL/>
-           <REF_KEY_1/>
-           <REF_KEY_2/>
-           <T_CURRENCY/>
-           <AMOUNT/>
-           <NET_AMOUNT/>
-           <NAME/>
-           <NAME_2/>
-           <NAME_3/>
-           <NAME_4/>
-           <POSTL_CODE/>
-           <CITY/>
-           <COUNTRY/>
-           <STREET/>
-           <PO_BOX/>
-           <POBX_PCD/>
-           <POBK_CURAC/>
-           <BANK_ACCT/>
-           <BANK_KEY/>
-           <BANK_CTRY/>
-           <TAX_NO_1/>
-           <TAX_NO_2/>
-           <TAX/>
-           <EQUAL_TAX/>
-           <REGION/>
-           <CTRL_KEY/>
-           <INSTR_KEY/>
-           <PAYEE_CODE/>
-           <LANGU/>
-           <BILL_LIFE/>
-           <BE_TAXCODE/>
-           <BILLTAX_LC/>
-           <BILLTAX_FC/>
-           <LC_COL_CHG/>
-           <COLL_CHARG/>
-           <CHGS_TX_CD/>
-           <ISSUE_DATE/>
-           <USAGEDATE/>
-           <BILL_USAGE/>
-           <DOMICILE/>
-           <DRAWER/>
-           <CTRBNK_LOC/>
-           <DRAW_CITY1/>
-           <DRAWEE/>
-           <DRAW_CITY2/>
-           <DISCT_DAYS/>
-           <DISCT_RATE/>
-           <ACCEPTED/>
-           <BILLSTATUS/>
-           <PRTEST_IND/>
-           <BE_DEMAND/>
-           <OBJ_TYPE/>
-           <REF_DOC/>
-           <REF_ORG_UN/>
-           <REVERSAL_DOC/>
-           <SP_GL_TYPE/>
-           <NEG_POSTNG/>
-           <REF_DOC_NO_LONG/>
-           <BILL_DOC/>
-        </item>
-     </IT_DEBIT_RESULT>
-  </ns0:ZFM_CUST_FS_DEBIT_MEMO>`;
-  const bodyRequest11 = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_FS_CREDIT_MEMO xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <CUSTOMER_ID>12</CUSTOMER_ID>
-     <IT_CREDIT_RESULT>
-        <item>
-           <COMP_CODE/>
-           <CUSTOMER/>
-           <SP_GL_IND/>
-           <CLEAR_DATE/>
-           <CLR_DOC_NO/>
-           <ALLOC_NMBR/>
-           <FISC_YEAR/>
-           <DOC_NO/>
-           <ITEM_NUM/>
-           <PSTNG_DATE/>
-           <DOC_DATE/>
-           <ENTRY_DATE/>
-           <CURRENCY/>
-           <LOC_CURRCY/>
-           <REF_DOC_NO/>
-           <DOC_TYPE/>
-           <FIS_PERIOD/>
-           <POST_KEY/>
-           <DB_CR_IND/>
-           <BUS_AREA/>
-           <TAX_CODE/>
-           <LC_AMOUNT/>
-           <AMT_DOCCUR/>
-           <LC_TAX/>
-           <TX_DOC_CUR/>
-           <ITEM_TEXT/>
-           <BRANCH/>
-           <BLINE_DATE/>
-           <PMNTTRMS/>
-           <DSCT_DAYS1/>
-           <DSCT_DAYS2/>
-           <NETTERMS/>
-           <DSCT_PCT1/>
-           <DSCT_PCT2/>
-           <DISC_BASE/>
-           <DSC_AMT_LC/>
-           <DSC_AMT_DC/>
-           <PYMT_METH/>
-           <PMNT_BLOCK/>
-           <FIXEDTERMS/>
-           <INV_REF/>
-           <INV_YEAR/>
-           <INV_ITEM/>
-           <DUNN_BLOCK/>
-           <DUNN_KEY/>
-           <LAST_DUNN/>
-           <DUNN_LEVEL/>
-           <DUNN_AREA/>
-           <DOC_STATUS/>
-           <NXT_DOCTYP/>
-           <VAT_REG_NO/>
-           <REASON_CDE/>
-           <PMTMTHSUPL/>
-           <REF_KEY_1/>
-           <REF_KEY_2/>
-           <T_CURRENCY/>
-           <AMOUNT/>
-           <NET_AMOUNT/>
-           <NAME/>
-           <NAME_2/>
-           <NAME_3/>
-           <NAME_4/>
-           <POSTL_CODE/>
-           <CITY/>
-           <COUNTRY/>
-           <STREET/>
-           <PO_BOX/>
-           <POBX_PCD/>
-           <POBK_CURAC/>
-           <BANK_ACCT/>
-           <BANK_KEY/>
-           <BANK_CTRY/>
-           <TAX_NO_1/>
-           <TAX_NO_2/>
-           <TAX/>
-           <EQUAL_TAX/>
-           <REGION/>
-           <CTRL_KEY/>
-           <INSTR_KEY/>
-           <PAYEE_CODE/>
-           <LANGU/>
-           <BILL_LIFE/>
-           <BE_TAXCODE/>
-           <BILLTAX_LC/>
-           <BILLTAX_FC/>
-           <LC_COL_CHG/>
-           <COLL_CHARG/>
-           <CHGS_TX_CD/>
-           <ISSUE_DATE/>
-           <USAGEDATE/>
-           <BILL_USAGE/>
-           <DOMICILE/>
-           <DRAWER/>
-           <CTRBNK_LOC/>
-           <DRAW_CITY1/>
-           <DRAWEE/>
-           <DRAW_CITY2/>
-           <DISCT_DAYS/>
-           <DISCT_RATE/>
-           <ACCEPTED/>
-           <BILLSTATUS/>
-           <PRTEST_IND/>
-           <BE_DEMAND/>
-           <OBJ_TYPE/>
-           <REF_DOC/>
-           <REF_ORG_UN/>
-           <REVERSAL_DOC/>
-           <SP_GL_TYPE/>
-           <NEG_POSTNG/>
-           <REF_DOC_NO_LONG/>
-           <BILL_DOC/>
-        </item>
-     </IT_CREDIT_RESULT>
-  </ns0:ZFM_CUST_FS_CREDIT_MEMO>`;
-  const bodyRequest12 = `<?xml version="1.0" encoding="UTF-8"?>
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      
+      res.send({data:response.data});
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+// DELIVERY DATA
+
+//@type      POST
+//@route     /deliverylist
+//@desc      route to get deliverylist data
+//@access    PUBLIC
+router.post("/deliverylist", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_list`;
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUSTOMER_DELIVERY_LIST xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <CUSTOMER_ID>12</CUSTOMER_ID>
+     <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
      <RESULT_DELIVERY_HEADER>
         <item>
            <MANDT/>
@@ -1807,9 +1585,27 @@ router.post("/login", (req, res) => {
         </item>
      </RETURN>
   </ns0:ZFM_CUSTOMER_DELIVERY_LIST>`;
-  const bodyRequest13 = `<?xml version="1.0" encoding="UTF-8"?>
+ 
+   axios
+     .post(requestURL, bodyRequest, config)
+     .then(function (response) {
+      res.send({data:response.data});
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+ });
+ 
+//@type      POST
+//@route     /deliverydetail
+//@desc      route to get deliverydetail data
+//@access    PUBLIC
+router.post("/deliverydetail", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_delivery_detail`;
+   //90000000
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUST_DELIVERY_DETAIL xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-     <DOCUMENT_NO>90000000</DOCUMENT_NO>
+     <DOCUMENT_NO>${req.body.delivery_document_no}</DOCUMENT_NO>
      <IT_DELIVERY_DETAIL>
         <item>
            <MANDT/>
@@ -2097,277 +1893,424 @@ router.post("/login", (req, res) => {
         </item>
      </IT_DELIVERY_DETAIL>
   </ns0:ZFM_CUST_DELIVERY_DETAIL>`;
-  const config = {
-    auth: {
-      username: "POUSER@1",
-      password: "Tech@2022",
-    },
-    headers: { "Content-Type": "text/xml" },
-  };
-  axios
-    .post(requestURL10, bodyRequest10, config)
-    .then(function (response) {
-      console.log("response", response);
-      res.send(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-});
-
-//@type      POST
-//@route     /inquiryList
-//@desc      route to get inquiryList data
-//@access    PUBLIC
-router.post("/inquiryList", (req, res) => {
-  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_inquiry_list`;
-  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_INQUIRY_LIST_SD xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-  <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
-     <IT_INQUIRY_LIST>
-        <item>
-           <MANDT/>
-           <VBELN/>
-           <ERDAT/>
-           <ERZET/>
-           <ERNAM/>
-           <ANGDT/>
-           <BNDDT/>
-           <AUDAT/>
-           <VBTYP/>
-           <TRVOG/>
-           <AUART/>
-           <AUGRU/>
-           <GWLDT/>
-           <SUBMI/>
-           <LIFSK/>
-           <FAKSK/>
-           <NETWR/>
-           <WAERK/>
-           <VKORG/>
-           <VTWEG/>
-           <SPART/>
-           <VKGRP/>
-           <VKBUR/>
-           <GSBER/>
-           <GSKST/>
-           <GUEBG/>
-           <GUEEN/>
-           <KNUMV/>
-           <VDATU/>
-           <VPRGR/>
-           <AUTLF/>
-           <VBKLA/>
-           <VBKLT/>
-           <KALSM/>
-           <VSBED/>
-           <FKARA/>
-           <AWAHR/>
-           <KTEXT/>
-           <BSTNK/>
-           <BSARK/>
-           <BSTDK/>
-           <BSTZD/>
-           <IHREZ/>
-           <BNAME/>
-           <TELF1/>
-           <MAHZA/>
-           <MAHDT/>
-           <KUNNR/>
-           <KOSTL/>
-           <STAFO/>
-           <STWAE/>
-           <AEDAT/>
-           <KVGR1/>
-           <KVGR2/>
-           <KVGR3/>
-           <KVGR4/>
-           <KVGR5/>
-           <KNUMA/>
-           <KOKRS/>
-           <PS_PSP_PNR/>
-           <KURST/>
-           <KKBER/>
-           <KNKLI/>
-           <GRUPP/>
-           <SBGRP/>
-           <CTLPC/>
-           <CMWAE/>
-           <CMFRE/>
-           <CMNUP/>
-           <CMNGV/>
-           <AMTBL/>
-           <HITYP_PR/>
-           <ABRVW/>
-           <ABDIS/>
-           <VGBEL/>
-           <OBJNR/>
-           <BUKRS_VF/>
-           <TAXK1/>
-           <TAXK2/>
-           <TAXK3/>
-           <TAXK4/>
-           <TAXK5/>
-           <TAXK6/>
-           <TAXK7/>
-           <TAXK8/>
-           <TAXK9/>
-           <XBLNR/>
-           <ZUONR/>
-           <VGTYP/>
-           <KALSM_CH/>
-           <AGRZR/>
-           <AUFNR/>
-           <QMNUM/>
-           <VBELN_GRP/>
-           <SCHEME_GRP/>
-           <ABRUF_PART/>
-           <ABHOD/>
-           <ABHOV/>
-           <ABHOB/>
-           <RPLNR/>
-           <VZEIT/>
-           <STCEG_L/>
-           <LANDTX/>
-           <XEGDR/>
-           <ENQUEUE_GRP/>
-           <DAT_FZAU/>
-           <FMBDAT/>
-           <VSNMR_V/>
-           <HANDLE/>
-           <PROLI/>
-           <CONT_DG/>
-           <CRM_GUID/>
-           <UPD_TMSTMP/>
-           <MSR_ID/>
-           <TM_CTRL_KEY/>
-           <HANDOVERLOC/>
-           <_DATAAGING/>
-           <PSM_BUDAT/>
-           <FSH_KVGR6/>
-           <FSH_KVGR7/>
-           <FSH_KVGR8/>
-           <FSH_KVGR9/>
-           <FSH_KVGR10/>
-           <FSH_REREG/>
-           <FSH_CQ_CHECK/>
-           <FSH_VRSN_STATUS/>
-           <FSH_TRANSACTION/>
-           <FSH_VAS_CG/>
-           <FSH_CANDATE/>
-           <FSH_SS/>
-           <FSH_OS_STG_CHANGE/>
-           <SWENR/>
-           <SMENR/>
-           <PHASE/>
-           <MTLAUR/>
-           <STAGE/>
-           <HB_CONT_REASON/>
-           <HB_EXPDATE/>
-           <HB_RESDATE/>
-           <MILL_APPL_ID/>
-           <TAS/>
-           <BETC/>
-           <MOD_ALLOW/>
-           <CANCEL_ALLOW/>
-           <PAY_METHOD/>
-           <BPN/>
-           <REP_FREQ/>
-           <LOGSYSB/>
-           <KALCD/>
-           <MULTI/>
-           <SPPAYM/>
-           <WTYSC_CLM_HDR/>
-        </item>
-     </IT_INQUIRY_LIST>
-  </ns0:ZFM_CUST_INQUIRY_LIST_SD>`;
 
   axios
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
-      res.send(response.data.IT_INQUIRY_LIST.item);
+      res.send({data:response.data});
     })
     .catch(function (error) {
       console.log(error);
     });
 });
+
+// FINANCIAL SHEET
 
 //@type      POST
-//@route     /saleorderlist
-//@desc      route to get inquiryList data
+//@route     /paymentaging
+//@desc      route to get paymentaging data
 //@access    PUBLIC
-router.post("/saleorderlist", (req, res) => {
-  const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_sales_list`;
-  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
-  <ns0:ZFM_CUST_SALES_ORDER_DATA xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-  <CUSTOMER_NO>${req.body.customer_id}</CUSTOMER_NO>
-     <IT_SALES_ORDER>
+router.post("/paymentaging", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_payment_aging`;
+   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+  <ns0:ZFM_CUST_FS_PAYMENT_AGING xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+     <CUSTOMER_NO>${req.body.customer_id}</CUSTOMER_NO>
+     <IT_LINEITEM>
         <item>
-        <SD_DOC/>
-         <ITM_NUMBER/>
-         <MATERIAL/>
-         <SHORT_TEXT/>
-         <DOC_TYPE/>
-         <DOC_DATE/>
-         <REQ_QTY/>
-         <REQ_DATE/>
-         <PURCH_NO/>
-         <BATCH/>
-         <VALID_FROM/>
-         <VALID_TO/>
-         <BILL_BLOCK/>
-         <DLV_BLOCK/>
-         <SOLD_TO/>
-         <NAME/>
-         <EXCHG_RATE/>
-         <DLV_QTY/>
-         <BASE_UOM/>
-         <NET_PRICE/>
-         <COND_P_UNT/>
-         <COND_UNIT/>
-         <NET_VAL_HD/>
-         <NET_VALUE/>
-         <DIVISION/>
-         <DOC_STATUS/>
-         <SALES_GRP/>
-         <SALES_OFF/>
-         <SALES_ORG/>
-         <SALES_UNIT/>
-         <SHIP_POINT/>
-         <DISTR_CHAN/>
-         <GI_DATE/>
-         <CURRENCY/>
-         <PLANT/>
-         <STORE_LOC/>
-         <ORD_REASON/>
-         <REASON_REJ/>
-         <B_UOM_ISO/>
-         <CD_UNT_ISO/>
-         <S_UNIT_ISO/>
-         <CURR_ISO/>
-         <PURCH_NO_C/>
-         <EXCHG_RATE_V/>
-         <MAT_EXT/>
-         <MAT_GUID/>
-         <MAT_VERS/>
-         <CREATION_DATE/>
-         <CREATION_TIME/>
-         <STATUS_DOC/>
-         <REQ_SEGMENT/>
-         <MATERIAL_LONG/>
+           <COMP_CODE/>
+           <CUSTOMER/>
+           <SP_GL_IND/>
+           <CLEAR_DATE/>
+           <CLR_DOC_NO/>
+           <ALLOC_NMBR/>
+           <FISC_YEAR/>
+           <DOC_NO/>
+           <ITEM_NUM/>
+           <PSTNG_DATE/>
+           <DOC_DATE/>
+           <ENTRY_DATE/>
+           <CURRENCY/>
+           <LOC_CURRCY/>
+           <REF_DOC_NO/>
+           <DOC_TYPE/>
+           <FIS_PERIOD/>
+           <POST_KEY/>
+           <DB_CR_IND/>
+           <BUS_AREA/>
+           <TAX_CODE/>
+           <LC_AMOUNT/>
+           <AMT_DOCCUR/>
+           <LC_TAX/>
+           <TX_DOC_CUR/>
+           <ITEM_TEXT/>
+           <BRANCH/>
+           <BLINE_DATE/>
+           <PMNTTRMS/>
+           <DSCT_DAYS1/>
+           <DSCT_DAYS2/>
+           <NETTERMS/>
+           <DSCT_PCT1/>
+           <DSCT_PCT2/>
+           <DISC_BASE/>
+           <DSC_AMT_LC/>
+           <DSC_AMT_DC/>
+           <PYMT_METH/>
+           <PMNT_BLOCK/>
+           <FIXEDTERMS/>
+           <INV_REF/>
+           <INV_YEAR/>
+           <INV_ITEM/>
+           <DUNN_BLOCK/>
+           <DUNN_KEY/>
+           <LAST_DUNN/>
+           <DUNN_LEVEL/>
+           <DUNN_AREA/>
+           <DOC_STATUS/>
+           <NXT_DOCTYP/>
+           <VAT_REG_NO/>
+           <REASON_CDE/>
+           <PMTMTHSUPL/>
+           <REF_KEY_1/>
+           <REF_KEY_2/>
+           <T_CURRENCY/>
+           <AMOUNT/>
+           <NET_AMOUNT/>
+           <NAME/>
+           <NAME_2/>
+           <NAME_3/>
+           <NAME_4/>
+           <POSTL_CODE/>
+           <CITY/>
+           <COUNTRY/>
+           <STREET/>
+           <PO_BOX/>
+           <POBX_PCD/>
+           <POBK_CURAC/>
+           <BANK_ACCT/>
+           <BANK_KEY/>
+           <BANK_CTRY/>
+           <TAX_NO_1/>
+           <TAX_NO_2/>
+           <TAX/>
+           <EQUAL_TAX/>
+           <REGION/>
+           <CTRL_KEY/>
+           <INSTR_KEY/>
+           <PAYEE_CODE/>
+           <LANGU/>
+           <BILL_LIFE/>
+           <BE_TAXCODE/>
+           <BILLTAX_LC/>
+           <BILLTAX_FC/>
+           <LC_COL_CHG/>
+           <COLL_CHARG/>
+           <CHGS_TX_CD/>
+           <ISSUE_DATE/>
+           <USAGEDATE/>
+           <BILL_USAGE/>
+           <DOMICILE/>
+           <DRAWER/>
+           <CTRBNK_LOC/>
+           <DRAW_CITY1/>
+           <DRAWEE/>
+           <DRAW_CITY2/>
+           <DISCT_DAYS/>
+           <DISCT_RATE/>
+           <ACCEPTED/>
+           <BILLSTATUS/>
+           <PRTEST_IND/>
+           <BE_DEMAND/>
+           <OBJ_TYPE/>
+           <REF_DOC/>
+           <REF_ORG_UN/>
+           <REVERSAL_DOC/>
+           <SP_GL_TYPE/>
+           <NEG_POSTNG/>
+           <REF_DOC_NO_LONG/>
+           <BILL_DOC/>
         </item>
-     </IT_SALES_ORDER>
-  </ns0:ZFM_CUST_SALES_ORDER_DATA>`;
+     </IT_LINEITEM>
+  </ns0:ZFM_CUST_FS_PAYMENT_AGING>`;
+ 
+   axios
+     .post(requestURL, bodyRequest, config)
+     .then(function (response) {
+      res.send({data:response.data});
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+ });
 
-  axios
-    .post(requestURL, bodyRequest, config)
-    .then(function (response) {
-      res.send(response.data.IT_SALES_ORDER.item);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-});
+//@type      POST
+//@route     /debitmemo
+//@desc      route to get debitmemo data
+//@access    PUBLIC
+router.post("/debitmemo", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_debit_memo`;
+  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+  <ns0:ZFM_CUST_FS_DEBIT_MEMO xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+     <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
+     <IT_DEBIT_RESULT>
+        <item>
+           <COMP_CODE/>
+           <CUSTOMER/>
+           <SP_GL_IND/>
+           <CLEAR_DATE/>
+           <CLR_DOC_NO/>
+           <ALLOC_NMBR/>
+           <FISC_YEAR/>
+           <DOC_NO/>
+           <ITEM_NUM/>
+           <PSTNG_DATE/>
+           <DOC_DATE/>
+           <ENTRY_DATE/>
+           <CURRENCY/>
+           <LOC_CURRCY/>
+           <REF_DOC_NO/>
+           <DOC_TYPE/>
+           <FIS_PERIOD/>
+           <POST_KEY/>
+           <DB_CR_IND/>
+           <BUS_AREA/>
+           <TAX_CODE/>
+           <LC_AMOUNT/>
+           <AMT_DOCCUR/>
+           <LC_TAX/>
+           <TX_DOC_CUR/>
+           <ITEM_TEXT/>
+           <BRANCH/>
+           <BLINE_DATE/>
+           <PMNTTRMS/>
+           <DSCT_DAYS1/>
+           <DSCT_DAYS2/>
+           <NETTERMS/>
+           <DSCT_PCT1/>
+           <DSCT_PCT2/>
+           <DISC_BASE/>
+           <DSC_AMT_LC/>
+           <DSC_AMT_DC/>
+           <PYMT_METH/>
+           <PMNT_BLOCK/>
+           <FIXEDTERMS/>
+           <INV_REF/>
+           <INV_YEAR/>
+           <INV_ITEM/>
+           <DUNN_BLOCK/>
+           <DUNN_KEY/>
+           <LAST_DUNN/>
+           <DUNN_LEVEL/>
+           <DUNN_AREA/>
+           <DOC_STATUS/>
+           <NXT_DOCTYP/>
+           <VAT_REG_NO/>
+           <REASON_CDE/>
+           <PMTMTHSUPL/>
+           <REF_KEY_1/>
+           <REF_KEY_2/>
+           <T_CURRENCY/>
+           <AMOUNT/>
+           <NET_AMOUNT/>
+           <NAME/>
+           <NAME_2/>
+           <NAME_3/>
+           <NAME_4/>
+           <POSTL_CODE/>
+           <CITY/>
+           <COUNTRY/>
+           <STREET/>
+           <PO_BOX/>
+           <POBX_PCD/>
+           <POBK_CURAC/>
+           <BANK_ACCT/>
+           <BANK_KEY/>
+           <BANK_CTRY/>
+           <TAX_NO_1/>
+           <TAX_NO_2/>
+           <TAX/>
+           <EQUAL_TAX/>
+           <REGION/>
+           <CTRL_KEY/>
+           <INSTR_KEY/>
+           <PAYEE_CODE/>
+           <LANGU/>
+           <BILL_LIFE/>
+           <BE_TAXCODE/>
+           <BILLTAX_LC/>
+           <BILLTAX_FC/>
+           <LC_COL_CHG/>
+           <COLL_CHARG/>
+           <CHGS_TX_CD/>
+           <ISSUE_DATE/>
+           <USAGEDATE/>
+           <BILL_USAGE/>
+           <DOMICILE/>
+           <DRAWER/>
+           <CTRBNK_LOC/>
+           <DRAW_CITY1/>
+           <DRAWEE/>
+           <DRAW_CITY2/>
+           <DISCT_DAYS/>
+           <DISCT_RATE/>
+           <ACCEPTED/>
+           <BILLSTATUS/>
+           <PRTEST_IND/>
+           <BE_DEMAND/>
+           <OBJ_TYPE/>
+           <REF_DOC/>
+           <REF_ORG_UN/>
+           <REVERSAL_DOC/>
+           <SP_GL_TYPE/>
+           <NEG_POSTNG/>
+           <REF_DOC_NO_LONG/>
+           <BILL_DOC/>
+        </item>
+     </IT_DEBIT_RESULT>
+  </ns0:ZFM_CUST_FS_DEBIT_MEMO>`;
+   axios
+     .post(requestURL, bodyRequest, config)
+     .then(function (response) {
+      res.send({data:response.data});
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+ });
+
+//@type      POST
+//@route     /creditmemo
+//@desc      route to get creditmemo data
+//@access    PUBLIC
+router.post("/creditmemo", (req, res) => {
+   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_credit_memo`;
+  const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
+  <ns0:ZFM_CUST_FS_CREDIT_MEMO xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
+     <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
+     <IT_CREDIT_RESULT>
+        <item>
+           <COMP_CODE/>
+           <CUSTOMER/>
+           <SP_GL_IND/>
+           <CLEAR_DATE/>
+           <CLR_DOC_NO/>
+           <ALLOC_NMBR/>
+           <FISC_YEAR/>
+           <DOC_NO/>
+           <ITEM_NUM/>
+           <PSTNG_DATE/>
+           <DOC_DATE/>
+           <ENTRY_DATE/>
+           <CURRENCY/>
+           <LOC_CURRCY/>
+           <REF_DOC_NO/>
+           <DOC_TYPE/>
+           <FIS_PERIOD/>
+           <POST_KEY/>
+           <DB_CR_IND/>
+           <BUS_AREA/>
+           <TAX_CODE/>
+           <LC_AMOUNT/>
+           <AMT_DOCCUR/>
+           <LC_TAX/>
+           <TX_DOC_CUR/>
+           <ITEM_TEXT/>
+           <BRANCH/>
+           <BLINE_DATE/>
+           <PMNTTRMS/>
+           <DSCT_DAYS1/>
+           <DSCT_DAYS2/>
+           <NETTERMS/>
+           <DSCT_PCT1/>
+           <DSCT_PCT2/>
+           <DISC_BASE/>
+           <DSC_AMT_LC/>
+           <DSC_AMT_DC/>
+           <PYMT_METH/>
+           <PMNT_BLOCK/>
+           <FIXEDTERMS/>
+           <INV_REF/>
+           <INV_YEAR/>
+           <INV_ITEM/>
+           <DUNN_BLOCK/>
+           <DUNN_KEY/>
+           <LAST_DUNN/>
+           <DUNN_LEVEL/>
+           <DUNN_AREA/>
+           <DOC_STATUS/>
+           <NXT_DOCTYP/>
+           <VAT_REG_NO/>
+           <REASON_CDE/>
+           <PMTMTHSUPL/>
+           <REF_KEY_1/>
+           <REF_KEY_2/>
+           <T_CURRENCY/>
+           <AMOUNT/>
+           <NET_AMOUNT/>
+           <NAME/>
+           <NAME_2/>
+           <NAME_3/>
+           <NAME_4/>
+           <POSTL_CODE/>
+           <CITY/>
+           <COUNTRY/>
+           <STREET/>
+           <PO_BOX/>
+           <POBX_PCD/>
+           <POBK_CURAC/>
+           <BANK_ACCT/>
+           <BANK_KEY/>
+           <BANK_CTRY/>
+           <TAX_NO_1/>
+           <TAX_NO_2/>
+           <TAX/>
+           <EQUAL_TAX/>
+           <REGION/>
+           <CTRL_KEY/>
+           <INSTR_KEY/>
+           <PAYEE_CODE/>
+           <LANGU/>
+           <BILL_LIFE/>
+           <BE_TAXCODE/>
+           <BILLTAX_LC/>
+           <BILLTAX_FC/>
+           <LC_COL_CHG/>
+           <COLL_CHARG/>
+           <CHGS_TX_CD/>
+           <ISSUE_DATE/>
+           <USAGEDATE/>
+           <BILL_USAGE/>
+           <DOMICILE/>
+           <DRAWER/>
+           <CTRBNK_LOC/>
+           <DRAW_CITY1/>
+           <DRAWEE/>
+           <DRAW_CITY2/>
+           <DISCT_DAYS/>
+           <DISCT_RATE/>
+           <ACCEPTED/>
+           <BILLSTATUS/>
+           <PRTEST_IND/>
+           <BE_DEMAND/>
+           <OBJ_TYPE/>
+           <REF_DOC/>
+           <REF_ORG_UN/>
+           <REVERSAL_DOC/>
+           <SP_GL_TYPE/>
+           <NEG_POSTNG/>
+           <REF_DOC_NO_LONG/>
+           <BILL_DOC/>
+        </item>
+     </IT_CREDIT_RESULT>
+  </ns0:ZFM_CUST_FS_CREDIT_MEMO>`;
+   axios
+     .post(requestURL, bodyRequest, config)
+     .then(function (response) {
+         res.send({data:response.data});
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+ });
 
 router.get("/", (req, res) => res.send("Customer portal"));
 

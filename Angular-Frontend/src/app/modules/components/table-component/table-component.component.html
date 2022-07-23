@@ -11,6 +11,7 @@
     class="table-row"
     [ngClass]="style_class[0]"
     *ngFor="let item of table_data; let i = index"
+    (click)="sendToOpenFragment(item)"
   >
     <td class="table-element">{{ item.STWAE }}</td>
     <td class="table-element">{{ item.ERNAM }}</td>

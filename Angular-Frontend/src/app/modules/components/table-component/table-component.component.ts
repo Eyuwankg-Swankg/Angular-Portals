@@ -1,17 +1,19 @@
-import { Component, OnInit ,Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-table-component',
   templateUrl: './table-component.component.html',
-  styleUrls: ['./table-component.component.css']
+  styleUrls: ['./table-component.component.css'],
 })
 export class TableComponentComponent implements OnInit {
+  @Input() table_data: any = [];
+  @Input() style_class: string[] = [];
+  
+  @Output() displayFragment: EventEmitter<any> = new EventEmitter();
+  constructor() {}
 
-  @Input() table_data:any=[];
-  @Input() style_class:string[]=[];
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  sendToOpenFragment(rowData: any): void {
+    this.displayFragment.emit(rowData);
   }
-
 }

@@ -13,10 +13,10 @@ const routes:Routes =[
     path:'dashboard',component:CustomerDashboardComponent
   },
   {
-    path:'inquiry',component:CustomerInquiryComponent
+    path:'',component:CustomerInquiryComponent
   },
   {
-    path:'',component:CustomerSaleorderComponent
+    path:'saleorder',component:CustomerSaleorderComponent
   }
 ];
 @NgModule({

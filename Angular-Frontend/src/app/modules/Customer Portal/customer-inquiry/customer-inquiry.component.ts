@@ -323,6 +323,9 @@ export class CustomerInquiryComponent implements OnInit {
   breadCrumbText = ['Customer', 'Inquiry List'];
   styleClass = ['breadcrumb-border-customer', 'breadcrumb-text-color-customer'];
   tableStyleClass = ['customer-table-row', 'customer-table-heading'];
+  modalToggle = false;
+  modalData={};
+
   constructor(
     private customerService: CustomerService,
     private router: Router
@@ -340,5 +343,9 @@ export class CustomerInquiryComponent implements OnInit {
   }
   toDashboard(): void {
     this.router.navigate(['dashboard']);
+  }
+  showFragment(rowData: any): void {
+    this.modalToggle=!this.modalToggle;
+    this.modalData=rowData;
   }
 }
