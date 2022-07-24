@@ -9,6 +9,7 @@ const app = express();
 const PORT = 5000;
 
 const customer_portal = require("./routes/Customer-Portal");
+const vendor_portal = require("./routes/Vendor-Portal");
 
 // parsing incoming urls
 app.use(bodyparser.urlencoded({ extended: true }));
@@ -17,6 +18,7 @@ app.use(cors());
 
 // use routes
 app.use("/customer", customer_portal);
+app.use("/vendor", vendor_portal);
 
 //@type      GET
 //@route     /
