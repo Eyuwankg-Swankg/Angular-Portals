@@ -5,7 +5,7 @@
 <app-bread-crumb
   class="breadcrumb-outer-container"
   [style_class]="commonStyleValues.breadCrumbStyleClass"
-  [breadcrumb_text]="['Customer','Financial Sheet', 'Credit & Debit MEMO']"
+  [breadcrumb_text]="['Customer', 'Financial Sheet', 'Credit & Debit MEMO']"
   (onToDashboard)="toDashboard()"
 ></app-bread-crumb>
 <h2 class="breadcrumb-title">
@@ -25,13 +25,27 @@
     DEBIT
   </span>
 </div>
-<app-table-component
-  [table_data]="toggleCreditDebit ? CreditList : DebitList"
-  [style_class]="commonStyleValues.tableStyleClass"
-  (display_modal)="showModal($event)"
-  [column_values]="toggleCreditDebit?columnValuesCredit:columnValuesDebit"
->
-</app-table-component>
+<!-- CREDIT TABLE -->
+<ng-container *ngIf="toggleCreditDebit">
+  <app-table-component
+    [table_data]="CreditList"
+    [style_class]="commonStyleValues.tableStyleClass"
+    (display_modal)="showModal($event)"
+    [column_values]="columnValuesCredit"
+  >
+  </app-table-component>
+</ng-container>
+<!-- DEBIT TABLE -->
+<ng-container *ngIf="!toggleCreditDebit">
+  <app-table-component
+    [table_data]="DebitList"
+    [style_class]="commonStyleValues.tableStyleClass"
+    (display_modal)="showModal($event)"
+    [column_values]="columnValuesDebit"
+  >
+  </app-table-component>
+</ng-container>
+
 <app-modal-box
   *ngIf="modalToggle"
   class="modal-box-outer-container"

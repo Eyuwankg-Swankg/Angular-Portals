@@ -17,12 +17,6 @@ export class CustomerService {
       data
     );
   }
-  public getCustomerProfile(data: Object): Observable<any> {
-    return this.httpClient.post<any>(
-      'http://localhost:5000/customer/customerprofile',
-      data
-    );
-  }
 
   public getInquiryData(data: Object): Observable<any> {
     return this.httpClient.post<any>(
