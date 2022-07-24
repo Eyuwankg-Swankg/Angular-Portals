@@ -8,10 +8,12 @@ import { CustomerDeliveryComponent } from './customer-delivery/customer-delivery
 import { CustomerFinancialSheetComponent } from './customer-financial-sheet/customer-financial-sheet.component';
 import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.component';
 import { CustomerPaymentAgingComponent } from './customer-payment-aging/customer-payment-aging.component';
+import { CustomerOverallSalesComponent } from './customer-overall-sales/customer-overall-sales.component';
+import { CustomerCreditDebitComponent } from './customer-credit-debit/customer-credit-debit.component';
 
 const routes: Routes = [
   {
-    path: 'l',
+    path: 'login',
     component: CustomerLoginComponent,
   },
   {
@@ -41,6 +43,14 @@ const routes: Routes = [
   {
     path: 'paymentaging',
     component: CustomerPaymentAgingComponent,
+  },
+  {
+    path: 'creditdebit',
+    component: CustomerCreditDebitComponent,
+  },
+  {
+    path: 'overallsales',
+    component: CustomerOverallSalesComponent,
   },
 ];
 @NgModule({

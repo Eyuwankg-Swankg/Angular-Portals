@@ -23,7 +23,7 @@ export class CustomerFinancialSheetComponent implements OnInit {
     'Invoice',
     'Payment and Aging',
     'Credit Debit memo',
-    'Sales Data',
+    'Overall Sales',
   ];
   breadCrumbStyleClass = CommonValues.breadCrumbStyleClass;
   constructor(private router: Router) {}
@@ -38,6 +38,10 @@ export class CustomerFinancialSheetComponent implements OnInit {
   goToPaymentAging(): void {
     this.router.navigate(['paymentaging']);
   }
-  goToCreditDebit(): void {}
-  goToSalesData(): void {}
+  goToCreditDebit(): void {
+    this.router.navigate(['creditdebit']);
+  }
+  goToSalesData(): void {
+    this.router.navigate(['overallsales']);
+  }
 }

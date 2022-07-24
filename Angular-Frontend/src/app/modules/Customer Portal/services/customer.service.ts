@@ -17,6 +17,12 @@ export class CustomerService {
       data
     );
   }
+  public getCustomerProfile(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/customerprofile',
+      data
+    );
+  }
 
   public getInquiryData(data: Object): Observable<any> {
     return this.httpClient.post<any>(
@@ -49,6 +55,20 @@ export class CustomerService {
   public getPaymentAging(data: Object): Observable<any> {
     return this.httpClient.post<any>(
       'http://localhost:5000/customer/paymentaging',
+      data
+    );
+  }
+
+  public getCreditData(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/creditmemo',
+      data
+    );
+  }
+
+  public getDebitData(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/debitmemo',
       data
     );
   }

@@ -4,7 +4,7 @@
 ></app-navbar-component>
 <app-bread-crumb
   class="breadcrumb-outer-container"
-  [style_class]="breadCrumbStyleClass"
+  [style_class]="commonStyleValues.breadCrumbStyleClass"
   [breadcrumb_text]="['Customer', 'Sale Order List']"
   (onToDashboard)="toDashboard()"
 ></app-bread-crumb>
@@ -12,7 +12,7 @@
 <h2 class="breadcrumb-title">SALE ORDER LIST</h2>
 <app-table-component
   [table_data]="saleOrderData"
-  [style_class]="tableStyleClass"
+  [style_class]="commonStyleValues.tableStyleClass"
   (display_modal)="showModal($event)"
   [column_values]="columnValues"
 >
@@ -23,7 +23,7 @@
   [modal_data]="modalData"
   [modal_title]="modalTitle"
   (close_modal)="closeModal()"
-  [modal_style_class]="modalStyleClass"
+  [modal_style_class]="commonStyleValues.modalStyleClass"
 ></app-modal-box>
 <app-loading-screen
   class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"

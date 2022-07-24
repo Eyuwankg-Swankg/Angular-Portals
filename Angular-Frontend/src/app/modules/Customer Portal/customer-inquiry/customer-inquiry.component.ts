@@ -331,10 +331,7 @@ export class CustomerInquiryComponent implements OnInit {
     ANGDT: '',
     AUDAT: '',
   };
-  modalStyleClass = CommonValues.modalStyleClass;
-  tableStyleClass = CommonValues.tableStyleClass;
-  breadCrumbStyleClass = CommonValues.breadCrumbStyleClass;
-
+  commonStyleValues=CommonValues 
   constructor(
     private customerService: CustomerService,
     private router: Router

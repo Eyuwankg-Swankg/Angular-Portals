@@ -24,9 +24,7 @@ export class CustomerDeliveryComponent implements OnInit {
     VSTEL: '',
     VKORG: '',
   };
-  modalStyleClass = CommonValues.modalStyleClass;
-  tableStyleClass = CommonValues.tableStyleClass;
-  breadCrumbStyleClass = CommonValues.breadCrumbStyleClass;
+  commonStyleValues=CommonValues;
 
   constructor(
     private customerService: CustomerService,

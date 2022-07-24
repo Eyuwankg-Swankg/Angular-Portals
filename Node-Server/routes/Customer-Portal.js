@@ -15,16 +15,16 @@ const config = {
 //@desc      route to authenticate login
 //@access    PUBLIC
 router.post("/login", (req, res) => {
+   console.log(req.body);
   const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_login`;
   const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
   <ns0:ZFM_CUSTOMER_LOGIN_EYUWANKG xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-  <PASSWORD>EYUWANKG123</PASSWORD>
-  <USERNAME>CUSTOMER@A1</USERNAME>
+  <PASSWORD>${req.body.Password}</PASSWORD>
+  <USERNAME>${req.body.UserID}</USERNAME>
   </ns0:ZFM_CUSTOMER_LOGIN_EYUWANKG>`;
   axios
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
-      console.log("response", response);
       res.send(response.data);
     })
     .catch(function (error) {

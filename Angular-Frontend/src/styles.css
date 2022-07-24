@@ -115,6 +115,9 @@ body {
   border: 1px solid rgb(39, 4, 4);
   font-size: 18px;
 }
+.table-row{
+  cursor: pointer;
+}
 .table-row:hover .table-element {
   border-right: 1px solid #ccc;
   color: white;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { ToastrService } from 'ngx-toastr';
-import {Router} from "@angular/router";
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-customer-login',
   templateUrl: './customer-login.component.html',
@@ -10,7 +10,11 @@ import {Router} from "@angular/router";
 export class CustomerLoginComponent implements OnInit {
   login_image_url: string = 'assets/Images/Customer/Customer-Login.png';
   customer_portal: string = 'Customer';
-  constructor(private customerService: CustomerService, private toaster: ToastrService,private router:Router) {}
+  constructor(
+    private customerService: CustomerService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,10 +24,9 @@ export class CustomerLoginComponent implements OnInit {
       .subscribe((responseData) => {
         console.log(responseData);
         // ID: "0000000012"
-        if(responseData.RESULT=="Sucess"){
-          this.router.navigate(["/dashboard"]);
-        }
-        else{
+        if (responseData.RESULT == 'SUCCESS') {
+          this.router.navigate(['dashboard']);
+        } else {
           this.toaster.error(responseData.RESULT, '', {
             timeOut: 2000,
             onActivateTick: false,

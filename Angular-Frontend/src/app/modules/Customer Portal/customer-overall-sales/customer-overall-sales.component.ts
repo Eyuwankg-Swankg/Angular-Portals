@@ -3,15 +3,15 @@ import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
-  selector: 'app-customer-saleorder',
-  templateUrl: './customer-saleorder.component.html',
-  styleUrls: ['./customer-saleorder.component.css'],
+  selector: 'app-customer-overall-sales',
+  templateUrl: './customer-overall-sales.component.html',
+  styleUrls: ['./customer-overall-sales.component.css'],
 })
-export class CustomerSaleorderComponent implements OnInit {
-  saleOrderData = {};
+export class CustomerOverallSalesComponent implements OnInit {
+  overallSalesData = {};
   customerDetails: any = {};
   loadingScreenToggle: boolean = true;
-  modalTitle = 'SALE ORDER DETAILS';
+  modalTitle = 'OVERALL SALES DETAILS';
   modalToggle: boolean = false;
   modalData = {};
   columnValues = {
@@ -23,7 +23,7 @@ export class CustomerSaleorderComponent implements OnInit {
     REQ_QTY: '',
     REQ_DATE: '',
   };
-  commonStyleValues=CommonValues;
+  commonStyleValues = CommonValues;
   constructor(
     private customerService: CustomerService,
     private router: Router
@@ -37,9 +37,9 @@ export class CustomerSaleorderComponent implements OnInit {
       (responseData) => {
         if (responseData.data.IT_SALES_ORDER != '') {
           if (Array.isArray(responseData.data.IT_SALES_ORDER.item) == false)
-            this.saleOrderData = [responseData.data.IT_SALES_ORDER.item];
-          else this.saleOrderData = responseData.data.IT_SALES_ORDER.item;
-          console.log('Sale Order Data', this.saleOrderData);
+            this.overallSalesData = [responseData.data.IT_SALES_ORDER.item];
+          else this.overallSalesData = responseData.data.IT_SALES_ORDER.item;
+          console.log('Sale Order Data', this.overallSalesData);
           this.loadingScreenToggle = !this.loadingScreenToggle;
         }
       },

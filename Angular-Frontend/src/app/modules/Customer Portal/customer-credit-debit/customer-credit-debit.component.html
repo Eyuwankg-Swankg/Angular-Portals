@@ -1,0 +1,52 @@
+<app-navbar-component
+  class="navbar-container"
+  [portal_name]="'Customer'"
+></app-navbar-component>
+<app-bread-crumb
+  class="breadcrumb-outer-container"
+  [style_class]="commonStyleValues.breadCrumbStyleClass"
+  [breadcrumb_text]="['Customer','Financial Sheet', 'Credit & Debit MEMO']"
+  (onToDashboard)="toDashboard()"
+></app-bread-crumb>
+<h2 class="breadcrumb-title">
+  {{ toggleCreditDebit ? "CREDIT" : "DEBIT" }} MEMO
+</h2>
+<div class="customer-toggler">
+  <span
+    [ngClass]="toggleCreditDebit ? 'showToggle' : 'hiddenToggle'"
+    (click)="changeCrdeitDebitToggle()"
+  >
+    CREDIT </span
+  >/
+  <span
+    [ngClass]="toggleCreditDebit ? 'hiddenToggle' : 'showToggle'"
+    (click)="changeCrdeitDebitToggle()"
+  >
+    DEBIT
+  </span>
+</div>
+<app-table-component
+  [table_data]="toggleCreditDebit ? CreditList : DebitList"
+  [style_class]="commonStyleValues.tableStyleClass"
+  (display_modal)="showModal($event)"
+  [column_values]="toggleCreditDebit?columnValuesCredit:columnValuesDebit"
+>
+</app-table-component>
+<app-modal-box
+  *ngIf="modalToggle"
+  class="modal-box-outer-container"
+  [modal_title]="modalTitle"
+  [modal_data]="modalData"
+  (close_modal)="closeModal()"
+  [modal_style_class]="commonStyleValues.modalStyleClass"
+></app-modal-box>
+<!-- TODO: fix this -->
+<app-loading-screen
+  class="loading-screen-container {{
+    loadingScreenToggleCredit == true && loadingScreenToggleDebit == true
+      ? ''
+      : 'fadeaway'
+  }}"
+  [loading_class]="'customer-loading-screeen'"
+  *ngIf="loadingScreenToggleCredit && loadingScreenToggleDebit"
+></app-loading-screen>

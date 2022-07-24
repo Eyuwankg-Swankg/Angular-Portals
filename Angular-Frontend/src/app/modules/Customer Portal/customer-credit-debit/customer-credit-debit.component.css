@@ -1,0 +1,20 @@
+.customer-toggler {
+  width: 20%;
+  margin: 0 auto;
+  padding: 20px 0px;
+  display: flex;
+  justify-content: space-evenly;
+  font-weight: bold;
+}
+.customer-toggler span {
+  letter-spacing: 1px;
+  font-size: 16px;
+}
+.showToggle {
+  border-bottom: 3px solid var(--customer-blue);
+  opacity: 1;
+}
+.hiddenToggle {
+  border-bottom: none;
+  opacity: 0.7;
+}

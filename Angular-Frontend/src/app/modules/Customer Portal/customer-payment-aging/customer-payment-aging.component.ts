@@ -24,9 +24,7 @@ export class CustomerPaymentAgingComponent implements OnInit {
     CURRENCY: '',
     LOC_CURRCY: '',
   };
-  modalStyleClass = CommonValues.modalStyleClass;
-  tableStyleClass = CommonValues.tableStyleClass;
-  breadCrumbStyleClass = CommonValues.breadCrumbStyleClass;
+  commonStyleValues=CommonValues;
   constructor(
     private customerService: CustomerService,
     private router: Router

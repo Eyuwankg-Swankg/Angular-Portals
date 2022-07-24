@@ -5,21 +5,22 @@
 <app-bread-crumb
   class="breadcrumb-outer-container"
   [style_class]="commonStyleValues.breadCrumbStyleClass"
-  [breadcrumb_text]="['Customer', 'Financial Sheet','Payment Aging']"
+  [breadcrumb_text]="['Customer','Financial Sheet', 'Overall Sales']"
   (onToDashboard)="toDashboard()"
 ></app-bread-crumb>
-<h2 class="breadcrumb-title">PAYMENT AND AGING</h2>
+<h2 class="breadcrumb-title">OVERALL SALES LIST</h2>
 <app-table-component
-  [table_data]="PaymentAgingList"
+  [table_data]="overallSalesData"
   [style_class]="commonStyleValues.tableStyleClass"
   (display_modal)="showModal($event)"
   [column_values]="columnValues"
-></app-table-component>
+>
+</app-table-component>
 <app-modal-box
   *ngIf="modalToggle"
   class="modal-box-outer-container"
-  [modal_title]="modalTitle"
   [modal_data]="modalData"
+  [modal_title]="modalTitle"
   (close_modal)="closeModal()"
   [modal_style_class]="commonStyleValues.modalStyleClass"
 ></app-modal-box>
@@ -28,4 +29,3 @@
   [loading_class]="'customer-loading-screeen'"
   *ngIf="loadingScreenToggle"
 ></app-loading-screen>
-
