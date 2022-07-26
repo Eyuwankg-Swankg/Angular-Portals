@@ -17,6 +17,47 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+/* LOGIN CONTAINER */
+.login-container{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  align-items: center;
+  justify-content: space-evenly;
+}
+/*           */
+/* CUSTOMER LOGIN STYLES */
+.customer-login-box-container {
+  background-color: rgb(192, 217, 239);
+}
+.customer-login-box {
+  border: 2.5px solid #20346e;
+  box-shadow: 11px 10px 34px -1px rgba(98, 138, 236, 0.59);
+}
+.customer-login-btn {
+  background-color: #20346e;
+}
+.customer-login-back-button {
+  background-color: #20346e;
+}
+/*               */
+/* EMPLOYEE LOGIN STYLES */
+.employee-login-box-container {
+  background-color: rgb(234, 254, 255);
+}
+.employee-login-box {
+  border: 2.5px solid #248c8e;
+  box-shadow: 11px 10px 34px -1px rgba(36, 140, 142, 0.58);
+}
+.employee-login-btn {
+  background-color: #248c8e;
+}
+.employee-login-back-button {
+  background-color: #248c8e;
+}
+/*               */
+
+
 /* Navbar */
 .navbar-container {
   position: relative;

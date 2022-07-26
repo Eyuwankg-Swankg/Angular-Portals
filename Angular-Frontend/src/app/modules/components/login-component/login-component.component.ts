@@ -10,13 +10,16 @@ import {Router} from "@angular/router";
 export class LoginComponentComponent implements OnInit {
   @Input() login_image = '';
   @Input() portal_name = '';
-
+  @Input() login_style_class :any= {};
+  @Input() login_btn_styles :any= [];
+  
   @Output() onLoginEvent: EventEmitter<any> = new EventEmitter();
 
   loginData: FormGroup = new FormGroup({});
   constructor(private fb: FormBuilder, private toaster: ToastrService,private router:Router) {}
 
   ngOnInit(): void {
+    console.log(this.login_btn_styles);
     this.loginData = this.fb.group({
       UserID: '',
       Password: '',

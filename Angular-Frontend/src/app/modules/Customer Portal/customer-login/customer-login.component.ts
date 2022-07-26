@@ -10,6 +10,15 @@ import { Router } from '@angular/router';
 export class CustomerLoginComponent implements OnInit {
   login_image_url: string = 'assets/Images/Customer/Customer-Login.png';
   customer_portal: string = 'Customer';
+  customer_login_styles = {
+    'login-box-container': ['customer-login-box-container'],
+    'login-box': ['customer-login-box'],
+    'login-btn': ['customer-login-btn'],
+    'login-back-button': ['customer-login-back-button'],
+    'login-btn-valid':['customer-login-btn-valid'],
+    'login-btn-invalid':['customer-login-btn-invalid'],
+  };
+  customer_btn_styles=["#20346e","rgba(32, 52, 110, 0.56)"]
   constructor(
     private customerService: CustomerService,
     private toaster: ToastrService,

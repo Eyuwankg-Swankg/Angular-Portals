@@ -7,19 +7,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgb(192, 217, 239);
+  /* background-color: rgb(192, 217, 239); */
 }
 .login-box {
   width: 75%;
   height: 75vh;
   background-color: rgb(255, 255, 255);
-  border: 2px solid #20346e;
+  /* border: 2px solid #20346e; */
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  box-shadow: 11px 10px 34px -1px rgba(98, 138, 236, 0.59);
+  /* box-shadow: 11px 10px 34px -1px rgba(98, 138, 236, 0.59); */
 }
 .login-heading {
   font-weight: bold;
@@ -48,7 +48,7 @@
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
-  background-color: #20346e;
+  /* background-color: #20346e; */
   border: 1px solid transparent;
   letter-spacing: 1px;
   font-weight: 400;
@@ -83,7 +83,7 @@
 /* login back button */
 .login-back-button {
   border-radius: 20px;
-  background-color: #20346e;
+  /* background-color: #20346e; */
   width: 6%;
   padding: 2px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
@@ -91,7 +91,6 @@
   transition: all 0.4s;
 }
 .login-back-button:hover {
-  background-color: #20346e;
   cursor: pointer;
   transform: scale(1.1);
 }

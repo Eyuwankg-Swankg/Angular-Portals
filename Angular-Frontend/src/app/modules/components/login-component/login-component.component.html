@@ -1,22 +1,54 @@
 <img [src]="login_image" alt="" class="login-image" />
-<div class="login-box-container">
-  <div class="login-box">
+<div
+  class="login-box-container"
+  [ngClass]="login_style_class['login-box-container']"
+>
+  <div class="login-box" [ngClass]="login_style_class['login-box']">
     <div class="login-back-container">
-      <img src="assets/Images/back.png" class="login-back-button" alt="back" (click)="goBack()"/>
+      <img
+        src="assets/Images/back.png"
+        class="login-back-button"
+        [ngClass]="login_style_class['login-back-button']"
+        alt="back"
+        (click)="goBack()"
+      />
     </div>
-    <h2 class="login-heading">{{portal_name}} Portal</h2>
+    <h2 class="login-heading">{{ portal_name }} Portal</h2>
     <form [formGroup]="loginData" (ngSubmit)="onLogin()" class="login-form">
-    <mat-form-field class="login-userid" appearance="fill">
-      <mat-label>User ID</mat-label>
-      <input matInput placeholder="Enter User ID" formControlName="UserID" name="username" autofocus required>
-    </mat-form-field>
-    <mat-form-field class="login-password" appearance="fill">
-      <mat-label>Password</mat-label>
-      <input matInput placeholder="Enter Password" value="" type="password" formControlName="Password" required>
-    </mat-form-field>
-    <button class="login-btn" type="submit" [disabled]="!loginData.valid" 
-    [ngStyle]="{backgroundColor:loginData.valid? '#20346e' : 'rgba(32, 52, 110, 0.56)' }"
-    >LOGIN</button>
+      <mat-form-field class="login-userid" appearance="fill">
+        <mat-label>User ID</mat-label>
+        <input
+          matInput
+          placeholder="Enter User ID"
+          formControlName="UserID"
+          name="username"
+          autofocus
+          required
+        />
+      </mat-form-field>
+      <mat-form-field class="login-password" appearance="fill">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          placeholder="Enter Password"
+          value=""
+          type="password"
+          formControlName="Password"
+          required
+        />
+      </mat-form-field>
+
+      <button
+        class="login-btn loginData.valid"
+        [ngClass]="login_style_class['login-btn']"
+        [style.background]="
+          loginData.valid ? login_btn_styles[0] : login_btn_styles[1]
+        "
+        type="submit"
+        [disabled]="!loginData.valid"
+      >
+        LOGIN
+      </button>
     </form>
   </div>
 </div>

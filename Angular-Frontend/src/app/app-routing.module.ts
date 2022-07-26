@@ -6,7 +6,7 @@ const routes:Routes=[
     loadChildren:()=>import("./modules/Landing-Page/landing-page.module").then(m=>m.LandingPageModule)
   },
   {
-    path:"",
+    path:"customer",
     loadChildren:()=>import("./modules/Customer Portal/customer-portal.module").then(m=>m.CustomerPortalModule)
   }
   ,
@@ -16,7 +16,7 @@ const routes:Routes=[
   }
   ,
   {
-    path:"employee",
+    path:"",
     loadChildren:()=>import("./modules/Employee Portal/employee-portal.module").then(m=>m.EmployeePortalModule)
   }
 
