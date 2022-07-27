@@ -40,7 +40,7 @@ router.post("/customerprofile", (req, res) => {
    const requestURL = `http://dxktpipo.kaarcloud.com:50000/RESTAdapter/eyuwankg_cust_profile`;
    const bodyRequest = `<?xml version="1.0" encoding="UTF-8"?>
    <ns0:ZFM_CUST_PROFILE_EYUWANKG xmlns:ns0="urn:sap-com:document:sap:rfc:functions">
-      <CUSTOMER_ID>${req.body.customer_id}</CUSTOMER_ID>
+      <CUSTOMER_ID>12</CUSTOMER_ID>
       <CUSTOMERBANKDETAIL>
          <item>
             <CUSTOMER/>

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerLoginComponent } from './customer-login/customer-login.component';
 import { CustomerPortalRoutingModule } from './customer-portal-routing.module';
-import { NavbarComponentComponent } from '../components/navbar-component/navbar-component.component';
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component'
 import { SharedModule } from '../components/shared.module';
 import { CustomerInquiryComponent } from './customer-inquiry/customer-inquiry.component';
@@ -15,7 +14,7 @@ import { CustomerOverallSalesComponent } from './customer-overall-sales/customer
 import { CustomerCreditDebitComponent } from './customer-credit-debit/customer-credit-debit.component';
 
 @NgModule({
-  declarations: [CustomerLoginComponent, CustomerDashboardComponent,NavbarComponentComponent, CustomerInquiryComponent, CustomerSaleorderComponent, CustomerDeliveryComponent, CustomerFinancialSheetComponent, CustomerInvoiceComponent, CustomerPaymentAgingComponent , CustomerOverallSalesComponent, CustomerCreditDebitComponent],
+  declarations: [CustomerLoginComponent, CustomerDashboardComponent, CustomerInquiryComponent, CustomerSaleorderComponent, CustomerDeliveryComponent, CustomerFinancialSheetComponent, CustomerInvoiceComponent, CustomerPaymentAgingComponent , CustomerOverallSalesComponent, CustomerCreditDebitComponent],
   imports: [
     CommonModule,
     CustomerPortalRoutingModule,

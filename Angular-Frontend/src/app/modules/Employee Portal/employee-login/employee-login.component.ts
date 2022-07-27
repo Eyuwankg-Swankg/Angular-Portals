@@ -5,10 +5,9 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-employee-login',
   templateUrl: './employee-login.component.html',
-  styleUrls: ['./employee-login.component.css']
+  styleUrls: ['./employee-login.component.css'],
 })
 export class EmployeeLoginComponent implements OnInit {
-
   login_image_url: string = 'assets/Images/Employee/Employee-Login2.jpg';
   employee_portal: string = 'Employee';
   employee_login_styles = {
@@ -17,7 +16,7 @@ export class EmployeeLoginComponent implements OnInit {
     'login-btn': ['employee-login-btn'],
     'login-back-button': ['employee-login-back-button'],
   };
-  employee_btn_styles=["#248c8e","rgba(36, 140, 142, 0.58)"]
+  employee_btn_styles = ['#248c8e', 'rgba(36, 140, 142, 0.58)'];
   constructor(
     private employeeService: EmployeeService,
     private toaster: ToastrService,
@@ -30,12 +29,12 @@ export class EmployeeLoginComponent implements OnInit {
     this.employeeService
       .makeLoginRequest(login_data)
       .subscribe((responseData) => {
-        console.log(responseData);
-        // ID: "0000000012"
-        if (responseData.RESULT == 'SUCCESS') {
+        console.log(login_data);
+        // ID: "3"
+        if ((responseData.data.RESULT[0] == 'SUCCESS')) {
           this.router.navigate(['dashboard']);
         } else {
-          this.toaster.error(responseData.RESULT, '', {
+          this.toaster.error(responseData.data.RESULT[0], '', {
             timeOut: 2000,
             onActivateTick: false,
             progressBar: false,

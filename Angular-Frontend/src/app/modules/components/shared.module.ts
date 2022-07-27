@@ -9,13 +9,14 @@ import { BreadCrumbComponent } from './bread-crumb/bread-crumb.component';
 import { ModalBoxComponent } from './modal-box/modal-box.component';
 import { LoadingScreenComponent } from './loading-screen/loading-screen.component';
 import {LoginComponentComponent} from "./login-component/login-component.component"
+import {NavbarComponentComponent} from "./navbar-component/navbar-component.component"
 @NgModule({
   declarations: [
     PortalCardComponent,
     TableComponentComponent,
     BreadCrumbComponent,
     ModalBoxComponent,
-    LoadingScreenComponent,LoginComponentComponent
+    LoadingScreenComponent,LoginComponentComponent,NavbarComponentComponent
   ],
   imports: [CommonModule,MatInputModule,
     MatIconModule,ReactiveFormsModule],
@@ -24,7 +25,7 @@ import {LoginComponentComponent} from "./login-component/login-component.compone
     TableComponentComponent,
     BreadCrumbComponent,
     ModalBoxComponent,
-    LoadingScreenComponent,LoginComponentComponent
+    LoadingScreenComponent,LoginComponentComponent,NavbarComponentComponent
   ],
 })
 export class SharedModule {}
