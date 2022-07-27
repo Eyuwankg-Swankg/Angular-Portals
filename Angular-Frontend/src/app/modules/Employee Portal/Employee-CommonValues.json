@@ -1,13 +1,13 @@
 {
-  "tableStyleClass": ["customer-table-row", "customer-table-heading"],
+  "tableStyleClass": ["employee-table-row", "employee-table-heading"],
   "modalStyleClass": [
-    "customer-modal-box-text-color",
-    "customer-modal-box-title-bottom",
-    "customer-modal-box-close"
+    "employee-modal-box-text-color",
+    "employee-modal-box-title-bottom",
+    "employee-modal-box-close"
   ],
   "breadCrumbStyleClass": [
-    "breadcrumb-border-customer",
-    "breadcrumb-text-color-customer"
+    "breadcrumb-border-employee",
+    "breadcrumb-text-color-employee"
   ],
   "navbarStyleClasses": {
     "navbar-container":"employee-navbar-container",

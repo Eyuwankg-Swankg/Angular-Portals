@@ -1,0 +1,9 @@
+.employee-dashboard-content {
+  width: 80%;
+  height: 86vh;
+  display: flex;
+  align-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+}

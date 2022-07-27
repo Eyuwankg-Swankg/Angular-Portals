@@ -1,4 +1,7 @@
-<img src="assets/Images/Customer/Navbar-Image.png" class="navbar-icon" />
+<img
+  src="assets/Images/{{ portal_name }}/Navbar-Image.png"
+  class="navbar-icon"
+/>
 <p class="navbar-heading">{{ portal_name }} Portal</p>
 <img
   src="assets/Images/Profile-icon.png"
@@ -60,6 +63,7 @@
     </div>
   </div>
 </div>
+<!-- TODO: fix loading screen in all pages -->
 <app-loading-screen
   class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
   [loading_class]="loadingClass"

@@ -60,6 +60,24 @@ export class NavbarComponentComponent implements OnInit {
             this.loadingScreenToggle = !this.loadingScreenToggle;
           }
         );
+    } else if (this.portal_name == 'Employee') {
+      this.service
+        .getEmployeeProfile(this.service.getEmployeeDetails())
+        .subscribe(
+          (responseData) => {
+            var temp = responseData.data;
+            console.log(temp);
+            for (var item in temp) {
+              this.profileDetailsHeading.push(item);
+              this.profileDetailsValues.push(temp[item]);
+            }
+            this.togglePofileModal = !this.togglePofileModal;
+            this.loadingScreenToggle = !this.loadingScreenToggle;
+          },
+          (error) => {
+            this.loadingScreenToggle = !this.loadingScreenToggle;
+          }
+        );
     }
   }
   closeProfileModal(): void {

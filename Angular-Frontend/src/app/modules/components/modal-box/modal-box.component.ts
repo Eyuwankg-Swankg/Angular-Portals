@@ -9,7 +9,9 @@ export class ModalBoxComponent implements OnInit {
   @Input() modal_data = {};
   @Input() modal_style_class: string[] = [];
   @Input() modal_title: string = '';
+  pdf_link = 'd';
   @Output() close_modal: EventEmitter<any> = new EventEmitter();
+  @Output() PDFDownload: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
@@ -18,5 +20,9 @@ export class ModalBoxComponent implements OnInit {
   }
   closeModalBtn(): void {
     this.close_modal.emit();
+  }
+  emitPDFEvent():void{
+    console.log("dwfrwf");
+    this.PDFDownload.emit();
   }
 }

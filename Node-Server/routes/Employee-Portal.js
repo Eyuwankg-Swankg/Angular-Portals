@@ -61,24 +61,26 @@ router.post("/employee_profile", (req, res) => {
   <soapenv:Header/>
   <soapenv:Body>
      <urn:ZFM_SAKTHI_EMP_PROFILE>
-        <PERSONALNO>3</PERSONALNO>
+        <PERSONALNO>${req.body.employee_id}</PERSONALNO>
      </urn:ZFM_SAKTHI_EMP_PROFILE>
   </soapenv:Body>
 </soapenv:Envelope>`;
-  const requestURL1 = `http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_EYUWANKG_EMPLOYEE&receiverParty=&receiverService=&interface=SI_EYUWANKG_EMPLOYEE_PROFILE&interfaceNamespace=http://eyuwankg_emp.com`;
-  const bodyRequest1 = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">
-  <soapenv:Header/>
-  <soapenv:Body>
-     <urn:ZFM_EMP_PROFILE_EYUWANKG>
-        <EMPLOYEE_ID>3</EMPLOYEE_ID>
-     </urn:ZFM_EMP_PROFILE_EYUWANKG>
-  </soapenv:Body>
-</soapenv:Envelope>`;
-
   axios
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
-      res.send(response.data);
+      xml2js.parseString(response.data, (err, data) => {
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_SAKTHI_EMP_PROFILE.Response"
+          ][0]["P_RESULT_EXPORT"][0];
+        var responseData = {};
+        for (var item in tempData) {
+          if (tempData[item][0] != "") responseData[item] = tempData[item][0];
+        }
+        res.send({
+          data: { EmployeeDetails: responseData },
+        });
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -96,7 +98,7 @@ router.post("/employee_payroll", (req, res) => {
   <soapenv:Header/>
   <soapenv:Body>
      <urn:ZFM_SAKTHI_FI_EMP_PAYROLL>
-        <PERSONALNO>3</PERSONALNO>
+        <PERSONALNO>${req.body.employee_id}</PERSONALNO>
         <IT_PAYROL_RESULT>
            <item>
            </item>
@@ -108,13 +110,25 @@ router.post("/employee_payroll", (req, res) => {
   axios
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
-      xml2js.parseString(response.data, (err, data) =>
-        res.send(
+      xml2js.parseString(response.data, (err, data) => {
+        var tempData =
           data["SOAP:Envelope"]["SOAP:Body"][0][
             "ns0:ZFM_SAKTHI_FI_EMP_PAYROLL.Response"
-          ][0]
-        )
-      );
+          ][0]["IT_PAYROL_RESULT"][0];
+        var responseData = [];
+        if (tempData == "") res.send({ data: { PayrollDetails: tempData } });
+        else {
+          tempData = tempData["item"];
+          for (var item in tempData) {
+            var temp = {};
+            for (var obj in tempData[item]) temp[obj] = tempData[item][obj][0];
+            responseData.push(temp);
+          }
+          res.send({
+            data: { PayrollDetails: responseData },
+          });
+        }
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -134,7 +148,7 @@ router.post("/employee_leave_data", (req, res) => {
   <soapenv:Header/>
   <soapenv:Body>
      <urn:ZFM_SAKTHI_EMP_LEAVE_DATA>
-        <PERSONALNO>3</PERSONALNO>
+        <PERSONALNO>${req.body.employee_id}</PERSONALNO>
         <IT_RESULT>
            <item>
            </item>
@@ -146,7 +160,74 @@ router.post("/employee_leave_data", (req, res) => {
   axios
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
-      res.send(response.data);
+      xml2js.parseString(response.data, (err, data) => {
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_SAKTHI_EMP_LEAVE_DATA.Response"
+          ][0]["IT_RESULT"][0];
+        var responseData = [];
+        if (
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_SAKTHI_EMP_LEAVE_DATA.Response"
+          ][0]["RETURN"][0]["TYPE"][0] == ""
+        ) {
+          tempData = tempData["item"];
+          for (var item in tempData) {
+            var temp = {};
+            for (var obj in tempData[item]) temp[obj] = tempData[item][obj][0];
+            responseData.push(temp);
+          }
+          res.send({
+            data: { LeaveDataDetails: responseData },
+          });
+        } else res.send({ data: { LeaveDataDetails: "" } });
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
+//@type      POST
+//@route     /employee_payslip
+//@desc      route to get employee_payslip
+//@access    PUBLIC
+router.post("/employee_payslip", (req, res) => {
+  console.log(req.body);
+
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_SAKTHI_SOAP_PIPO&receiverParty=&receiverService=&interface=SI_SAKTHI_EMP_PAYSLIP&interfaceNamespace=http://sakthi_pipo.com`;
+
+  const bodyRequest = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">
+  <soapenv:Header/>
+  <soapenv:Body>
+     <urn:ZFM_SAKTHI_EMP_PAYSLIP>
+        <PERSONALNO>${req.body.employee_id}</PERSONALNO>
+        <SEQNO>${req.body.sequence_no}</SEQNO>
+     </urn:ZFM_SAKTHI_EMP_PAYSLIP>
+  </soapenv:Body>
+</soapenv:Envelope>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      xml2js.parseString(response.data, (err, data) => {
+        var tempData = data["SOAP:Envelope"]["SOAP:Body"][0];
+        var responseData = [];
+        if (
+          tempData["ns0:ZFM_SAKTHI_EMP_PAYSLIP.Response"][0]["RETURN"][0][
+            "TYPE"
+          ][0] == ""
+        )
+          res.send({
+            data: {
+              PDFDownloadURL:
+                tempData["ns0:ZFM_SAKTHI_EMP_PAYSLIP.Response"][0][
+                  "P_PAYSLIP_DOC"
+                ][0],
+            },
+          });
+        else res.send({ data: { PDFDownloadURL: "" } });
+      });
     })
     .catch(function (error) {
       console.log(error);

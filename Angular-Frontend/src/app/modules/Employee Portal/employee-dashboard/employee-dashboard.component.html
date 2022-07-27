@@ -4,3 +4,23 @@
   [portal_name]="'Employee'"
   [style_class]="commonStyleValues.navbarStyleClasses"
 ></app-navbar-component>
+<div class="employee-dashboard-content">
+  <app-portal-card
+    class="card card-container"
+    (click)="goToPayroll()"
+    [image_path]="cardImage.payroll"
+    [portal_name]="cardName[0]"
+    [overlay_color]="cardOverlayColor.payroll"
+    style="box-shadow: 4px 4px 5px 3px #258469c4; border: 1px solid #258469"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToLeaveData()"
+    [image_path]="cardImage.leaveData"
+    [portal_name]="cardName[1]"
+    [overlay_color]="cardOverlayColor.leaveData"
+    style="box-shadow: 4px 4px 5px 3px #258469c4; border: 1px solid #258469"
+  >
+  </app-portal-card>
+</div>

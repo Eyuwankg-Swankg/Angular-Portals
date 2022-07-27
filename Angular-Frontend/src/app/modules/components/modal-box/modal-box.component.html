@@ -1,10 +1,15 @@
 <div class="modal-box-title">
-  <span class="modal-box-title-text" [ngClass]="modal_style_class[0]"
-    >{{modal_title}}</span
-  >
+  <span class="modal-box-title-pdf" (click)="emitPDFEvent()">
+    <ng-container *ngIf="pdf_link">
+      <i class="fa-solid fa-file-pdf"></i>
+    </ng-container>
+  </span>
+  <span class="modal-box-title-text" [ngClass]="modal_style_class[0]">{{
+    modal_title
+  }}</span>
   <div
     class="modal-box-close"
-    [ngClass]="[modal_style_class[0],modal_style_class[2]]"
+    [ngClass]="[modal_style_class[0], modal_style_class[2]]"
     (click)="closeModalBtn()"
   >
     X
