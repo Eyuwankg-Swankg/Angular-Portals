@@ -35,7 +35,7 @@ export class CustomerCreditDebitComponent implements OnInit {
     DOC_DATE: '',
     OBJ_TYPE: '',
   };
-  commonStyleValues = CommonValues;
+  commonStyleValues :any= CommonValues;
   constructor(
     private customerService: CustomerService,
     private router: Router

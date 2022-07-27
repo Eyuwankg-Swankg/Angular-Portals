@@ -2,11 +2,11 @@ import {NgModule} from "@angular/core"
 import { RouterModule,Routes } from "@angular/router"
 const routes:Routes=[
   {
-    path:"land",
+    path:"l",
     loadChildren:()=>import("./modules/Landing-Page/landing-page.module").then(m=>m.LandingPageModule)
   },
   {
-    path:"customer",
+    path:"d",
     loadChildren:()=>import("./modules/Customer Portal/customer-portal.module").then(m=>m.CustomerPortalModule)
   }
   ,

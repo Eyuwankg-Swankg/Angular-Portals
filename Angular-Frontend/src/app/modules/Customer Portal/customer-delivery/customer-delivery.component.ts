@@ -24,7 +24,7 @@ export class CustomerDeliveryComponent implements OnInit {
     VSTEL: '',
     VKORG: '',
   };
-  commonStyleValues=CommonValues;
+  commonStyleValues : any=CommonValues;
 
   constructor(
     private customerService: CustomerService,

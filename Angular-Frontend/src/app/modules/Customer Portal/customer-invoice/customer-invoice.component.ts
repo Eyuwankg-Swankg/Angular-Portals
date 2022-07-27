@@ -25,7 +25,7 @@ export class CustomerInvoiceComponent implements OnInit {
     VTWEG: '',
     KALSM: '',
   };
-  commonStyleValues=CommonValues;
+  commonStyleValues:any=CommonValues;
   constructor(
     private customerService: CustomerService,
     private router: Router

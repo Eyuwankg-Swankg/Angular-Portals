@@ -8,15 +8,20 @@ import { SharedService } from '../../shared.service';
 })
 export class NavbarComponentComponent implements OnInit {
   @Input() portal_name = '';
+  @Input() style_class: any = {};
   toggleDropdown: boolean = false;
   loadingScreenToggle: boolean = false;
   togglePofileModal: boolean = false;
   profileDetailsHeading: string[] = [];
   profileDetailsValues: any = [];
+  loadingClass = '';
   constructor(private router: Router, private service: SharedService) {}
 
   ngOnInit(): void {
-    this.getProfile();
+    if (this.portal_name == 'Customer')
+      this.loadingClass = 'customer-loading-screeen';
+    else if (this.portal_name == 'Employee')
+      this.loadingClass = 'employee-loading-screeen';
   }
   showDropdown(): void {
     this.toggleDropdown = !this.toggleDropdown;
@@ -47,7 +52,7 @@ export class NavbarComponentComponent implements OnInit {
                 }
               }
             }
-            console.log(this.profileDetailsHeading,this.profileDetailsValues);
+            console.log(this.profileDetailsHeading, this.profileDetailsValues);
             this.togglePofileModal = !this.togglePofileModal;
             this.loadingScreenToggle = !this.loadingScreenToggle;
           },
@@ -57,7 +62,7 @@ export class NavbarComponentComponent implements OnInit {
         );
     }
   }
-  closeProfileModal():void{
-    this.togglePofileModal=!this.togglePofileModal;
+  closeProfileModal(): void {
+    this.togglePofileModal = !this.togglePofileModal;
   }
 }

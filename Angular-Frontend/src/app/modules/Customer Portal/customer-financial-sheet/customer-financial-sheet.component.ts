@@ -25,6 +25,7 @@ export class CustomerFinancialSheetComponent implements OnInit {
     'Credit Debit memo',
     'Overall Sales',
   ];
+  commonStyleValues :any= CommonValues;
   breadCrumbStyleClass = CommonValues.breadCrumbStyleClass;
   constructor(private router: Router) {}
 

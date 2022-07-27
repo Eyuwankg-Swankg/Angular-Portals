@@ -3,20 +3,33 @@
 <img
   src="assets/Images/Profile-icon.png"
   class="navbar-profile-icon"
+  [ngClass]="style_class['navbar-profile-icon']"
   (click)="showDropdown()"
 />
-<div class="navbar-dropdown-container" *ngIf="toggleDropdown">
-  <div class="navbar-dropdown-item-container" (click)="getProfile()">
+<div
+  class="navbar-dropdown-container"
+  *ngIf="toggleDropdown"
+  [ngClass]="style_class['navbar-dropdown-container']"
+>
+  <div
+    class="navbar-dropdown-item-container"
+    (click)="getProfile()"
+    [ngClass]="style_class['navbar-dropdown-item-container']"
+  >
     <i class="fa-solid fa-user"></i>
     PROFILE
   </div>
-  <div class="navbar-dropdown-item-container" (click)="onLogout()">
+  <div
+    class="navbar-dropdown-item-container"
+    (click)="onLogout()"
+    [ngClass]="style_class['navbar-dropdown-item-container']"
+  >
     <i class="fa-solid fa-arrow-right-from-bracket"></i>
     LOGOUT
   </div>
 </div>
 <div class="profile-modal-conatiner" *ngIf="togglePofileModal">
-  <div class="profile-modal-box">
+  <div class="profile-modal-box" [ngClass]="style_class['profile-modal-box']">
     <div class="profile-modal-img-container">
       <img
         src="assets/Images/Profile.png"
@@ -35,6 +48,7 @@
             <div
               *ngFor="let item of profileItem | keyvalue"
               class="profile-modal-values"
+              [ngClass]="style_class['profile-modal-values']"
             >
               <span>{{ item.key }}</span>
               :
@@ -48,6 +62,6 @@
 </div>
 <app-loading-screen
   class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
-  [loading_class]="portal_name == 'Customer' ? 'customer-loading-screeen' : ''"
+  [loading_class]="loadingClass"
   *ngIf="loadingScreenToggle"
 ></app-loading-screen>

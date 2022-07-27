@@ -331,7 +331,7 @@ export class CustomerInquiryComponent implements OnInit {
     ANGDT: '',
     AUDAT: '',
   };
-  commonStyleValues=CommonValues 
+  commonStyleValues:any=CommonValues 
   constructor(
     private customerService: CustomerService,
     private router: Router

@@ -7,9 +7,9 @@
 .navbar-icon {
   width: 45px;
 }
+
 .navbar-profile-icon {
   width: 45px;
-  border: 2.5px solid var(--customer-blue);
   border-radius: 25px;
   padding: 2px;
   cursor: pointer;
@@ -23,11 +23,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  width: 12%;
-  border-right: 2px solid var(--customer-blue);
-  border-left: 2px solid var(--customer-blue);
-  border-bottom: 2px solid var(--customer-blue);
-  background-color: rgb(192, 217, 239);
+  width: 12%;  
   cursor: pointer;
 }
 .navbar-dropdown-item-container {
@@ -40,7 +36,6 @@
   justify-content: space-around;
 }
 .navbar-dropdown-item-container:hover {
-  background-color: var(--customer-blue);
   color: snow;
 }
 
@@ -65,7 +60,6 @@
   border-radius: 8px;
   width: 50%;
   height: 69vh;
-  border: 3.5px solid var(--customer-blue);
 }
 .profile-modal-img-container {
   width: 100%;
@@ -110,7 +104,6 @@
 .profile-modal-values {
   width: 85%;
   margin: 0 auto;
-  border-bottom: 2px solid var(--customer-blue);
   display: flex;
   align-items: center;
   justify-content: space-evenly;

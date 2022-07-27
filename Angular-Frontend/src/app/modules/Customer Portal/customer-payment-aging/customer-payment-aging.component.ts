@@ -24,7 +24,7 @@ export class CustomerPaymentAgingComponent implements OnInit {
     CURRENCY: '',
     LOC_CURRCY: '',
   };
-  commonStyleValues=CommonValues;
+  commonStyleValues:any=CommonValues;
   constructor(
     private customerService: CustomerService,
     private router: Router

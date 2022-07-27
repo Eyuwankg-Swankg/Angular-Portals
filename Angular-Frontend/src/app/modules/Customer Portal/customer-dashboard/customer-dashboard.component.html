@@ -1,6 +1,9 @@
 <app-navbar-component
+  [ngClass]="commonStyleValues.navbarStyleClasses['navbar-container']"
   class="navbar-container"
   [portal_name]="'Customer'"
+  [style_class]="commonStyleValues.navbarStyleClasses"
+  [style_class]="commonStyleValues.navbarStyleClasses"
 ></app-navbar-component>
 <div class="dashboard-content">
   <app-portal-card

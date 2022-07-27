@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-dashboard',
   templateUrl: './customer-dashboard.component.html',
@@ -19,13 +20,20 @@ export class CustomerDashboardComponent implements OnInit {
     financialSheet: 'rgba(29, 32, 84, 0.68)',
   };
   cardName: string[] = ['Inquiry', 'Sale Order', 'Delivery', 'Financial Sheet'];
+  commonStyleValues :any = CommonValues;
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
   goToInquiry(): void {
     this.router.navigate(['/inquiry']);
   }
-  goToSaleOrder(): void {this.router.navigate(['/saleorder']);}
-  goToDelivery(): void {this.router.navigate(['/delivery']);}
-  goToFinancialSheet(): void {this.router.navigate(['/financialsheet']);}
+  goToSaleOrder(): void {
+    this.router.navigate(['/saleorder']);
+  }
+  goToDelivery(): void {
+    this.router.navigate(['/delivery']);
+  }
+  goToFinancialSheet(): void {
+    this.router.navigate(['/financialsheet']);
+  }
 }

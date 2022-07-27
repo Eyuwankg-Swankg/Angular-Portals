@@ -23,7 +23,7 @@ export class CustomerSaleorderComponent implements OnInit {
     REQ_QTY: '',
     REQ_DATE: '',
   };
-  commonStyleValues=CommonValues;
+  commonStyleValues:any=CommonValues;
   constructor(
     private customerService: CustomerService,
     private router: Router

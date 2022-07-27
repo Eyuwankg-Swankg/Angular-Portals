@@ -8,5 +8,13 @@
   "breadCrumbStyleClass": [
     "breadcrumb-border-customer",
     "breadcrumb-text-color-customer"
-  ]
+  ],
+  "navbarStyleClasses": {
+    "navbar-container":"customer-navbar-container",
+    "navbar-profile-icon": "customer-navbar-profile-icon",
+    "navbar-dropdown-container": "customer-navbar-dropdown-container",
+    "navbar-dropdown-item-container": "customer-navbar-dropdown-item-container",
+    "profile-modal-box": "customer-profile-modal-box",
+    "profile-modal-values": "customer-profile-modal-values"
+  }
 }
