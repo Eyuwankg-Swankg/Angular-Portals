@@ -46,4 +46,11 @@ export class VendorService {
     );
   }
 
+  public getCreditList(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/vendor/credit',
+      data
+    );
+  }
+
 }

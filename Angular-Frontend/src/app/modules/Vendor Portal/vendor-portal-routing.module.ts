@@ -33,7 +33,7 @@ const routes:Routes =[
   }
   ,
   {
-    path:'credit',component:VendorCreditComponent
+    path:'',component:VendorCreditComponent
   }
   ,
   {
@@ -41,7 +41,7 @@ const routes:Routes =[
   }
   ,
   {
-    path:'',component:VendorPaymentAgingComponent
+    path:'paymentaging',component:VendorPaymentAgingComponent
   }
   ,
   {
