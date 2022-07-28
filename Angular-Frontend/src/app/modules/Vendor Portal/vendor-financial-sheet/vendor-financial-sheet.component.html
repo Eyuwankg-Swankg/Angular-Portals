@@ -1,0 +1,44 @@
+<app-navbar-component
+  [ngClass]="commonStyleValues.navbarStyleClasses['navbar-container']"
+  class="navbar-container"
+  [portal_name]="'Vendor'"
+  [style_class]="commonStyleValues.navbarStyleClasses"
+></app-navbar-component>
+<div class="dashboard-content">
+  <app-portal-card
+    class="card card-container"
+    (click)="goToInvoiceList()"
+    [image_path]="cardImage.invoiceList"
+    [portal_name]="cardName[0]"
+    [overlay_color]="cardOverlayColor.invoiceList"
+    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+  >
+  </app-portal-card>
+  <app-portal-card
+  class="card card-container"
+  (click)="goToCredit()"
+  [image_path]="cardImage.credit"
+  [portal_name]="cardName[2]"
+  [overlay_color]="cardOverlayColor.credit"
+  style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+>
+</app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToPaymentAging()"
+    [image_path]="cardImage.paymentAging"
+    [portal_name]="cardName[1]"
+    [overlay_color]="cardOverlayColor.paymentAging"
+    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToDebit()"
+    [image_path]="cardImage.debit"
+    [portal_name]="cardName[3]"
+    [overlay_color]="cardOverlayColor.debit"
+    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+  >
+  </app-portal-card>
+</div>

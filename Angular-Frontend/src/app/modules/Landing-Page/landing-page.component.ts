@@ -14,7 +14,7 @@ export class LandingPageComponent implements OnInit {
   CustomerPortal:string = 'Customer'
   VendorPortal:string = 'Vendor'
   EmployeePortal:string = 'Employee'
-  VendorOverlayColor:string = 'rgba(37, 132, 105, 0.75)'
+  VendorOverlayColor:string = 'rgba(217, 114, 142, 0.85)'
   EmployeeOverlayColor:string = 'rgba(37, 132, 105, 0.75)'
   CustomerOverlayColor:string = 'rgba(29, 32, 84, 0.68)'
   constructor(private router:Router) { }

@@ -1,1 +1,8 @@
-<p>vendor-login works!</p>
+<app-login-component
+  class="login-container"
+  [login_image]="login_image_url"
+  [portal_name]="vendor_portal"
+  (onLoginEvent)="sendLoginData($event)"
+  [login_style_class]="vendor_login_styles"
+  [login_btn_styles]="vendor_btn_styles"
+></app-login-component>

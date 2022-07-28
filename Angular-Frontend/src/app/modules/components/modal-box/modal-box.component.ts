@@ -9,7 +9,7 @@ export class ModalBoxComponent implements OnInit {
   @Input() modal_data = {};
   @Input() modal_style_class: string[] = [];
   @Input() modal_title: string = '';
-  pdf_link = 'd';
+  @Input() pdf_link = '';
   @Output() close_modal: EventEmitter<any> = new EventEmitter();
   @Output() PDFDownload: EventEmitter<any> = new EventEmitter();
 

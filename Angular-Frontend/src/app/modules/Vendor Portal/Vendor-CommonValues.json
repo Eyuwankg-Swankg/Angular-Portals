@@ -1,0 +1,20 @@
+{
+  "tableStyleClass": ["vendor-table-row", "vendor-table-heading"],
+  "modalStyleClass": [
+    "vendor-modal-box-text-color",
+    "vendor-modal-box-title-bottom",
+    "vendor-modal-box-close"
+  ],
+  "breadCrumbStyleClass": [
+    "breadcrumb-border-vendor",
+    "breadcrumb-text-color-vendor"
+  ],
+  "navbarStyleClasses": {
+    "navbar-container":"vendor-navbar-container",
+    "navbar-profile-icon": "vendor-navbar-profile-icon",
+    "navbar-dropdown-container": "vendor-navbar-dropdown-container",
+    "navbar-dropdown-item-container": "vendor-navbar-dropdown-item-container",
+    "profile-modal-box": "vendor-profile-modal-box",
+    "profile-modal-values": "vendor-profile-modal-values"
+  }
+}

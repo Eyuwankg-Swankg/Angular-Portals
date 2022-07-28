@@ -1,0 +1,44 @@
+<app-navbar-component
+  [ngClass]="commonStyleValues.navbarStyleClasses['navbar-container']"
+  class="navbar-container"
+  [portal_name]="'Vendor'"
+  [style_class]="commonStyleValues.navbarStyleClasses"
+></app-navbar-component>
+<div class="dashboard-content">
+  <app-portal-card
+    class="card card-container"
+    (click)="goToQuoteRequest()"
+    [image_path]="cardImage.quoteRequest"
+    [portal_name]="cardName[0]"
+    [overlay_color]="cardOverlayColor.quoteRequest"
+    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToPurchaseOrder()"
+    [image_path]="cardImage.purchaseOrder"
+    [portal_name]="cardName[1]"
+    [overlay_color]="cardOverlayColor.purchaseOrder"
+    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToGoodsReceipt()"
+    [image_path]="cardImage.goodsReceipt"
+    [portal_name]="cardName[2]"
+    [overlay_color]="cardOverlayColor.goodsReceipt"
+    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+  >
+  </app-portal-card>
+  <app-portal-card
+    class="card card-container"
+    (click)="goToFinanciaSheet()"
+    [image_path]="cardImage.financialSheet"
+    [portal_name]="cardName[3]"
+    [overlay_color]="cardOverlayColor.financialSheet"
+    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+  >
+  </app-portal-card>
+</div>

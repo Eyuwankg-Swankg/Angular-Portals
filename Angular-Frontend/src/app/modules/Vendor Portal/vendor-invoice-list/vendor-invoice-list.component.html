@@ -1,0 +1,33 @@
+<app-navbar-component
+  [ngClass]="commonStyleValues.navbarStyleClasses['navbar-container']"
+  class="navbar-container"
+  [portal_name]="'Vendor'"
+  [style_class]="commonStyleValues.navbarStyleClasses"
+></app-navbar-component>
+<app-bread-crumb
+  class="breadcrumb-outer-container"
+  [style_class]="commonStyleValues.breadCrumbStyleClass"
+  [breadcrumb_text]="['Vendor', 'INVOICE LIST']"
+  (onToDashboard)="toDashboard()"
+></app-bread-crumb>
+<h2 class="breadcrumb-title">INVOICE LIST</h2>
+<app-table-component
+  [table_data]="InvoiceList"
+  [style_class]="commonStyleValues.tableStyleClass"
+  (display_modal)="showModal($event)"
+  [column_values]="columnValues"
+>
+</app-table-component>
+<app-modal-box
+  *ngIf="modalToggle"
+  class="modal-box-outer-container"
+  [modal_title]="modalTitle"
+  [modal_data]="modalData"
+  (close_modal)="closeModal()"
+  [modal_style_class]="commonStyleValues.modalStyleClass"
+></app-modal-box>
+<app-loading-screen
+  class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
+  [loading_class]="'vendor-loading-screeen'"
+  *ngIf="loadingScreenToggle"
+></app-loading-screen>

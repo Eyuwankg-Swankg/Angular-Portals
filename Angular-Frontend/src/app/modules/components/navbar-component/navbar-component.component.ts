@@ -22,6 +22,8 @@ export class NavbarComponentComponent implements OnInit {
       this.loadingClass = 'customer-loading-screeen';
     else if (this.portal_name == 'Employee')
       this.loadingClass = 'employee-loading-screeen';
+    else if (this.portal_name == 'Vendor')
+      this.loadingClass = 'vendor-loading-screeen';
   }
   showDropdown(): void {
     this.toggleDropdown = !this.toggleDropdown;
@@ -78,7 +80,25 @@ export class NavbarComponentComponent implements OnInit {
             this.loadingScreenToggle = !this.loadingScreenToggle;
           }
         );
-    }
+      } else if (this.portal_name == 'Vendor') {
+        this.service
+          .getVendorProfile(this.service.getVendorDetails())
+          .subscribe(
+            (responseData) => {
+              var temp = responseData.data;
+              console.log(temp);
+              for (var item in temp) {
+                this.profileDetailsHeading.push(item);
+                this.profileDetailsValues.push(temp[item]);
+              }
+              this.togglePofileModal = !this.togglePofileModal;
+              this.loadingScreenToggle = !this.loadingScreenToggle;
+            },
+            (error) => {
+              this.loadingScreenToggle = !this.loadingScreenToggle;
+            }
+          );
+      }
   }
   closeProfileModal(): void {
     this.togglePofileModal = !this.togglePofileModal;
