@@ -7,7 +7,7 @@ import { EmployeePayrollComponent } from './employee-payroll/employee-payroll.co
 
 const routes: Routes = [
   {
-    path: 'L',
+    path: '',
     component: EmployeeLoginComponent,
   },
   {
@@ -15,7 +15,7 @@ const routes: Routes = [
     component: EmployeeDashboardComponent,
   },
   {
-    path: '',
+    path: 'payroll',
     component: EmployeePayrollComponent,
   },
   {

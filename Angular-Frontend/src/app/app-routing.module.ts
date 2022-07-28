@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core"
 import { RouterModule,Routes } from "@angular/router"
 const routes:Routes=[
   {
-    path:"l",
+    path:"",
     loadChildren:()=>import("./modules/Landing-Page/landing-page.module").then(m=>m.LandingPageModule)
   },
   {
@@ -16,7 +16,7 @@ const routes:Routes=[
   }
   ,
   {
-    path:"",
+    path:"employee",
     loadChildren:()=>import("./modules/Employee Portal/employee-portal.module").then(m=>m.EmployeePortalModule)
   }
 

@@ -32,7 +32,7 @@ export class EmployeeLoginComponent implements OnInit {
         console.log(login_data);
         // ID: "3"
         if ((responseData.data.RESULT[0] == 'SUCCESS')) {
-          this.router.navigate(['dashboard']);
+          this.router.navigate(['employee/dashboard']);
         } else {
           this.toaster.error(responseData.data.RESULT[0], '', {
             timeOut: 2000,
