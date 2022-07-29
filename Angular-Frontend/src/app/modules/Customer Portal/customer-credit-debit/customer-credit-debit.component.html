@@ -58,11 +58,7 @@
 ></app-modal-box>
 <!-- TODO: fix this -->
 <app-loading-screen
-  class="loading-screen-container {{
-    loadingScreenToggleCredit == true && loadingScreenToggleDebit == true
-      ? ''
-      : 'fadeaway'
-  }}"
+  class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
   [loading_class]="'customer-loading-screeen'"
-  *ngIf="loadingScreenToggleCredit && loadingScreenToggleDebit"
+  *ngIf="loadingScreenToggle"
 ></app-loading-screen>

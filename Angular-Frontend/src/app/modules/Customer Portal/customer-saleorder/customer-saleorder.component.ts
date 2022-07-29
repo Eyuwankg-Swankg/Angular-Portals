@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-saleorder',
@@ -23,9 +24,10 @@ export class CustomerSaleorderComponent implements OnInit {
     REQ_QTY: '',
     REQ_DATE: '',
   };
-  commonStyleValues:any=CommonValues;
+  commonStyleValues: any = CommonValues;
   constructor(
     private customerService: CustomerService,
+    private toaster: ToastrService,
     private router: Router
   ) {}
 
@@ -35,13 +37,18 @@ export class CustomerSaleorderComponent implements OnInit {
     console.log('Customer Details', this.customerDetails);
     this.customerService.getSaleOrderData(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data.IT_SALES_ORDER != '') {
-          if (Array.isArray(responseData.data.IT_SALES_ORDER.item) == false)
-            this.saleOrderData = [responseData.data.IT_SALES_ORDER.item];
-          else this.saleOrderData = responseData.data.IT_SALES_ORDER.item;
-          console.log('Sale Order Data', this.saleOrderData);
-          this.loadingScreenToggle = !this.loadingScreenToggle;
+        console.log(responseData.data);
+        if (responseData.data != 'NO DATA') {
+          this.saleOrderData = responseData.data;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
+        console.log('Sale Order Data', this.saleOrderData);
+        this.loadingScreenToggle = !this.loadingScreenToggle;
       },
       (error) => {
         this.loadingScreenToggle = !this.loadingScreenToggle;
@@ -49,7 +56,7 @@ export class CustomerSaleorderComponent implements OnInit {
     );
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/dashboard']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

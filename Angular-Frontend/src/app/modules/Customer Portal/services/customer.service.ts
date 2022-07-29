@@ -7,10 +7,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CustomerService {
   constructor(private httpClient: HttpClient) {}
-
+  
   public getCustomerDetails(): Object {
-    return { customer_id: 12 };
+    var data: any = localStorage.getItem('Customer');
+    try {
+      console.log("PERFECTO!!!")
+      return JSON.parse(data);
+      // return { customer_id: 1223 };
+    } catch (error) {
+      return { customer_id: 12 };
+    }
   }
+  public setCustomerDetails(ID: any) {
+    console.log(ID);
+    localStorage.setItem('Customer', JSON.stringify({ customer_id: ID }));
+  }
+
   public makeLoginRequest(data: Object): Observable<any> {
     return this.httpClient.post<any>(
       'http://localhost:5000/customer/login',

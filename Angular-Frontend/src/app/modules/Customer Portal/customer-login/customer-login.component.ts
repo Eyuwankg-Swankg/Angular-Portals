@@ -33,8 +33,12 @@ export class CustomerLoginComponent implements OnInit {
       .subscribe((responseData) => {
         console.log(responseData);
         // ID: "0000000012"
-        if (responseData.RESULT == 'SUCCESS') {
-          this.router.navigate(['dashboard']);
+        if (responseData.data.RESULT[0] == 'SUCCESS') {
+          this.customerService.setCustomerDetails(
+            responseData.data.CUSTOMER_ID[0]
+          );
+          this.customerService.getCustomerDetails();
+          this.router.navigate(['customer/dashboard']);
         } else {
           this.toaster.error(responseData.RESULT, '', {
             timeOut: 2000,

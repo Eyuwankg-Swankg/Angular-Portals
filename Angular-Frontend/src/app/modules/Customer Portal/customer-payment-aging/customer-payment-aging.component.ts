@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
@@ -8,7 +9,7 @@ import CommonValues from '../Customer-CommonValues.json';
   styleUrls: ['./customer-payment-aging.component.css'],
 })
 export class CustomerPaymentAgingComponent implements OnInit {
-  modalTitle = 'Payment and Aging DETAILS';
+  modalTitle = 'PAYMENT & AGING DETAILS';
   modalToggle = false;
   modalData = {};
   PaymentAgingList = {};
@@ -27,6 +28,7 @@ export class CustomerPaymentAgingComponent implements OnInit {
   commonStyleValues:any=CommonValues;
   constructor(
     private customerService: CustomerService,
+    private toaster: ToastrService,
     private router: Router
   ) {}
 
@@ -36,8 +38,15 @@ export class CustomerPaymentAgingComponent implements OnInit {
     console.log('Customer Details', this.customerDetails);
     this.customerService.getPaymentAging(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data.IT_LINEITEM != '') {
-          this.PaymentAgingList = responseData.data.IT_LINEITEM.item;
+        if (responseData.data!= 'NO DATA') {
+          this.PaymentAgingList = responseData.data;
+        }
+        else{
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
         this.loadingScreenToggle = !this.loadingScreenToggle;
         console.log('Payment Aging data', this.PaymentAgingList);
@@ -49,7 +58,7 @@ export class CustomerPaymentAgingComponent implements OnInit {
     console.log('Payment Aging Data', this.PaymentAgingList);
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/financialsheet']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

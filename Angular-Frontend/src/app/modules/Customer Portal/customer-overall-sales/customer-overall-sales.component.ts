@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-overall-sales',
@@ -26,6 +27,7 @@ export class CustomerOverallSalesComponent implements OnInit {
   commonStyleValues:any = CommonValues;
   constructor(
     private customerService: CustomerService,
+    private toaster: ToastrService,
     private router: Router
   ) {}
 
@@ -35,13 +37,18 @@ export class CustomerOverallSalesComponent implements OnInit {
     console.log('Customer Details', this.customerDetails);
     this.customerService.getSaleOrderData(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data.IT_SALES_ORDER != '') {
-          if (Array.isArray(responseData.data.IT_SALES_ORDER.item) == false)
-            this.overallSalesData = [responseData.data.IT_SALES_ORDER.item];
-          else this.overallSalesData = responseData.data.IT_SALES_ORDER.item;
-          console.log('Sale Order Data', this.overallSalesData);
-          this.loadingScreenToggle = !this.loadingScreenToggle;
+        console.log(responseData.data);
+        if (responseData.data != 'NO DATA') {
+          this.overallSalesData = responseData.data;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
+        console.log('Sale Order Data', this.overallSalesData);
+        this.loadingScreenToggle = !this.loadingScreenToggle;
       },
       (error) => {
         this.loadingScreenToggle = !this.loadingScreenToggle;
@@ -49,7 +56,7 @@ export class CustomerOverallSalesComponent implements OnInit {
     );
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/financialsheet']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

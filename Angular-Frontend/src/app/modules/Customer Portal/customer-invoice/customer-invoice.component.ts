@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-invoice',
@@ -28,6 +29,7 @@ export class CustomerInvoiceComponent implements OnInit {
   commonStyleValues:any=CommonValues;
   constructor(
     private customerService: CustomerService,
+    private toaster: ToastrService,
     private router: Router
   ) {}
 
@@ -37,8 +39,15 @@ export class CustomerInvoiceComponent implements OnInit {
     console.log('Customer Details', this.customerDetails);
     this.customerService.getInvoiceData(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data.IT_INVOICE_LIST != "") {
-          this.InvoiceList = responseData.data.IT_INVOICE_LIST.item;
+        if (responseData.data != "NO DATA") {
+          this.InvoiceList = responseData.data;
+        }
+        else{
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
         this.loadingScreenToggle = !this.loadingScreenToggle;
         console.log('Invoice List', this.InvoiceList);
@@ -50,7 +59,7 @@ export class CustomerInvoiceComponent implements OnInit {
     console.log('Invoice Data', this.InvoiceList);
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/financialsheet']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

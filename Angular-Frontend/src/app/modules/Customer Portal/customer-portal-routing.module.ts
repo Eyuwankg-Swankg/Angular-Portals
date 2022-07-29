@@ -13,11 +13,11 @@ import { CustomerCreditDebitComponent } from './customer-credit-debit/customer-c
 
 const routes: Routes = [
   {
-    path: 'd',
+    path: '',
     component: CustomerLoginComponent,
   },
   {
-    path: '',
+    path: 'dashboard',
     component: CustomerDashboardComponent,
   },
   {

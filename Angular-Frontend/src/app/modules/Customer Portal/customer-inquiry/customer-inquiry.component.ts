@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-inquiry',
@@ -331,9 +332,10 @@ export class CustomerInquiryComponent implements OnInit {
     ANGDT: '',
     AUDAT: '',
   };
-  commonStyleValues:any=CommonValues 
+  commonStyleValues: any = CommonValues;
   constructor(
     private customerService: CustomerService,
+    private toaster: ToastrService,
     private router: Router
   ) {}
 
@@ -341,25 +343,28 @@ export class CustomerInquiryComponent implements OnInit {
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);
-    //TODO: uncomment this
-    // this.customerService.getInquiryData(this.customerDetails).subscribe(
-    //   (responseData) => {
-    //     if (responseData.data.IT_INQUIRY_LIST != "") {
-    //       this.InquiryList = responseData.data.IT_INQUIRY_LIST.item;
-    //     }
-    //     this.loadingScreenToggle = !this.loadingScreenToggle;
-    //     console.log('Inquiry List', this.InquiryList);
-    //   },
-    //   (error) => {
-    //     this.loadingScreenToggle = !this.loadingScreenToggle;
-    //   }
-    // );
-    // TODO: remove this
-    this.loadingScreenToggle = !this.loadingScreenToggle;
+    this.customerService.getInquiryData(this.customerDetails).subscribe(
+      (responseData) => {
+        if (responseData.data !='NO DATA') {
+          this.InquiryList = responseData.data;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
+        }
+        this.loadingScreenToggle = !this.loadingScreenToggle;
+        console.log('Inquiry List', this.InquiryList);
+      },
+      (error) => {
+        this.loadingScreenToggle = !this.loadingScreenToggle;
+      }
+    );
     console.log('Inquiry Data', this.InquiryList);
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/dashboard']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

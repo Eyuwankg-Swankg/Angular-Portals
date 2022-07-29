@@ -25,15 +25,15 @@ export class CustomerDashboardComponent implements OnInit {
 
   ngOnInit(): void {}
   goToInquiry(): void {
-    this.router.navigate(['/inquiry']);
+    this.router.navigate(['customer/inquiry']);
   }
   goToSaleOrder(): void {
-    this.router.navigate(['/saleorder']);
+    this.router.navigate(['customer/saleorder']);
   }
   goToDelivery(): void {
-    this.router.navigate(['/delivery']);
+    this.router.navigate(['customer/delivery']);
   }
   goToFinancialSheet(): void {
-    this.router.navigate(['/financialsheet']);
+    this.router.navigate(['customer/financialsheet']);
   }
 }

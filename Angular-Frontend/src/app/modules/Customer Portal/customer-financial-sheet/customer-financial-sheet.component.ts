@@ -22,7 +22,7 @@ export class CustomerFinancialSheetComponent implements OnInit {
   cardName: string[] = [
     'Invoice',
     'Payment and Aging',
-    'Credit Debit memo',
+    'Credit Debit Memo',
     'Overall Sales',
   ];
   commonStyleValues :any= CommonValues;
@@ -31,18 +31,18 @@ export class CustomerFinancialSheetComponent implements OnInit {
 
   ngOnInit(): void {}
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/dashboard']);
   }
   goToInvoice(): void {
-    this.router.navigate(['invoice']);
+    this.router.navigate(['customer/invoice']);
   }
   goToPaymentAging(): void {
-    this.router.navigate(['paymentaging']);
+    this.router.navigate(['customer/paymentaging']);
   }
   goToCreditDebit(): void {
-    this.router.navigate(['creditdebit']);
+    this.router.navigate(['customer/creditdebit']);
   }
   goToSalesData(): void {
-    this.router.navigate(['overallsales']);
+    this.router.navigate(['customer/overallsales']);
   }
 }

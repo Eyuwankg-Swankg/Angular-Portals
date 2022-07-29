@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-credit-debit',
@@ -13,8 +14,7 @@ export class CustomerCreditDebitComponent implements OnInit {
   modalData = {};
   CreditList = {};
   DebitList = {};
-  loadingScreenToggleCredit: boolean = true;
-  loadingScreenToggleDebit: boolean = true;
+  loadingScreenToggle: boolean = true;
   toggleCreditDebit: boolean = true;
   customerDetails: any = {};
   columnValuesCredit = {
@@ -35,9 +35,10 @@ export class CustomerCreditDebitComponent implements OnInit {
     DOC_DATE: '',
     OBJ_TYPE: '',
   };
-  commonStyleValues :any= CommonValues;
+  commonStyleValues: any = CommonValues;
   constructor(
     private customerService: CustomerService,
+    private toaster: ToastrService,
     private router: Router
   ) {}
   ngOnInit(): void {
@@ -47,27 +48,38 @@ export class CustomerCreditDebitComponent implements OnInit {
     // CREDIT LIST
     this.customerService.getCreditData(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data.RETURN.TYPE == '') {
-          this.CreditList = responseData.data.IT_CREDIT_RESULT.item;
+        if (responseData.data != 'NO DATA') {
+          this.CreditList = responseData.data;
+        } else {
+          this.toaster.error('NO CREDIT DATA ', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
-        this.loadingScreenToggleCredit = !this.loadingScreenToggleCredit;
+        this.loadingScreenToggle= !this.loadingScreenToggle;
         console.log('Credit List', this.CreditList);
       },
       (error) => {
-        this.loadingScreenToggleCredit = !this.loadingScreenToggleCredit;
+        this.loadingScreenToggle = !this.loadingScreenToggle;
       }
     );
     // DEBIT LIST
     this.customerService.getDebitData(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data.RETURN.TYPE == '') {
-          this.DebitList = responseData.data.IT_DEBIT_RESULT.item;
+        if (responseData.data != 'NO DATA') {
+          this.DebitList = responseData.data;
+        } else {
+          this.toaster.error('NO DEBIT DATA ', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
-        this.loadingScreenToggleDebit = !this.loadingScreenToggleDebit;
         console.log('Debit List', this.DebitList);
       },
       (error) => {
-        this.loadingScreenToggleDebit = !this.loadingScreenToggleDebit;
+        console.log("ERROR");
       }
     );
     console.log('Credit Data', this.CreditList);
@@ -77,11 +89,13 @@ export class CustomerCreditDebitComponent implements OnInit {
     this.toggleCreditDebit = !this.toggleCreditDebit;
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/financialsheet']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;
-    this.modalTitle = this.toggleCreditDebit ? 'CREDIT MEMO DETAILS' : 'DEBIT MEMO DETAILS' ;
+    this.modalTitle = this.toggleCreditDebit
+      ? 'CREDIT MEMO DETAILS'
+      : 'DEBIT MEMO DETAILS';
     this.modalData = rowData;
   }
   closeModal(): void {

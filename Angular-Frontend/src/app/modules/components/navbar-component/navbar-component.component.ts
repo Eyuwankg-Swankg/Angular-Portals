@@ -43,17 +43,8 @@ export class NavbarComponentComponent implements OnInit {
             var temp = responseData.data;
             console.log(temp);
             for (var item in temp) {
-              if (temp[item] != '') {
-                var tempObj: any = {};
-                for (var inner in temp[item]) {
-                  if (temp[item][inner] != '')
-                    tempObj[inner] = temp[item][inner];
-                }
-                if (item != 'RETURN' && Object.keys(tempObj).length != 0) {
-                  this.profileDetailsHeading.push(item);
-                  this.profileDetailsValues.push(tempObj);
-                }
-              }
+              this.profileDetailsHeading.push(item);
+              this.profileDetailsValues.push(temp[item]);
             }
             console.log(this.profileDetailsHeading, this.profileDetailsValues);
             this.togglePofileModal = !this.togglePofileModal;

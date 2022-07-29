@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
 @Component({
   selector: 'app-customer-delivery',
@@ -24,10 +25,11 @@ export class CustomerDeliveryComponent implements OnInit {
     VSTEL: '',
     VKORG: '',
   };
-  commonStyleValues : any=CommonValues;
+  commonStyleValues: any = CommonValues;
 
   constructor(
     private customerService: CustomerService,
+    private toaster: ToastrService,
     private router: Router
   ) {}
 
@@ -37,8 +39,16 @@ export class CustomerDeliveryComponent implements OnInit {
     console.log('Customer Details', this.customerDetails);
     this.customerService.getDeliveryData(this.customerDetails).subscribe(
       (responseData) => {
-        console.log('Delivery Data', responseData);
-        this.DeliveryList = responseData.data.RESULT_DELIVERY_ITEM.item;
+        console.log('Delivery Data', responseData.data);
+        if (responseData.data != []) {
+          this.DeliveryList = responseData.data;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
+        }
         this.loadingScreenToggle = !this.loadingScreenToggle;
       },
       (error) => {
@@ -48,7 +58,7 @@ export class CustomerDeliveryComponent implements OnInit {
     console.log('Delivery List Data', this.DeliveryList);
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['customer/dashboard']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;
