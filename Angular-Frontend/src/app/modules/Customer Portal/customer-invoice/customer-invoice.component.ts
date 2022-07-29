@@ -3,6 +3,7 @@ import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
+import invoiceDetailsTableHead from "./Customer-Invoice-Headers"
 @Component({
   selector: 'app-customer-invoice',
   templateUrl: './customer-invoice.component.html',
@@ -11,22 +12,18 @@ import CommonValues from '../Customer-CommonValues.json';
 export class CustomerInvoiceComponent implements OnInit {
   modalTitle = 'INVOICE DETAILS';
   modalToggle = false;
-  modalData = {};
+  modalData :any = {};
   loadingScreenToggle: boolean = true;
   customerDetails: any = {};
   InvoiceList = [];
-  columnValues = {
+  columnValues :any= {
     MANDT: '',
     VBELN: '',
-    FKART: '',
-    FKTYP: '',
-    VBTYP: '',
-    WAERK: '',
-    VKORG: '',
-    VTWEG: '',
-    KALSM: '',
+    FKDAT: '',
+    NETWR: '',
   };
   commonStyleValues:any=CommonValues;
+  modalDataHeader: any = invoiceDetailsTableHead;
   constructor(
     private customerService: CustomerService,
     private toaster: ToastrService,
@@ -34,6 +31,9 @@ export class CustomerInvoiceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);
@@ -68,8 +68,31 @@ export class CustomerInvoiceComponent implements OnInit {
   closeModal(): void {
     this.modalToggle = !this.modalToggle;
   }
+  downloadPaySlip(): void {
+    console.log('PDF !!!');
+    this.loadingScreenToggle = !this.loadingScreenToggle;
+    this.customerDetails = this.customerService.getCustomerDetails();
+    // ID: "3"\
+    console.log(this.modalData.VBELN);
+    console.log('Employee Details', this.customerDetails);
+    this.customerService
+      .getInvoicePDF({
+        ...this.customerDetails,
+        sales_no: this.modalData.VBELN,
+      })
+      .subscribe(
+        (responseData) => {
+          console.log('CUSTOMER INVOICE', responseData.data.PDFDownloadURL);
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+          var pdf = `data:application/pdf;base64,${responseData.data.PDFDownloadURL}`;
+          var link = document.createElement('a');
+          link.href = pdf;
+          link.download = 'Invoice.pdf';
+          link.click();
+        },
+        (error) => {
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+        }
+      );
+  }
 }
-//TODO: 
-// logout
-// localStorage
-// toasting

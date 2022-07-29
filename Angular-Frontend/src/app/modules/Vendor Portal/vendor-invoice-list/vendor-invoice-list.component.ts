@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { VendorService } from '../service/vendor.service';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Vendor-CommonValues.json';
+import vendorInvoiceDetailTableHead from './Vendor-Invoice';
 @Component({
   selector: 'app-vendor-invoice-list',
   templateUrl: './vendor-invoice-list.component.html',
@@ -12,22 +13,28 @@ export class VendorInvoiceListComponent implements OnInit {
   modalTitle = 'INVOICE DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
-  modalData = {};
+  modalData :any = {};
   InvoiceList = [];
-  columnValues = {
-    DIFF_INV: '',
+  columnValues: any = {
+    ENTRY_DATE: '',
     INV_DOC_NO: '',
     DOC_DATE: '',
-    FISC_YEAR: '',
     GROSS_AMNT: '',
-    INVOICE_STATUS: '',
-    COMP_CODE: '',
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
-  constructor(private vendorService: VendorService,private toaster: ToastrService,  private router: Router) {}
+  modalDataHeader: any = vendorInvoiceDetailTableHead;
+
+  constructor(
+    private vendorService: VendorService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.vendorDetails = this.vendorService.getVendorDetails();
     // ID: "3"\
@@ -37,7 +44,7 @@ export class VendorInvoiceListComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.InvoiceList = responseData.data;
-        }  else{
+        } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,
             onActivateTick: false,
@@ -61,5 +68,32 @@ export class VendorInvoiceListComponent implements OnInit {
   }
   closeModal(): void {
     this.modalToggle = !this.modalToggle;
+  }
+  downloadPaySlip(): void {
+    console.log('PDF !!!');
+    this.loadingScreenToggle = !this.loadingScreenToggle;
+    this.vendorDetails = this.vendorService.getVendorDetails();
+    // ID: "3"\
+    console.log(this.modalData);
+    this.vendorService
+      .getInvoicePDF({
+        fisc_year: this.modalData.FISC_YEAR,
+        doc_no: this.modalData.INV_DOC_NO,
+      })
+      .subscribe(
+        (responseData) => {
+          console.log('VENDOR INVOICE', responseData.data.PDFDownloadURL);
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+          var pdf = `data:application/pdf;base64,${responseData.data.PDFDownloadURL}`;
+          var link = document.createElement('a');
+          link.href = pdf;
+          link.download = 'Invoice.pdf';
+          link.click();
+        },
+        (error) => {
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+        }
+      );
+    console.log('Vendor Details', this.vendorDetails);
   }
 }

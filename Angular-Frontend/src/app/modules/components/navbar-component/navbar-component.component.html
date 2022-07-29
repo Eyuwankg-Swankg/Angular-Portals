@@ -43,6 +43,7 @@
         <i class="fa-solid fa-circle-xmark"></i>
       </div>
     </div>
+    <ng-container *ngIf=" portal_name!='Customer' ">
     <div class="profile-modal-content">
       <ng-container *ngFor="let profileItem of profileDetailsHeading">
         <div class="profile-modal-item">
@@ -61,6 +62,27 @@
         </div>
       </ng-container>
     </div>
+  </ng-container>
+    <ng-container *ngIf=" portal_name == 'Customer' ">
+    <div class="profile-modal-content">
+      <ng-container *ngFor="let profileItem of profileDetailsHeading">
+        <div class="profile-modal-item">
+          <h4>{{ profileItem }}</h4>
+        </div>
+          <ng-container *ngFor="let profileItem of profileDetailsValues">
+            <div
+              *ngFor="let item of profileItem | keyvalue"
+              class="profile-modal-values"
+              [ngClass]="style_class['profile-modal-values']"
+            >
+              <span>{{ item.key }}</span>
+              :
+              <span>{{ item.value }}</span>
+            </div>
+          </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
   </div>
 </div>
 <!-- TODO: fix loading screen in all pages -->

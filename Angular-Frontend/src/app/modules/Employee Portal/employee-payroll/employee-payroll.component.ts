@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from '../service/employee.service';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Employee-CommonValues.json';
+import employeePaySlipTableHead from "./Employee-Payroll"
 @Component({
   selector: 'app-employee-payroll',
   templateUrl: './employee-payroll.component.html',
@@ -14,10 +15,7 @@ export class EmployeePayrollComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   modalData: any = {};
   PayrollData = [];
-  columnValues = {
-    BONUSDATE: '',
-    FPBEGIN: '',
-    FPEND: '',
+  columnValues :any = {
     FPPERIOD: '',
     PAYDATE: '',
     PAYTYPE_TEXT: '',
@@ -25,6 +23,7 @@ export class EmployeePayrollComponent implements OnInit {
   };
   employeeDetails = {};
   commonStyleValues: any = CommonValues;
+  modalDataHeader: any = employeePaySlipTableHead;
   constructor(
     private employeeService: EmployeeService,
     private router: Router,
@@ -32,6 +31,9 @@ export class EmployeePayrollComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.employeeDetails = this.employeeService.getEmployeeDetails();
     // ID: "3"\

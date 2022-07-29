@@ -2,7 +2,7 @@
   <tr class="table-row" [ngClass]="style_class[0]">
     <ng-container *ngFor="let columnValue of column_values | keyvalue">
       <th class="table-heading" [ngClass]="style_class[1]">
-        {{ columnValue.key }}
+        {{ columnValue.value }}
       </th>
     </ng-container>
   </tr>

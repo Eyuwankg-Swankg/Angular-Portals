@@ -95,17 +95,16 @@ router.post("/vendorprofile", (req, res) => {
             var tempObj = {};
             for (var key in tempData[item][0]) {
               if (key == "item") {
-                for (inner in tempData[item][0][key][0]){
-                  if(tempData[item][0][key][0][inner][0]!="")
+                for (inner in tempData[item][0][key][0]) {
+                  if (tempData[item][0][key][0][inner][0] != "")
                     tempObj[inner] = tempData[item][0][key][0][inner][0];
                 }
               } else {
-                if(tempData[item][0][key][0]!="")
+                if (tempData[item][0][key][0] != "")
                   tempObj[key] = tempData[item][0][key][0];
               }
             }
-            if(tempObj!={})
-              responseData[item] = tempObj;
+            if (tempObj != {}) responseData[item] = tempObj;
           }
         }
         res.send({ data: responseData });
@@ -144,23 +143,24 @@ router.post("/quoterequestlist", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_QUOTE_REQUEST_LIST.Response"][0]["IT_QUOTE_REQUEST_LIST"][0];
-        if(tempData!=""){
-          tempData=tempData["item"];
-          var responseData=[];
-          for(var item of tempData){
-            var tempObj={}
-            for(var key in item){
-              tempObj[key]=item[key][0];
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_QUOTE_REQUEST_LIST.Response"
+          ][0]["IT_QUOTE_REQUEST_LIST"][0];
+        if (tempData != "") {
+          tempData = tempData["item"];
+          var responseData = [];
+          for (var item of tempData) {
+            var tempObj = {};
+            for (var key in item) {
+              tempObj[key] = item[key][0];
             }
-            responseData.push(tempObj)
+            responseData.push(tempObj);
           }
-          res.send({ data: responseData});
+          res.send({ data: responseData });
+        } else {
+          res.send({ data: "NO DATA" });
         }
-        else{
-          res.send({data:"NO DATA"});
-        }
-        
       });
     })
     .catch(function (error) {
@@ -210,21 +210,23 @@ router.post("/purchaseorderlist", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_PURCHASEORDER_LIST.Response"][0]["IT_PO_ITEMS"][0];
-        if(tempData!=""){
-          tempData=tempData["item"];
-          var responseData=[];
-          for(var item of tempData){
-            var tempObj={}
-            for(var key in item){
-              tempObj[key]=item[key][0];
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_PURCHASEORDER_LIST.Response"
+          ][0]["IT_PO_ITEMS"][0];
+        if (tempData != "") {
+          tempData = tempData["item"];
+          var responseData = [];
+          for (var item of tempData) {
+            var tempObj = {};
+            for (var key in item) {
+              tempObj[key] = item[key][0];
             }
-            responseData.push(tempObj)
+            responseData.push(tempObj);
           }
-          res.send({ data: responseData});
-        }
-        else{
-          res.send({data:"NO DATA"});
+          res.send({ data: responseData });
+        } else {
+          res.send({ data: "NO DATA" });
         }
       });
     })
@@ -268,23 +270,58 @@ router.post("/invoicelist", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_INVOICE_LIST_VENDOR.Response"][0]["IT_INVOICE_LIST"][0];
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_INVOICE_LIST_VENDOR.Response"
+          ][0]["IT_INVOICE_LIST"][0];
         // res.send(data["SOAP:Envelope"]["SOAP:Body"][0]);
-        if(tempData!=""){
-          tempData=tempData["item"];
-          var responseData=[];
-          for(var item of tempData){
-            var tempObj={}
-            for(var key in item){
-              tempObj[key]=item[key][0];
+        if (tempData != "") {
+          tempData = tempData["item"];
+          var responseData = [];
+          for (var item of tempData) {
+            var tempObj = {};
+            for (var key in item) {
+              tempObj[key] = item[key][0];
             }
-            responseData.push(tempObj)
+            responseData.push(tempObj);
           }
-          res.send({ data: responseData});
+          res.send({ data: responseData });
+        } else {
+          res.send({ data: "NO DATA" });
         }
-        else{
-          res.send({data:"NO DATA"})
-        }
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+//@type      POST
+//@route     /invoiceexport
+//@desc      route to get invoiceexport data
+//@access    PUBLIC
+router.post("/invoiceexport", (req, res) => {
+  console.log(req.body);
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_EYUWANKG_VENDOR_S&receiverParty=&receiverService=&interface=SI_EYUWANKG_VENDOR_INVOICE_EXPORT&interfaceNamespace=http://eyuwankg_swankg.com`;
+  const bodyRequest = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">
+  <soapenv:Header/>
+  <soapenv:Body>
+     <urn:ZFM_VENDOR_INVOICE_EXP>
+        <!--You may enter the following 2 items in any order-->
+        <I_FISC_YR>${req.body.fisc_year}</I_FISC_YR>
+        <I_INV_NO>${req.body.doc_no}</I_INV_NO>
+     </urn:ZFM_VENDOR_INVOICE_EXP>
+  </soapenv:Body>
+</soapenv:Envelope>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      xml2js.parseString(response.data, (err, data) => {
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_VENDOR_INVOICE_EXP.Response"
+          ][0]["INVOICE"][0];
+        res.send({ data: {PDFDownloadURL:tempData }});
       });
     })
     .catch(function (error) {
@@ -335,25 +372,31 @@ router.post("/goodslist", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_GOODS_DETAIL_LIST.Response"][0]["IT_GOODSMVT_ITEMS"][0];
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_GOODS_DETAIL_LIST.Response"
+          ][0]["IT_GOODSMVT_ITEMS"][0];
         //  res.send(data["SOAP:Envelope"]["SOAP:Body"][0]);
-        if(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_GOODS_DETAIL_LIST.Response"][0]["RETURN"][0]==""){
-          tempData=tempData["item"];
-          var responseData=[];
-          for(var item of tempData){
-            var tempObj={}
-            for(var key in item){
-              tempObj[key]=item[key][0];
+        if (
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_GOODS_DETAIL_LIST.Response"
+          ][0]["RETURN"][0] == ""
+        ) {
+          tempData = tempData["item"];
+          var responseData = [];
+          for (var item of tempData) {
+            var tempObj = {};
+            for (var key in item) {
+              tempObj[key] = item[key][0];
             }
-            responseData.push(tempObj)
+            responseData.push(tempObj);
           }
-          res.send({ data: responseData});
+          res.send({ data: responseData });
+        } else {
+          res.send({ data: "NO DATA" });
         }
-        else{
-          res.send({data:"NO DATA"})
-        }
+      });
     })
-  })
     .catch(function (error) {
       console.log(error);
     });
@@ -383,24 +426,30 @@ router.post("/debit", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_DEBIT.Response"][0]["ET_LINEITEM"][0];
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_FI_VENDOR_DEBIT.Response"
+          ][0]["ET_LINEITEM"][0];
         //res.send(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_DEBIT.Response"][0]);
-        if(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_DEBIT.Response"][0]["RETURN"][0]["TYPE"][0]==''){
-          tempData=tempData["item"];
-          var responseData=[];
-          for(var item of tempData){
-            var tempObj={}
-            for(var key in item){
-              tempObj[key]=item[key][0];
+        if (
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_FI_VENDOR_DEBIT.Response"
+          ][0]["RETURN"][0]["TYPE"][0] == ""
+        ) {
+          tempData = tempData["item"];
+          var responseData = [];
+          for (var item of tempData) {
+            var tempObj = {};
+            for (var key in item) {
+              tempObj[key] = item[key][0];
             }
-            responseData.push(tempObj)
+            responseData.push(tempObj);
           }
-          res.send({ data: responseData});
+          res.send({ data: responseData });
+        } else {
+          res.send({ data: "NO DATA" });
         }
-        else{
-          res.send({data:"NO DATA"})
-        }
-    })
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -431,24 +480,30 @@ router.post("/credit", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_CREDIT.Response"][0]["ET_LINEITEM"][0];
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_FI_VENDOR_CREDIT.Response"
+          ][0]["ET_LINEITEM"][0];
         // res.send(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_CREDIT.Response"][0]);
-        if(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_CREDIT.Response"][0]["RETURN"][0]["TYPE"][0]==''){
-          tempData=tempData["item"];
-          var responseData=[];
-          for(var item of tempData){
-            var tempObj={}
-            for(var key in item){
-              tempObj[key]=item[key][0];
+        if (
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_FI_VENDOR_CREDIT.Response"
+          ][0]["RETURN"][0]["TYPE"][0] == ""
+        ) {
+          tempData = tempData["item"];
+          var responseData = [];
+          for (var item of tempData) {
+            var tempObj = {};
+            for (var key in item) {
+              tempObj[key] = item[key][0];
             }
-            responseData.push(tempObj)
+            responseData.push(tempObj);
           }
-          res.send({ data: responseData});
+          res.send({ data: responseData });
+        } else {
+          res.send({ data: "NO DATA" });
         }
-        else{
-          res.send({data:"NO DATA"})
-        }
-    })
+      });
     })
     .catch(function (error) {
       console.log(error);
@@ -479,23 +534,25 @@ router.post("/vendorpay", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_PAYAGE.Response"][0]["IT_LINEITEM"][0];
-        if(tempData!=""){
-          tempData=tempData["item"];
-          var responseData=[];
-          for(var item of tempData){
-            var tempObj={}
-            for(var key in item){
-              tempObj[key]=item[key][0];
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0][
+            "ns0:ZFM_FI_VENDOR_PAYAGE.Response"
+          ][0]["IT_LINEITEM"][0];
+        if (tempData != "") {
+          tempData = tempData["item"];
+          var responseData = [];
+          for (var item of tempData) {
+            var tempObj = {};
+            for (var key in item) {
+              tempObj[key] = item[key][0];
             }
-            responseData.push(tempObj)
+            responseData.push(tempObj);
           }
-          res.send({ data: responseData});
+          res.send({ data: responseData });
+        } else {
+          res.send({ data: "NO DATA" });
         }
-        else{
-          res.send({data:"NO DATA"})
-        }
-    })
+      });
     })
     .catch(function (error) {
       console.log(error);

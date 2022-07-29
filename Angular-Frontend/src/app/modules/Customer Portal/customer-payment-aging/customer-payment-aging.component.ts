@@ -3,6 +3,7 @@ import { CustomerService } from '../services/customer.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import CommonValues from '../Customer-CommonValues.json';
+import customerPaymentAndAgingTableHead from "./Customer-Payment-Aging"
 @Component({
   selector: 'app-customer-payment-aging',
   templateUrl: './customer-payment-aging.component.html',
@@ -15,17 +16,15 @@ export class CustomerPaymentAgingComponent implements OnInit {
   PaymentAgingList = {};
   loadingScreenToggle: boolean = true;
   customerDetails: any = {};
-  columnValues = {
+  columnValues :any= {
     COMP_CODE: '',
     CUSTOMER: '',
-    ALLOC_NMBR: '',
+    AMOUNT: '',
     FISC_YEAR: '',
-    ITEM_NUM: '',
     ENTRY_DATE: '',
-    CURRENCY: '',
-    LOC_CURRCY: '',
   };
   commonStyleValues:any=CommonValues;
+  modalDataHeader: any = customerPaymentAndAgingTableHead;
   constructor(
     private customerService: CustomerService,
     private toaster: ToastrService,
@@ -33,6 +32,9 @@ export class CustomerPaymentAgingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);

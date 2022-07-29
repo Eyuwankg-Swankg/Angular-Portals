@@ -3,6 +3,7 @@ import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
+import customerSalesDataTableHead from '../customer-saleorder/Customer-SaleOrder-Headers';
 @Component({
   selector: 'app-customer-overall-sales',
   templateUrl: './customer-overall-sales.component.html',
@@ -15,16 +16,15 @@ export class CustomerOverallSalesComponent implements OnInit {
   modalTitle = 'OVERALL SALES DETAILS';
   modalToggle: boolean = false;
   modalData = {};
-  columnValues = {
+  columnValues: any = {
     SD_DOC: '',
     ITM_NUMBER: '',
-    MATERIAL: '',
-    DOC_TYPE: '',
-    DOC_DATE: '',
     REQ_QTY: '',
+    CREATION_DATE: '',
     REQ_DATE: '',
   };
-  commonStyleValues:any = CommonValues;
+  commonStyleValues: any = CommonValues;
+  modalDataHeader: any = customerSalesDataTableHead;
   constructor(
     private customerService: CustomerService,
     private toaster: ToastrService,
@@ -32,6 +32,9 @@ export class CustomerOverallSalesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);

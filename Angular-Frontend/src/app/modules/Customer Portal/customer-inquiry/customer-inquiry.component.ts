@@ -3,6 +3,7 @@ import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
+import inquiryDataTableHead from './customer-inquiry-table-head';
 @Component({
   selector: 'app-customer-inquiry',
   templateUrl: './customer-inquiry.component.html',
@@ -325,14 +326,13 @@ export class CustomerInquiryComponent implements OnInit {
   ];
   customerDetails: any = {};
   columnValues = {
-    STWAE: '',
-    ERNAM: '',
-    ERDAT: '',
-    ERZET: '',
-    ANGDT: '',
-    AUDAT: '',
+    MANDT: 'Client',
+    VBELN: 'Sales Document',
+    ERDAT: 'Record Created On',
+    ERZET: 'Entry Time',
   };
   commonStyleValues: any = CommonValues;
+  modalDataHeader: any = inquiryDataTableHead;
   constructor(
     private customerService: CustomerService,
     private toaster: ToastrService,
@@ -345,7 +345,7 @@ export class CustomerInquiryComponent implements OnInit {
     console.log('Customer Details', this.customerDetails);
     this.customerService.getInquiryData(this.customerDetails).subscribe(
       (responseData) => {
-        if (responseData.data !='NO DATA') {
+        if (responseData.data != 'NO DATA') {
           this.InquiryList = responseData.data;
         } else {
           this.toaster.error('NO DATA', '', {

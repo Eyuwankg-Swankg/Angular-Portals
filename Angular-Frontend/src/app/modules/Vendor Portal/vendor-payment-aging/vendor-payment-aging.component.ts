@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { VendorService } from '../service/vendor.service';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Vendor-CommonValues.json';
+import vendorPaymentAndAgingTableHead from "./Vendor-Payment-Aging";
 @Component({
   selector: 'app-vendor-payment-aging',
   templateUrl: './vendor-payment-aging.component.html',
@@ -14,18 +15,16 @@ export class VendorPaymentAgingComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   modalData = {};
   PaymentAging = [];
-  columnValues = {
+  columnValues :any = {
     VENDOR: '',
     AMOUNT: '',
-    DOC_DATE: '',
     DOC_NO: '',
-    DOC_TYPE: '',
     ENTRY_DATE: '',
-    FISC_YEAR: '',
-    REF_DOC: '',
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
+  modalDataHeader: any = vendorPaymentAndAgingTableHead;
+ 
   constructor(
     private vendorService: VendorService,
     private toaster: ToastrService,
@@ -33,6 +32,9 @@ export class VendorPaymentAgingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.vendorDetails = this.vendorService.getVendorDetails();
     // ID: "3"\

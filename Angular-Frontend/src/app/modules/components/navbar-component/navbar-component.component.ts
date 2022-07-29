@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, TitleStrategy } from '@angular/router';
 import { SharedService } from './../../shared.service';
+import {CustomerProfileHeaders} from "./ProfileHeaders";
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',

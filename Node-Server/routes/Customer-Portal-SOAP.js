@@ -269,6 +269,37 @@ router.post("/invoicelist", (req, res) => {
     });
 });
 
+//@type      POST
+//@route     /invoiceexport
+//@desc      route to get invoiceexport data
+//@access    PUBLIC
+router.post("/invoiceexport", (req, res) => {
+  const requestURL = `http://dxktpipo.kaarcloud.com:50000/XISOAPAdapter/MessageServlet?senderParty=&senderService=BC_EYUWANKG_VENDOR_S&receiverParty=&receiverService=&interface=SI_EYUWANKG_CUST_INVOICE_EXPORT&interfaceNamespace=http://eyuwankg_swankg.com`;
+  const bodyRequest = `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:sap-com:document:sap:rfc:functions">
+  <soapenv:Header/>
+  <soapenv:Body>
+     <urn:ZFM_CUST_INVOICE_EXPORT>
+        <!--You may enter the following 2 items in any order-->
+        <P_CUSTOMER_ID_IMPORT>${req.body.customer_id}</P_CUSTOMER_ID_IMPORT>
+        <P_SALES_NUMBER_IMPORT>${req.body.sales_no}</P_SALES_NUMBER_IMPORT>
+     </urn:ZFM_CUST_INVOICE_EXPORT>
+  </soapenv:Body>
+</soapenv:Envelope>`;
+
+  axios
+    .post(requestURL, bodyRequest, config)
+    .then(function (response) {
+      xml2js.parseString(response.data, (err, data) => {
+        var tempData =
+          data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_CUST_INVOICE_EXPORT.Response"][0]["INVOICE"][0];
+        res.send({data:{PDFDownloadURL:tempData}})
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+});
+
 // DELIVERY DATA
 
 //@type      POST

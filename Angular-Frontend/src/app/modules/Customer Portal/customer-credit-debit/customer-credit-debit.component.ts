@@ -3,6 +3,7 @@ import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
+import customerCreditDebitTableHead from "./Customer-Credit-Debit"
 @Component({
   selector: 'app-customer-credit-debit',
   templateUrl: './customer-credit-debit.component.html',
@@ -17,31 +18,33 @@ export class CustomerCreditDebitComponent implements OnInit {
   loadingScreenToggle: boolean = true;
   toggleCreditDebit: boolean = true;
   customerDetails: any = {};
-  columnValuesCredit = {
-    ALLOC_NMBR: '',
+  columnValuesCredit :any = {
+    CUSTOMER:"",
+    ENTRY_DATE:"",
     AMOUNT: '',
-    AMT_DOCCUR: '',
     BILL_DOC: '',
-    BLINE_DATE: '',
-    TAX_CODE: '',
-    OBJ_TYPE: '',
   };
-  columnValuesDebit = {
-    ALLOC_NMBR: '',
+  columnValuesDebit :any = {
+    CUSTOMER:"",
+    ENTRY_DATE:"",
     AMOUNT: '',
-    AMT_DOCCUR: '',
     BILL_DOC: '',
-    DISC_BASE: '',
-    DOC_DATE: '',
-    OBJ_TYPE: '',
   };
   commonStyleValues: any = CommonValues;
+  modalDataHeader: any = customerCreditDebitTableHead;
   constructor(
     private customerService: CustomerService,
     private toaster: ToastrService,
     private router: Router
   ) {}
+
   ngOnInit(): void {
+    for (var key in this.columnValuesDebit) {
+      this.columnValuesDebit[key] = this.modalDataHeader[key];
+    }
+    for (var key in this.columnValuesCredit) {
+      this.columnValuesCredit[key] = this.modalDataHeader[key];
+    }
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);

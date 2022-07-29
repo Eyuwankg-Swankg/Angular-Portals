@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EmployeeService } from '../service/employee.service';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Employee-CommonValues.json';
+import leaveRequestTableHead from "./Employee-Leave-Data"
 @Component({
   selector: 'app-employee-leave-data',
   templateUrl: './employee-leave-data.component.html',
@@ -14,22 +15,25 @@ export class EmployeeLeaveDataComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   modalData = {};
   LeaveData = [];
-  columnValues = {
+  columnValues :any = {
     ABSENCEDAYS: '',
-    ABSENCEHOURS: '',
     EMPLOYEENO: '',
     NAMEOFABSENCETYPE: '',
     VALIDBEGIN: '',
-    VALIDEND: '',
   };
   employeeDetails = {};
   commonStyleValues: any = CommonValues;
+  modalDataHeader: any = leaveRequestTableHead;
   constructor(
     private employeeService: EmployeeService,
-    private router: Router,private toaster: ToastrService
+    private router: Router,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.employeeDetails = this.employeeService.getEmployeeDetails();
     // ID: "3"\

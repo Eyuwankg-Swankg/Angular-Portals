@@ -18,3 +18,6 @@ import { HttpClientModule } from '@angular/common/http';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+// ZFM_VENDOR_INVOICE_EXP
+// ZFM_CUST_INVOICE_EXPORT

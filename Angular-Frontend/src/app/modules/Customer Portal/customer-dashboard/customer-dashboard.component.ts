@@ -8,10 +8,10 @@ import CommonValues from '../Customer-CommonValues.json';
 })
 export class CustomerDashboardComponent implements OnInit {
   cardImage: any = {
-    inquiry: 'Customer/inquiry.png',
-    saleOrder: 'Customer/inquiry.png',
-    delivery: 'Customer/inquiry.png',
-    financialSheet: 'Customer/inquiry.png',
+    inquiry: 'Customer/Inquiry.png',
+    saleOrder: 'Customer/SalesOrder.png',
+    delivery: 'Customer/Delivery.png',
+    financialSheet: 'Customer/Financial-Sheet.jpg',
   };
   cardOverlayColor: any = {
     inquiry: 'rgba(29, 32, 84, 0.68)',

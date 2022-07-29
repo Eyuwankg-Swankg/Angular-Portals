@@ -78,4 +78,13 @@ export class CustomerService {
       data
     );
   }
+
+  public getInvoicePDF(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/customer/invoiceexport',
+      data
+    );
+  }
+
+
 }

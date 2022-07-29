@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VendorService } from '../service/vendor.service';
 import CommonValues from '../Vendor-CommonValues.json';
+import vendorPurchaseOrderTableHead from "./Vendor-Purchase-Order"
 @Component({
   selector: 'app-vendor-purchase-order',
   templateUrl: './vendor-purchase-order.component.html',
@@ -15,16 +16,13 @@ export class VendorPurchaseOrderComponent implements OnInit {
   modalData = {};
   PurchaseOrder = [];
   columnValues = {
-    EBELN: '',
-    MANDT: '',
-    AEDAT: '',
-    BEDAT: '',
-    ERNAM: '',
-    SUBMI: '',
-    WAERS: '',
+    PO_NUMBER:"Purchase Document No",
+    SHORT_TEXT:"Description",
+    NET_PRICE:"Net price"
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
+  modalDataHeader=vendorPurchaseOrderTableHead;
   constructor(private vendorService: VendorService,private toaster: ToastrService, private router: Router) {}
 
   ngOnInit(): void {
@@ -32,7 +30,7 @@ export class VendorPurchaseOrderComponent implements OnInit {
     this.vendorDetails = this.vendorService.getVendorDetails();
     // ID: "3"\
     console.log('Vendor Details', this.vendorDetails);
-    this.vendorService.getQuoteRequest(this.vendorDetails).subscribe(
+    this.vendorService.getPurchaseOrder(this.vendorDetails).subscribe(
       (responseData) => {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {

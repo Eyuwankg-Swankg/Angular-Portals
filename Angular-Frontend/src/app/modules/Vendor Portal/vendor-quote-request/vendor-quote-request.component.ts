@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VendorService } from '../service/vendor.service';
 import CommonValues from '../Vendor-CommonValues.json';
+import vendorRequestForQuotationTableHead from "./Vendor-Quote-Request"
 @Component({
   selector: 'app-vendor-quote-request',
   templateUrl: './vendor-quote-request.component.html',
@@ -14,18 +15,16 @@ export class VendorQuoteRequestComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   modalData = {};
   QuoteRequest = [];
-  columnValues = {
+  columnValues :any = {
+    MANDT:"",
+    EBELN:"",
+    BUKRS:"",
     AEDAT: '',
-    ANGDT: '',
-    EKGRP: '',
-    ERNAM: '',
-    INCO2: '',
-    INCO1: '',
-    WAERS: '',
-    KUNNR: '',
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
+  modalDataHeader: any = vendorRequestForQuotationTableHead;
+ 
   constructor(
     private vendorService: VendorService,
     private toaster: ToastrService,
@@ -33,6 +32,9 @@ export class VendorQuoteRequestComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.vendorDetails = this.vendorService.getVendorDetails();
     // ID: "3"\

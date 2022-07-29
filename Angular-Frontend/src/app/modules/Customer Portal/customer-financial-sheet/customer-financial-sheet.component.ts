@@ -8,10 +8,10 @@ import CommonValues from '../Customer-CommonValues.json';
 })
 export class CustomerFinancialSheetComponent implements OnInit {
   cardImage: any = {
-    invoice: 'Customer/inquiry.png',
-    paymentaging: 'Customer/inquiry.png',
-    creditdebit: 'Customer/inquiry.png',
-    salesdata: 'Customer/inquiry.png',
+    invoice: 'Customer/Invoice.jpg',
+    paymentaging: 'Customer/Payment.png',
+    creditdebit: 'Customer/Credit.jpg',
+    salesdata: 'Customer/SalesOrder.png',
   };
   cardOverlayColor: any = {
     invoice: 'rgba(29, 32, 84, 0.68)',

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { VendorService } from '../service/vendor.service';
 import { ToastrService } from 'ngx-toastr';
-import CommonValues from '../Vendor-CommonValues.json';
+import CommonValues from '..//Vendor-CommonValues.json';
+import vendorCreditDebitDemoTableHead from "../vendor-credit/Vendor-Credit"
 @Component({
   selector: 'app-vendor-debit',
   templateUrl: './vendor-debit.component.html',
@@ -14,19 +15,26 @@ export class VendorDebitComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   modalData = {};
   DebitList = [];
-  columnValues = {
+  columnValues : any = {
     VENDOR: '',
     AMOUNT: '',
-    BLINE_DATE: '',
+    ENTRY_DATE: '',
     DOC_NO: '',
-    REF_DOC: '',
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
-  constructor(private vendorService: VendorService,
-    private toaster: ToastrService, private router: Router) {}
+  modalDataHeader: any = vendorCreditDebitDemoTableHead;
+ 
+  constructor(
+    private vendorService: VendorService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.vendorDetails = this.vendorService.getVendorDetails();
     // ID: "3"\

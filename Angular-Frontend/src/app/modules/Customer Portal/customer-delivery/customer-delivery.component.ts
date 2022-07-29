@@ -3,6 +3,7 @@ import { CustomerService } from '../services/customer.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Customer-CommonValues.json';
+import customerListOfDeliveryTableHead from './Customer-Delivery-List';
 @Component({
   selector: 'app-customer-delivery',
   templateUrl: './customer-delivery.component.html',
@@ -15,18 +16,15 @@ export class CustomerDeliveryComponent implements OnInit {
   loadingScreenToggle: boolean = true;
   DeliveryList = [];
   customerDetails: any = {};
-  columnValues = {
-    MANDT: '',
-    VBELN: '',
-    ERNAM: '',
-    ERZET: '',
-    ERDAT: '',
-    BZIRK: '',
-    VSTEL: '',
-    VKORG: '',
+  columnValues :any = {
+    MANDT: 'Client',
+    VBELN: 'Delivery',
+    MATNR: 'Material Number',
+    ERDAT: 'Entry Date',
+    ERZET: 'Entry Time',
   };
   commonStyleValues: any = CommonValues;
-
+  modalDataHeader: any = customerListOfDeliveryTableHead;
   constructor(
     private customerService: CustomerService,
     private toaster: ToastrService,
@@ -34,6 +32,10 @@ export class CustomerDeliveryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+    for(var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);

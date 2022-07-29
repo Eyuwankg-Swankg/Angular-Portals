@@ -13,6 +13,7 @@ export class VendorService {
     try {
       console.log("PERFECTO!!!")
       return JSON.parse(data);
+      //return { vendor_id: '5' };
     } catch (error) {
       return { vendor_id: 'MOHANRAJ' };
     }
@@ -65,6 +66,19 @@ export class VendorService {
   public getDebitList(data: Object): Observable<any> {
     return this.httpClient.post<any>(
       'http://localhost:5000/vendor/debit',
+      data
+    );
+  }
+
+  public getPurchaseOrder(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/vendor/purchaseorderlist',
+      data
+    );
+  }
+  public getInvoicePDF(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/vendor/invoiceexport',
       data
     );
   }

@@ -23,7 +23,10 @@
   class="modal-box-outer-container"
   [modal_title]="modalTitle"
   [modal_data]="modalData"
+  [heading_name]="modalDataHeader"
   (close_modal)="closeModal()"
+  [pdf_link]="'breadcrumb-text-color-vendor'"
+  (PDFDownload)="downloadPaySlip()"
   [modal_style_class]="commonStyleValues.modalStyleClass"
 ></app-modal-box>
 <app-loading-screen

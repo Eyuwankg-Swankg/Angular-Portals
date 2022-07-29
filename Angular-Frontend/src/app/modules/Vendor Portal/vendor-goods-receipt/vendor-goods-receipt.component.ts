@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VendorService } from '../service/vendor.service';
 import CommonValues from '../Vendor-CommonValues.json';
+import vendorGoodsReceiptTableHead from "./Vendor-Goods-Receipt"
 @Component({
   selector: 'app-vendor-goods-receipt',
   templateUrl: './vendor-goods-receipt.component.html',
@@ -14,16 +15,17 @@ export class VendorGoodsReceiptComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   modalData = {};
   GoodsReceipt = [];
-  columnValues = {
+  columnValues :any = {
     VENDOR: '',
-    PO_NUMBER: '',
     MATERIAL: '',
+    ENTRY_QNT:"",
     MAT_DOC: '',
-    DOC_YEAR: '',
-    MOVE_REAS: '',
+    PLANT:""
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
+  modalDataHeader: any = vendorGoodsReceiptTableHead;
+ 
   constructor(
     private vendorService: VendorService,
     private toaster: ToastrService,
@@ -31,6 +33,9 @@ export class VendorGoodsReceiptComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    for (var key in this.columnValues) {
+      this.columnValues[key] = this.modalDataHeader[key];
+    }
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.vendorDetails = this.vendorService.getVendorDetails();
     // ID: "3"\
