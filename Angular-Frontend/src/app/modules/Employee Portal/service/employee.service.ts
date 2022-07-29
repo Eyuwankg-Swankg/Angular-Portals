@@ -6,11 +6,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class EmployeeService {
-  
   constructor(private httpClient: HttpClient) {}
 
   public getEmployeeDetails(): Object {
-    return { employee_id: 3, sequence_no: 1 };
+    var data: any = localStorage.getItem('Employee');
+    try {
+      console.log('PERFECTO!!!');
+      return JSON.parse(data);
+    } catch (error) {
+      return { employee_id: '3'};
+    }
+  }
+  public setEmployeeDetails(ID: any) {
+    console.log(ID);
+    localStorage.setItem(
+      'Employee',
+      JSON.stringify({ employee_id: ID})
+    );
   }
   public makeLoginRequest(data: Object): Observable<any> {
     return this.httpClient.post<any>(

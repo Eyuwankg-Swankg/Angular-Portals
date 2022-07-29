@@ -3,21 +3,30 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VendorService {
-
   constructor(private httpClient: HttpClient) {}
 
   public getVendorDetails(): Object {
-    return { vendor_id: "MOHANRAJ"};
+    var data: any = localStorage.getItem('Vendor');
+    try {
+      console.log("PERFECTO!!!")
+      return JSON.parse(data);
+    } catch (error) {
+      return { vendor_id: 'MOHANRAJ' };
+    }
+  }
+  public setVendorDetails(ID: any) {
+    console.log(ID);
+    localStorage.setItem('Vendor', JSON.stringify({ vendor_id: ID }));
   }
   public makeLoginRequest(data: Object): Observable<any> {
     return this.httpClient.post<any>(
       'http://localhost:5000/vendor/login',
       data
     );
-  } 
+  }
   public getQuoteRequest(data: Object): Observable<any> {
     return this.httpClient.post<any>(
       'http://localhost:5000/vendor/quoterequestlist',
@@ -53,4 +62,10 @@ export class VendorService {
     );
   }
 
+  public getDebitList(data: Object): Observable<any> {
+    return this.httpClient.post<any>(
+      'http://localhost:5000/vendor/debit',
+      data
+    );
+  }
 }

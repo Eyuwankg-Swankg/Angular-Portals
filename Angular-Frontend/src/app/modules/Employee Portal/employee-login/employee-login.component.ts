@@ -31,7 +31,11 @@ export class EmployeeLoginComponent implements OnInit {
       .subscribe((responseData) => {
         console.log(login_data);
         // ID: "3"
-        if ((responseData.data.RESULT[0] == 'SUCCESS')) {
+        if (responseData.data.RESULT[0] == 'SUCCESS') {
+          this.employeeService.setEmployeeDetails(
+            responseData.data.CUSTOMER_ID[0]
+          );
+          this.employeeService.getEmployeeDetails();
           this.router.navigate(['employee/dashboard']);
         } else {
           this.toaster.error(responseData.data.RESULT[0], '', {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../service/employee.service';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Employee-CommonValues.json';
 @Component({
   selector: 'app-employee-leave-data',
@@ -25,7 +26,7 @@ export class EmployeeLeaveDataComponent implements OnInit {
   commonStyleValues: any = CommonValues;
   constructor(
     private employeeService: EmployeeService,
-    private router: Router
+    private router: Router,private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +39,12 @@ export class EmployeeLeaveDataComponent implements OnInit {
         this.LeaveData = responseData.data;
         if (responseData.data.LeaveDataDetails != '') {
           this.LeaveData = responseData.data.LeaveDataDetails;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
         this.loadingScreenToggle = !this.loadingScreenToggle;
         console.log('Leave List', this.LeaveData);
@@ -48,18 +55,8 @@ export class EmployeeLeaveDataComponent implements OnInit {
     );
     console.log('Leave Data');
   }
-  downloadPaySlip(): void {
-    console.log("ewfewf");
-    this.loadingScreenToggle = !this.loadingScreenToggle;
-    this.employeeService
-      .getPaySlip(this.employeeDetails)
-      .subscribe((responseData) => {
-        this.loadingScreenToggle = !this.loadingScreenToggle;
-        console.log(responseData.data);
-      },(error)=>{ this.loadingScreenToggle = !this.loadingScreenToggle;});
-  }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['employee/dashboard']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

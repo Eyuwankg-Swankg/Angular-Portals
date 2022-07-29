@@ -21,9 +21,9 @@ export class EmployeeDashboardComponent implements OnInit {
 
   ngOnInit(): void {}
   goToPayroll(): void {
-    this.router.navigate(['/payroll']);
+    this.router.navigate(['employee/payroll']);
   }
   goToLeaveData(): void {
-    this.router.navigate(['/leavedata']);
+    this.router.navigate(['employee/leavedata']);
   }
 }

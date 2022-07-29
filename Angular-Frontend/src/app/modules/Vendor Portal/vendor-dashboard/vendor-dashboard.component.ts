@@ -28,12 +28,12 @@ export class VendorDashboardComponent implements OnInit {
     this.router.navigate(['vendor/quoterequest']);
   }
   goToPurchaseOrder(): void {
-    this.router.navigate(['/purchaseorder']);
+    this.router.navigate(['vendor/purchaseorder']);
   }
   goToGoodsReceipt(): void {
-    this.router.navigate(['/goodsreceipt']);
+    this.router.navigate(['vendor/goodsreceipt']);
   }
   goToFinanciaSheet(): void {
-    this.router.navigate(['/financialsheet']);
+    this.router.navigate(['vendor/financialsheet']);
   }
 }

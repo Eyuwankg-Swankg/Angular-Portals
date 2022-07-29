@@ -34,7 +34,6 @@ export class CustomerPaymentAgingComponent implements OnInit {
     this.customerDetails = this.customerService.getCustomerDetails();
     // ID: "0000000012"\
     console.log('Customer Details', this.customerDetails);
-    //TODO: uncomment this
     this.customerService.getPaymentAging(this.customerDetails).subscribe(
       (responseData) => {
         if (responseData.data.IT_LINEITEM != '') {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmployeeService } from '../service/employee.service';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Employee-CommonValues.json';
 @Component({
   selector: 'app-employee-payroll',
@@ -11,7 +12,7 @@ export class EmployeePayrollComponent implements OnInit {
   modalTitle = 'PAYROLL DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
-  modalData = {};
+  modalData: any = {};
   PayrollData = [];
   columnValues = {
     BONUSDATE: '',
@@ -26,7 +27,8 @@ export class EmployeePayrollComponent implements OnInit {
   commonStyleValues: any = CommonValues;
   constructor(
     private employeeService: EmployeeService,
-    private router: Router
+    private router: Router,
+    private toaster: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -38,6 +40,12 @@ export class EmployeePayrollComponent implements OnInit {
       (responseData) => {
         if (responseData.data.PayrollDetails != '') {
           this.PayrollData = responseData.data.PayrollDetails;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
         this.loadingScreenToggle = !this.loadingScreenToggle;
         console.log('Payroll List', this.PayrollData);
@@ -49,7 +57,7 @@ export class EmployeePayrollComponent implements OnInit {
     console.log('Payroll Data');
   }
   toDashboard(): void {
-    this.router.navigate(['dashboard']);
+    this.router.navigate(['employee/dashboard']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;
@@ -57,5 +65,32 @@ export class EmployeePayrollComponent implements OnInit {
   }
   closeModal(): void {
     this.modalToggle = !this.modalToggle;
+  }
+  downloadPaySlip(): void {
+    console.log('PDF !!!');
+    this.loadingScreenToggle = !this.loadingScreenToggle;
+    this.employeeDetails = this.employeeService.getEmployeeDetails();
+    // ID: "3"\
+    console.log(this.modalData.SEQUENCENUMBER);
+    console.log('Employee Details', this.employeeDetails);
+    this.employeeService
+      .getPaySlip({
+        ...this.employeeDetails,
+        sequence_no: this.modalData.SEQUENCENUMBER,
+      })
+      .subscribe(
+        (responseData) => {
+          console.log('Payslip', responseData.data.PDFDownloadURL);
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+          var pdf = `data:application/pdf;base64,${responseData.data.PDFDownloadURL}`;
+          var link = document.createElement('a');
+          link.href = pdf;
+          link.download = 'Payslip.pdf';
+          link.click();
+        },
+        (error) => {
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+        }
+      );
   }
 }

@@ -24,7 +24,9 @@
   [modal_title]="modalTitle"
   [modal_data]="modalData"
   (close_modal)="closeModal()"
+  [pdf_link]="'breadcrumb-text-color-employee'"
   [modal_style_class]="commonStyleValues.modalStyleClass"
+  (PDFDownload)="downloadPaySlip()"
 ></app-modal-box>
 <app-loading-screen
   class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"

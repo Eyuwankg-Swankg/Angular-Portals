@@ -31,6 +31,3 @@ export class LandingPageComponent implements OnInit {
     this.router.navigate(["/employee"]);
   }
 }
-
-// TODO:
-// look for ngStyle

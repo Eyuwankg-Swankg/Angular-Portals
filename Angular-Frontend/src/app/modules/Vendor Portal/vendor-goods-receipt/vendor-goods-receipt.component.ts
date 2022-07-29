@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { VendorService } from '../service/vendor.service';
 import CommonValues from '../Vendor-CommonValues.json';
 @Component({
@@ -23,7 +24,11 @@ export class VendorGoodsReceiptComponent implements OnInit {
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
-  constructor(private vendorService: VendorService, private router: Router) {}
+  constructor(
+    private vendorService: VendorService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadingScreenToggle = !this.loadingScreenToggle;
@@ -35,6 +40,12 @@ export class VendorGoodsReceiptComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.GoodsReceipt = responseData.data;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
         this.loadingScreenToggle = !this.loadingScreenToggle;
         console.log('Goods Receipt List', this.GoodsReceipt);

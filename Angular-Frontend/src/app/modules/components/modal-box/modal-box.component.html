@@ -1,5 +1,5 @@
 <div class="modal-box-title">
-  <span class="modal-box-title-pdf" (click)="emitPDFEvent()">
+  <span class="modal-box-title-pdf" [ngClass]="pdf_link"  (click)="emitPDFEvent()">
     <ng-container *ngIf="pdf_link">
       <i class="fa-solid fa-file-pdf"></i>
     </ng-container>

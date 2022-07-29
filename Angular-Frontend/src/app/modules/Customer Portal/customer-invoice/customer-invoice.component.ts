@@ -60,3 +60,7 @@ export class CustomerInvoiceComponent implements OnInit {
     this.modalToggle = !this.modalToggle;
   }
 }
+//TODO: 
+// logout
+// localStorage
+// toasting

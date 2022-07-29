@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { VendorService } from '../service/vendor.service';
 import CommonValues from '../Vendor-CommonValues.json';
 @Component({
   selector: 'app-vendor-credit',
   templateUrl: './vendor-credit.component.html',
-  styleUrls: ['./vendor-credit.component.css']
+  styleUrls: ['./vendor-credit.component.css'],
 })
 export class VendorCreditComponent implements OnInit {
   modalTitle = 'CREDIT DETAILS';
@@ -13,21 +14,33 @@ export class VendorCreditComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   modalData = {};
   CreditList = [];
-  columnValues = {}
+  columnValues = {
+    VENDOR: '',
+    AMOUNT: '',
+    BLINE_DATE: '',
+    DOC_NO: '',
+    REF_DOC: '',
+  };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
-  constructor(private vendorService: VendorService, private router: Router) {}
+  constructor(private vendorService: VendorService,private toaster: ToastrService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadingScreenToggle = !this.loadingScreenToggle;
     this.vendorDetails = this.vendorService.getVendorDetails();
     // ID: "3"\
     console.log('Vendor Details', this.vendorDetails);
-    this.vendorService.getQuoteRequest(this.vendorDetails).subscribe(
+    this.vendorService.getCreditList(this.vendorDetails).subscribe(
       (responseData) => {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.CreditList = responseData.data;
+        }else{
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
         this.loadingScreenToggle = !this.loadingScreenToggle;
         console.log('Credit List', this.CreditList);
@@ -38,7 +51,7 @@ export class VendorCreditComponent implements OnInit {
     );
   }
   toDashboard(): void {
-    this.router.navigate(['vendor/dashboard']);
+    this.router.navigate(['vendor/financialsheet']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

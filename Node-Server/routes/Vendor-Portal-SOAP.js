@@ -383,8 +383,24 @@ router.post("/debit", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        res.send({ data: data });
-      });
+        var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_DEBIT.Response"][0]["ET_LINEITEM"][0];
+        //res.send(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_DEBIT.Response"][0]);
+        if(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_DEBIT.Response"][0]["RETURN"][0]["TYPE"][0]==''){
+          tempData=tempData["item"];
+          var responseData=[];
+          for(var item of tempData){
+            var tempObj={}
+            for(var key in item){
+              tempObj[key]=item[key][0];
+            }
+            responseData.push(tempObj)
+          }
+          res.send({ data: responseData});
+        }
+        else{
+          res.send({data:"NO DATA"})
+        }
+    })
     })
     .catch(function (error) {
       console.log(error);
@@ -415,7 +431,6 @@ router.post("/credit", (req, res) => {
     .post(requestURL, bodyRequest, config)
     .then(function (response) {
       xml2js.parseString(response.data, (err, data) => {
-        //TODO: FIX THIS
         var tempData=data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_CREDIT.Response"][0]["ET_LINEITEM"][0];
         // res.send(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_CREDIT.Response"][0]);
         if(data["SOAP:Envelope"]["SOAP:Body"][0]["ns0:ZFM_FI_VENDOR_CREDIT.Response"][0]["RETURN"][0]["TYPE"][0]==''){
@@ -428,7 +443,6 @@ router.post("/credit", (req, res) => {
             }
             responseData.push(tempObj)
           }
-          console.log("PERFECTO");
           res.send({ data: responseData});
         }
         else{

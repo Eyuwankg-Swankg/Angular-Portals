@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, TitleStrategy } from '@angular/router';
-import { SharedService } from '../../shared.service';
+import { SharedService } from './../../shared.service';
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
@@ -30,6 +30,7 @@ export class NavbarComponentComponent implements OnInit {
   }
   onLogout(): void {
     // CLEAR SESSION OF PORTAL USING portal_name
+    this.service.removeLocalStorage(this.portal_name);
     this.router.navigate(['']);
   }
   getProfile(): void {
@@ -80,25 +81,23 @@ export class NavbarComponentComponent implements OnInit {
             this.loadingScreenToggle = !this.loadingScreenToggle;
           }
         );
-      } else if (this.portal_name == 'Vendor') {
-        this.service
-          .getVendorProfile(this.service.getVendorDetails())
-          .subscribe(
-            (responseData) => {
-              var temp = responseData.data;
-              console.log(temp);
-              for (var item in temp) {
-                this.profileDetailsHeading.push(item);
-                this.profileDetailsValues.push(temp[item]);
-              }
-              this.togglePofileModal = !this.togglePofileModal;
-              this.loadingScreenToggle = !this.loadingScreenToggle;
-            },
-            (error) => {
-              this.loadingScreenToggle = !this.loadingScreenToggle;
-            }
-          );
-      }
+    } else if (this.portal_name == 'Vendor') {
+      this.service.getVendorProfile(this.service.getVendorDetails()).subscribe(
+        (responseData) => {
+          var temp = responseData.data;
+          console.log(temp);
+          for (var item in temp) {
+            this.profileDetailsHeading.push(item);
+            this.profileDetailsValues.push(temp[item]);
+          }
+          this.togglePofileModal = !this.togglePofileModal;
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+        },
+        (error) => {
+          this.loadingScreenToggle = !this.loadingScreenToggle;
+        }
+      );
+    }
   }
   closeProfileModal(): void {
     this.togglePofileModal = !this.togglePofileModal;

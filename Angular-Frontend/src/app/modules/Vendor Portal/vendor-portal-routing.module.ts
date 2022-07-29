@@ -13,7 +13,7 @@ import { VendorQuoteRequestComponent } from './vendor-quote-request/vendor-quote
 
 const routes:Routes =[
   {
-    path:'f',component:VendorLoginComponent
+    path:'',component:VendorLoginComponent
   },
   {
     path:'dashboard',component:VendorDashboardComponent
@@ -33,7 +33,7 @@ const routes:Routes =[
   }
   ,
   {
-    path:'',component:VendorCreditComponent
+    path:'credit',component:VendorCreditComponent
   }
   ,
   {

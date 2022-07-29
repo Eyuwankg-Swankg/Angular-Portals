@@ -8,10 +8,10 @@ import CommonValues from '../Vendor-CommonValues.json';
 })
 export class VendorFinancialSheetComponent implements OnInit {
   cardImage: any = {
-    invoiceList: 'Vendor/Quote-Request.png',
-    paymentAging: 'Vendor/Purchase-Order.png',
-    credit: 'Vendor/Goods-Receipt.png',
-    debit: 'Vendor/Financial-Sheet.jpg',
+    invoiceList: 'Vendor/Invoice.jpg',
+    paymentAging: 'Vendor/Payment.png',
+    credit: 'Vendor/Credit.jpg',
+    debit: 'Vendor/Debit.png',
   };
   cardOverlayColor: any = {
     invoiceList: 'rgba(217, 114, 142, 0.85)',
@@ -24,6 +24,9 @@ export class VendorFinancialSheetComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {}
+  toDashboard(): void {
+    this.router.navigate(['vendor/dashboard']);
+  }
   goToInvoiceList(): void {
     this.router.navigate(['vendor/invoicelist']);
   }

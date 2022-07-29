@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { VendorService } from '../service/vendor.service';
+import { ToastrService } from 'ngx-toastr';
 import CommonValues from '../Vendor-CommonValues.json';
 @Component({
   selector: 'app-vendor-payment-aging',
@@ -25,7 +26,11 @@ export class VendorPaymentAgingComponent implements OnInit {
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
-  constructor(private vendorService: VendorService, private router: Router) {}
+  constructor(
+    private vendorService: VendorService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadingScreenToggle = !this.loadingScreenToggle;
@@ -37,6 +42,12 @@ export class VendorPaymentAgingComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.PaymentAging = responseData.data;
+        } else {
+          this.toaster.error('NO DATA', '', {
+            timeOut: 1500,
+            onActivateTick: false,
+            progressBar: false,
+          });
         }
         this.loadingScreenToggle = !this.loadingScreenToggle;
         console.log('Payment Aging List', this.PaymentAging);
@@ -47,7 +58,7 @@ export class VendorPaymentAgingComponent implements OnInit {
     );
   }
   toDashboard(): void {
-    this.router.navigate(['vendor/dashboard']);
+    this.router.navigate(['vendor/financialsheet']);
   }
   showModal(rowData: any): void {
     this.modalToggle = !this.modalToggle;

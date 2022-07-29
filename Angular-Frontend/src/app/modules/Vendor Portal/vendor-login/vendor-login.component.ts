@@ -27,10 +27,11 @@ export class VendorLoginComponent implements OnInit {
     this.vendorService
       .makeLoginRequest(login_data)
       .subscribe((responseData) => {
-        console.log(login_data);
+        // UserID
         // ID: "3"
         if ((responseData.data.RESULT[0] == 'SUCCESS')) {
-          console.log("crt");
+          this.vendorService.setVendorDetails(responseData.data.CUSTOMER_ID[0]);
+          this.vendorService.getVendorDetails();
           this.router.navigate(['vendor/dashboard']);
         } else {
           this.toaster.error(responseData.data.RESULT[0], '', {

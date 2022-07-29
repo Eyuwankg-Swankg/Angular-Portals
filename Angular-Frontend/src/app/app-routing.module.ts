@@ -2,7 +2,7 @@ import {NgModule} from "@angular/core"
 import { RouterModule,Routes } from "@angular/router"
 const routes:Routes=[
   {
-    path:"d",
+    path:"",
     loadChildren:()=>import("./modules/Landing-Page/landing-page.module").then(m=>m.LandingPageModule)
   },
   {
@@ -11,7 +11,7 @@ const routes:Routes=[
   }
   ,
   {
-    path:"",
+    path:"vendor",
     loadChildren:()=>import("./modules/Vendor Portal/vendor-portal.module").then(m=>m.VendorPortalModule)
   }
   ,
