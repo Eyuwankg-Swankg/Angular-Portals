@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CustomerLoginComponent } from './customer-login/customer-login.component';
 import { CustomerPortalRoutingModule } from './customer-portal-routing.module';
-import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component'
+import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { SharedModule } from '../components/shared.module';
 import { CustomerInquiryComponent } from './customer-inquiry/customer-inquiry.component';
 import { CustomerSaleorderComponent } from './customer-saleorder/customer-saleorder.component';
@@ -12,13 +12,22 @@ import { CustomerInvoiceComponent } from './customer-invoice/customer-invoice.co
 import { CustomerPaymentAgingComponent } from './customer-payment-aging/customer-payment-aging.component';
 import { CustomerOverallSalesComponent } from './customer-overall-sales/customer-overall-sales.component';
 import { CustomerCreditDebitComponent } from './customer-credit-debit/customer-credit-debit.component';
+import { CustomerAuthGuardGuard } from './customer-auth-guard.guard';
 
 @NgModule({
-  declarations: [CustomerLoginComponent, CustomerDashboardComponent, CustomerInquiryComponent, CustomerSaleorderComponent, CustomerDeliveryComponent, CustomerFinancialSheetComponent, CustomerInvoiceComponent, CustomerPaymentAgingComponent , CustomerOverallSalesComponent, CustomerCreditDebitComponent],
-  imports: [
-    CommonModule,
-    CustomerPortalRoutingModule,
-    SharedModule
+  declarations: [
+    CustomerLoginComponent,
+    CustomerDashboardComponent,
+    CustomerInquiryComponent,
+    CustomerSaleorderComponent,
+    CustomerDeliveryComponent,
+    CustomerFinancialSheetComponent,
+    CustomerInvoiceComponent,
+    CustomerPaymentAgingComponent,
+    CustomerOverallSalesComponent,
+    CustomerCreditDebitComponent,
   ],
+  imports: [CommonModule, CustomerPortalRoutingModule, SharedModule],
+  providers: [CustomerAuthGuardGuard],
 })
 export class CustomerPortalModule {}

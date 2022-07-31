@@ -457,6 +457,10 @@ body {
 }
 .modal-box-item-title {
   font-weight: bold;
+  text-align: center;
+}
+.modal-box-item-value{
+  text-align: center;
 }
 
 /* CUSTOMER MODAL STYLING */

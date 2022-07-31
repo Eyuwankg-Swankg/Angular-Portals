@@ -1,8 +1,8 @@
 <table class="table">
   <tr class="table-row" [ngClass]="style_class[0]">
-    <ng-container *ngFor="let columnValue of column_values | keyvalue">
+    <ng-container *ngFor="let header of columnHeaderValues;">
       <th class="table-heading" [ngClass]="style_class[1]">
-        {{ columnValue.value }}
+        {{ header }}
       </th>
     </ng-container>
   </tr>

@@ -10,11 +10,14 @@ export class TableComponentComponent implements OnInit {
   @Input() style_class: string[] = [];
   @Input() column_values: any = {};
   columnKeyValues: string[] = [];
+  columnHeaderValues: string[] = [];
   @Output() display_modal: EventEmitter<any> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {
     this.columnKeyValues = Object.keys(this.column_values);
+    this.columnHeaderValues = Object.values(this.column_values);
   }
   sendToOpenModal(rowData: any): void {
     this.display_modal.emit(rowData);

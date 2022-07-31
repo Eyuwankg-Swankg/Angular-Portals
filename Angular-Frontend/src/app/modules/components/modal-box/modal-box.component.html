@@ -16,7 +16,7 @@
   </div>
 </div>
 <div class="modal-box-container">
-  <ng-container *ngFor="let item of heading_name | keyvalue">
+  <!-- <ng-container *ngFor="let item of heading_name | keyvalue">
     <div class="modal-box-item" [ngClass]="modal_style_class[1]">
       <span class="modal-box-item-title" [ngClass]="modal_style_class[0]">{{
         item.value
@@ -26,5 +26,19 @@
         {{getValue(item)}}
       </span>
     </div>
+  </ng-container> -->
+  <ng-container *ngFor="let item of heading_name">
+    <ng-container *ngIf="getValue(item[0])">
+    <div class="modal-box-item" [ngClass]="modal_style_class[1]">
+      <span class="modal-box-item-title" [ngClass]="modal_style_class[0]">{{
+        item[1]
+      }}</span>
+      :
+      <span class="modal-box-item-value">
+        {{getValue(item[0])}}
+      </span>
+    </div>
+
+  </ng-container>
   </ng-container>
 </div>

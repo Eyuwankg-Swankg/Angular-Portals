@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { VendorLoginComponent } from './vendor-login/vendor-login.component';
-import {VendorPortalRoutingModule} from "./vendor-portal-routing.module"
+import { VendorPortalRoutingModule } from './vendor-portal-routing.module';
 import { SharedModule } from '../components/shared.module';
 import { VendorDashboardComponent } from './vendor-dashboard/vendor-dashboard.component';
 import { VendorQuoteRequestComponent } from './vendor-quote-request/vendor-quote-request.component';
@@ -12,6 +12,7 @@ import { VendorInvoiceListComponent } from './vendor-invoice-list/vendor-invoice
 import { VendorPaymentAgingComponent } from './vendor-payment-aging/vendor-payment-aging.component';
 import { VendorCreditComponent } from './vendor-credit/vendor-credit.component';
 import { VendorDebitComponent } from './vendor-debit/vendor-debit.component';
+import { VendorAuthGuardGuard } from './vendor-auth-guard.guard';
 
 @NgModule({
   declarations: [
@@ -24,10 +25,9 @@ import { VendorDebitComponent } from './vendor-debit/vendor-debit.component';
     VendorInvoiceListComponent,
     VendorPaymentAgingComponent,
     VendorCreditComponent,
-    VendorDebitComponent
+    VendorDebitComponent,
   ],
-  imports: [
-    CommonModule,VendorPortalRoutingModule,SharedModule
-  ]
+  imports: [CommonModule, VendorPortalRoutingModule, SharedModule],
+  providers: [VendorAuthGuardGuard],
 })
-export class VendorPortalModule { }
+export class VendorPortalModule {}

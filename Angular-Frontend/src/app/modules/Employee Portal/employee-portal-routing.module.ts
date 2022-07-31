@@ -4,7 +4,7 @@ import { EmployeeDashboardComponent } from './employee-dashboard/employee-dashbo
 import { EmployeeLeaveDataComponent } from './employee-leave-data/employee-leave-data.component';
 import { EmployeeLoginComponent } from './employee-login/employee-login.component';
 import { EmployeePayrollComponent } from './employee-payroll/employee-payroll.component';
-
+import { EmployeeAuthGuardGuard } from './employee-auth-guard.guard';
 const routes: Routes = [
   {
     path: '',
@@ -13,14 +13,17 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: EmployeeDashboardComponent,
+    canActivate:[EmployeeAuthGuardGuard]
   },
   {
     path: 'payroll',
     component: EmployeePayrollComponent,
+    canActivate:[EmployeeAuthGuardGuard]
   },
   {
     path: 'leavedata',
     component: EmployeeLeaveDataComponent,
+    canActivate:[EmployeeAuthGuardGuard]
   },
 ];
 @NgModule({

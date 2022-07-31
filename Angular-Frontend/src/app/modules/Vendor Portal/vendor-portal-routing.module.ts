@@ -10,42 +10,52 @@ import {VendorLoginComponent} from "./vendor-login/vendor-login.component"
 import { VendorPaymentAgingComponent } from './vendor-payment-aging/vendor-payment-aging.component';
 import { VendorPurchaseOrderComponent } from './vendor-purchase-order/vendor-purchase-order.component';
 import { VendorQuoteRequestComponent } from './vendor-quote-request/vendor-quote-request.component';
+import {VendorAuthGuardGuard} from "./vendor-auth-guard.guard"
 
 const routes:Routes =[
   {
     path:'',component:VendorLoginComponent
   },
   {
-    path:'dashboard',component:VendorDashboardComponent
+    path:'dashboard',component:VendorDashboardComponent,
+    canActivate:[VendorAuthGuardGuard]
   },
   {
     path:'quoterequest',component:VendorQuoteRequestComponent
+    ,canActivate:[VendorAuthGuardGuard]
   },
   {
-    path:'purchaseorder',component:VendorPurchaseOrderComponent
+    path:'purchaseorder',component:VendorPurchaseOrderComponent,
+    canActivate:[VendorAuthGuardGuard]
   },
   {
-    path:'goodsreceipt',component:VendorGoodsReceiptComponent
+    path:'goodsreceipt',component:VendorGoodsReceiptComponent,
+    canActivate:[VendorAuthGuardGuard]
   }
   ,
   {
-    path:'financialsheet',component:VendorFinancialSheetComponent
+    path:'financialsheet',component:VendorFinancialSheetComponent,
+    canActivate:[VendorAuthGuardGuard]
   }
   ,
   {
-    path:'credit',component:VendorCreditComponent
+    path:'credit',component:VendorCreditComponent,
+    canActivate:[VendorAuthGuardGuard]
   }
   ,
   {
-    path:'debit',component:VendorDebitComponent
+    path:'debit',component:VendorDebitComponent,
+    canActivate:[VendorAuthGuardGuard]
   }
   ,
   {
-    path:'paymentaging',component:VendorPaymentAgingComponent
+    path:'paymentaging',component:VendorPaymentAgingComponent,
+    canActivate:[VendorAuthGuardGuard]
   }
   ,
   {
-    path:'invoicelist',component:VendorInvoiceListComponent
+    path:'invoicelist',component:VendorInvoiceListComponent,
+    canActivate:[VendorAuthGuardGuard]
   }
 ];
 @NgModule({

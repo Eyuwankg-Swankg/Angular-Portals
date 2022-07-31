@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./modal-box.component.css'],
 })
 export class ModalBoxComponent implements OnInit {
-  @Input() modal_data :any = {};
+  @Input() modal_data: any = {};
   @Input() modal_style_class: string[] = [];
   @Input() modal_title: string = '';
   @Input() pdf_link: string = '';
@@ -17,13 +17,11 @@ export class ModalBoxComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.modal_data);
+    this.heading_name = Object.entries(this.heading_name);
+    this.heading_name.sort((a: string[], b: string[]) => (a[1] > b[1] ? 1 : 0));
   }
-  getValue(item: any): any {
-    if(this.modal_data[item.key]=="")
-      return '--';
-    else 
-      return this.modal_data[item.key];
+  getValue(item: string): string {
+    return this.modal_data[item];
   }
   closeModalBtn(): void {
     this.close_modal.emit();
