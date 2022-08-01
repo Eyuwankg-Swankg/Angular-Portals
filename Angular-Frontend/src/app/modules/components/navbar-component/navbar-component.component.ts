@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, TitleStrategy } from '@angular/router';
 import { SharedService } from './../../shared.service';
-import {CustomerProfileHeaders} from "./ProfileHeaders";
+import { CustomerProfileHeaders,VendorProfileHeaders,EmployeeProfileHeader } from './ProfileHeaders';
 @Component({
   selector: 'app-navbar-component',
   templateUrl: './navbar-component.component.html',
@@ -14,8 +14,9 @@ export class NavbarComponentComponent implements OnInit {
   loadingScreenToggle: boolean = false;
   togglePofileModal: boolean = false;
   profileDetailsHeading: string[] = [];
-  profileDetailsValues: any = [];
+  profileDetailsValues: any = {};
   loadingClass = '';
+  HeadingData: any;
   constructor(private router: Router, private service: SharedService) {}
 
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class NavbarComponentComponent implements OnInit {
       this.loadingClass = 'employee-loading-screeen';
     else if (this.portal_name == 'Vendor')
       this.loadingClass = 'vendor-loading-screeen';
+    console.log(this.portal_name);
   }
   showDropdown(): void {
     this.toggleDropdown = !this.toggleDropdown;
@@ -34,6 +36,10 @@ export class NavbarComponentComponent implements OnInit {
     this.service.removeLocalStorage(this.portal_name);
     this.router.navigate(['']);
   }
+
+  getValue(profileItem: any): string {
+    return profileItem['key'];
+  }
   getProfile(): void {
     this.loadingScreenToggle = !this.loadingScreenToggle;
     if (this.portal_name == 'Customer') {
@@ -42,11 +48,15 @@ export class NavbarComponentComponent implements OnInit {
         .subscribe(
           (responseData) => {
             var temp = responseData.data;
-            console.log(temp);
-            for (var item in temp) {
-              this.profileDetailsHeading.push(item);
-              this.profileDetailsValues.push(temp[item]);
+            console.log([...Object.values(temp)]);
+            for (var item of Object.values(temp)) {
+              var garbage: any = item;
+              this.profileDetailsValues = {
+                ...this.profileDetailsValues,
+                ...garbage,
+              };
             }
+            this.HeadingData = CustomerProfileHeaders;
             console.log(this.profileDetailsHeading, this.profileDetailsValues);
             this.togglePofileModal = !this.togglePofileModal;
             this.loadingScreenToggle = !this.loadingScreenToggle;
@@ -61,11 +71,16 @@ export class NavbarComponentComponent implements OnInit {
         .subscribe(
           (responseData) => {
             var temp = responseData.data;
-            console.log(temp);
-            for (var item in temp) {
-              this.profileDetailsHeading.push(item);
-              this.profileDetailsValues.push(temp[item]);
+            console.log([...Object.values(temp)]);
+            for (var item of Object.values(temp)) {
+              var garbage: any = item;
+              this.profileDetailsValues = {
+                ...this.profileDetailsValues,
+                ...garbage,
+              };
             }
+            this.HeadingData = EmployeeProfileHeader;
+            console.log(this.profileDetailsHeading, this.profileDetailsValues);
             this.togglePofileModal = !this.togglePofileModal;
             this.loadingScreenToggle = !this.loadingScreenToggle;
           },
@@ -77,11 +92,16 @@ export class NavbarComponentComponent implements OnInit {
       this.service.getVendorProfile(this.service.getVendorDetails()).subscribe(
         (responseData) => {
           var temp = responseData.data;
-          console.log(temp);
-          for (var item in temp) {
-            this.profileDetailsHeading.push(item);
-            this.profileDetailsValues.push(temp[item]);
-          }
+            console.log([...Object.values(temp)]);
+            for (var item of Object.values(temp)) {
+              var garbage: any = item;
+              this.profileDetailsValues = {
+                ...this.profileDetailsValues,
+                ...garbage,
+              };
+            }
+            this.HeadingData = VendorProfileHeaders;
+            console.log(this.profileDetailsHeading, this.profileDetailsValues);
           this.togglePofileModal = !this.togglePofileModal;
           this.loadingScreenToggle = !this.loadingScreenToggle;
         },

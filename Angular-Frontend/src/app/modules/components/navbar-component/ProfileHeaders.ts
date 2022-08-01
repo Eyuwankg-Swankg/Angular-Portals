@@ -1,5 +1,25 @@
 export var CustomerProfileHeaders: any = [
   {
+    key: 'NAME_2',
+    title: 'Name',
+    value: '',
+  },
+  {
+    key: 'CUSTOMER',
+    title: 'Customer Number',
+    value: '',
+  },
+  {
+    key: 'CITY',
+    title: 'City',
+    value: '',
+  },
+  {
+    key: 'COMP_CODE',
+    title: 'Company Code',
+    value: '',
+  },
+  {
     key: 'NAME',
     title: 'Name 1',
     value: '',
@@ -127,11 +147,6 @@ export var CustomerProfileHeaders: any = [
   {
     key: 'NIELSEN_ID',
     title: 'Nielsen ID',
-    value: '',
-  },
-  {
-    key: 'CUSTOMER',
-    title: 'Customer Number',
     value: '',
   },
   {
@@ -341,4 +356,370 @@ export var CustomerProfileHeaders: any = [
   { key: 'CONSUMER', title: 'consumer', value: '' },
   { key: 'TAX_NO_5', title: 'Tax Number 5', value: '' },
   { key: 'PURP_CMPL_FLAG', title: 'Business Purpose Flag', value: '' },
+];
+export var VendorProfileHeaders: any = [
+  {
+    key: 'NAME',
+    title: 'Name',
+    value: '',
+  },
+  {
+    key: 'VENDOR',
+    title: 'Vendor',
+    value: '',
+  },
+  {
+    key: 'CITY',
+    title: 'City',
+    value: '',
+  },
+  {
+    key: 'COMP_CODE',
+    title: 'Company Code',
+    value: '',
+  },
+  {
+    key: 'NAME_2',
+    title: 'Name 2',
+    value: '',
+  },
+  {
+    key: 'NAME_3',
+    title: 'Name 3',
+    value: '',
+  },
+  {
+    key: 'NAME_4',
+    title: 'Name 4',
+    value: '',
+  },
+  {
+    key: 'DISTRICT',
+    title: 'District',
+    value: '',
+  },
+  {
+    key: 'PO_BOX',
+    title: 'PO Box',
+    value: '',
+  },
+  {
+    key: 'POBX_PCD',
+    title: 'P.O. Box Postal Code',
+    value: '',
+  },
+  {
+    key: 'POSTL_CODE',
+    title: 'Postal Code',
+    value: '',
+  },
+  {
+    key: 'REGION',
+    title: 'Region',
+    value: '',
+  },
+  {
+    key: 'STREET',
+    title: 'Street',
+    value: '',
+  },
+  {
+    key: 'COUNTRY',
+    title: 'Country',
+    value: '',
+  },
+  {
+    key: 'COUNTRYISO',
+    title: 'Country ISO code',
+    value: '',
+  },
+  {
+    key: 'POBX_CTY',
+    title: 'PO Box city',
+    value: '',
+  },
+  {
+    key: 'PAYMENT_METHODS',
+    title: 'Payment Methods',
+    value: '',
+  },
+  {
+    key: 'PMNTTRMS',
+    title: 'Payment Key',
+    value: '',
+  },
+  {
+    key: 'STREET',
+    title: 'Street',
+    value: '',
+  },
+  {
+    key: 'REGION',
+    title: 'Region',
+    value: '',
+  },
+  {
+    key: 'TELEPHONE',
+    title: 'Telephone',
+    value: '',
+  },
+  {
+    key: 'CLERK',
+    title: 'Accounting Clerk',
+    value: '',
+  },
+  {
+    key: 'HD_OFFICE',
+    title: 'Head office',
+    value: '',
+  },
+  {
+    key: 'CUVD_CLEAR',
+    title: 'Indicator: Clearing between customer and vendor?',
+    value: '',
+  },
+  {
+    key: 'ACT_AT_VEN',
+    title: 'Our account number with the vendor',
+    value: '',
+  },
+  {
+    key: 'VEND_USER',
+    title: 'Clerk at vendor',
+    value: '',
+  },
+  {
+    key: 'INTERNET',
+    title: 'Internet address',
+    value: '',
+  },
+  {
+    key: 'FAX',
+    title: 'fax number',
+    value: '',
+  },
+  {
+    key: 'BANK_CTRY',
+    title: 'Bank country key',
+    value: '',
+  },
+  {
+    key: 'BANK_KEY',
+    title: 'Bank Keys',
+    value: '',
+  },
+  {
+    key: 'BANK_ACCT',
+    title: 'Bank account number',
+    value: '',
+  },
+  {
+    key: 'CTRL_KEY',
+    title: 'Bank Control Key',
+    value: '',
+  },
+  {
+    key: 'IBAN',
+    title: 'IBAN',
+    value: '',
+  },
+  {
+    key: 'VALID_FROM',
+    title: 'Validity start of IBAN',
+    value: '',
+  },
+
+  {
+    key: 'LANGU',
+    title: 'Language Key',
+    value: '',
+  },
+  {
+    key: 'LANGU_ISO',
+    title: '2-Character SAP Language Code',
+    value: '',
+  },
+  {
+    key: 'TELEPHONE2',
+    title: 'Second telephone number',
+    value: '',
+  },
+  {
+    key: 'FORMOFADDR',
+    title: 'Title',
+    value: '',
+  },
+];
+export var EmployeeProfileHeader: any = [
+  {
+    key: 'ENAME',
+    title: 'Name',
+    value: '',
+  },
+  {
+    key: 'PLANS_TXT',
+    title: 'Position',
+    value: '',
+  },
+  {
+    key: 'KOKRS',
+    title: 'Controlling Area',
+    value: '',
+  },
+  {
+    key: 'PERNR',
+    title: 'Personnel Number',
+    value: '',
+  },
+  {
+    key: 'GBDAT',
+    title: 'Date of Birth',
+    value: '',
+  },
+  {
+    key: 'ORT01',
+    title: 'City',
+    value: '',
+  },
+  {
+    key: 'TELNR',
+    title: 'Telephone Number',
+    value: '',
+  },
+  {
+    key: 'VORNA',
+    title: 'First Name',
+    value: '',
+  },
+  {
+    key: 'NACHN',
+    title: 'Last Name',
+    value: '',
+  },
+  {
+    key: 'GESCH',
+    title: 'Gender',
+    value: '',
+  },  
+  {
+    key: 'NATIO',
+    title: 'Nationality',
+    value: '',
+  },
+  {
+    key: 'KONFE',
+    title: 'Religious Denomination Key',
+    value: '',
+  },
+  {
+    key: 'FAMST',
+    title: 'Marital Status',
+    value: '',
+  },
+  {
+    key: 'PSTLZ',
+    title: 'Postal code',
+    value: '',
+  },
+  {
+    key: 'STRAS',
+    title: 'Street and House Number',
+    value: '',
+  },
+  {
+    key: 'LAND',
+    title: 'Country Key',
+    value: '',
+  },
+  {
+    key: 'USRTY',
+    title: 'Communication Type',
+    value: '',
+  },
+  {
+    key: 'SYSID',
+    title: 'Communication Identification/Number',
+    value: '',
+  },
+  {
+    key: 'OTYPE',
+    title: 'Object Type',
+    value: '',
+  },
+  {
+    key: 'STELL_TXT',
+    title: 'STELL Object Name',
+    value: '',
+  },
+  {
+    key: 'ORGEH_TXT',
+    title: 'Department',
+    value: '',
+  },
+  {
+    key: 'ORGEH',
+    title: 'Organizational Unit',
+    value: '',
+  },
+  {
+    key: 'PLANS',
+    title: 'Object ID',
+    value: '',
+  },
+  {
+    key: 'BEGDA',
+    title: 'Start Date',
+    value: '',
+  },
+  {
+    key: 'ENDDA',
+    title: 'End Date',
+    value: '',
+  },
+  {
+    key: 'STATUS',
+    title: 'Employment Status',
+    value: '',
+  },
+  {
+    key: 'BUKRS',
+    title: 'Company Code',
+    value: '',
+  },
+  {
+    key: 'WERKS',
+    title: 'Personnel Area',
+    value: '',
+  },
+  {
+    key: 'PERSG',
+    title: 'Employee Group',
+    value: '',
+  },
+  {
+    key: 'PERSK',
+    title: 'Employee Subgroup',
+    value: '',
+  },
+  {
+    key: 'KOSTL',
+    title: 'Cost Center',
+    value: '',
+  },
+  {
+    key: 'STELL',
+    title: 'STELL Object ID',
+    value: '',
+  },
+
+  {
+    key: 'ANRED',
+    title: 'Form-of-Address Key',
+    value: '',
+  },
+  {
+    key: 'TITEL',
+    title: 'Title',
+    value: '',
+  },
 ];
