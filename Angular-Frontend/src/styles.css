@@ -263,6 +263,14 @@ body {
 .customer-table-row:hover .table-element {
   background: #253152;
 }
+.customer-filter-icon{
+  border: 2px solid var(--customer-blue);
+  color:var(--customer-blue);
+}
+.customer-filter-icon:hover{
+  color:snow;
+  background:var(--customer-blue);
+}
 /*          */
 /* Zebra s.table-rowiping */
 .employee-table-row:nth-of-type(odd) {

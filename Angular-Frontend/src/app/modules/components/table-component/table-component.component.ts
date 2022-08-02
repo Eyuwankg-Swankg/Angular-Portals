@@ -11,6 +11,8 @@ export class TableComponentComponent implements OnInit {
   @Input() column_values: any = {};
   columnKeyValues: string[] = [];
   columnHeaderValues: string[] = [];
+  filter_icon_style: any = ['customer-filter-icon'];
+  filterRowRange: number = 0;
   @Output() display_modal: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
@@ -18,6 +20,10 @@ export class TableComponentComponent implements OnInit {
   ngOnInit(): void {
     this.columnKeyValues = Object.keys(this.column_values);
     this.columnHeaderValues = Object.values(this.column_values);
+  }
+  changeRowCount(): void {
+    var tempCount: any = document.getElementById('filterRowRange');
+    this.filterRowRange = tempCount.value;
   }
   sendToOpenModal(rowData: any): void {
     this.display_modal.emit(rowData);

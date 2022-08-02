@@ -1,6 +1,47 @@
+<div class="filter-container">
+  <div class="filter-item-container" [ngClass]="filter_icon_style">
+    <i class="fa-solid fa-table"></i>
+    <div class="filter-item-detail">Rows</div>
+    <div class="filter-content-container">
+      <div class="filter-rows-input-container">
+        <input
+          type="range"
+          min="1"
+          max="{{table_data.length}}"
+          value="5"
+          class="filter-row-slider"
+          id="filterRowRange"
+          (mouseup)="changeRowCount()"
+        />
+        <div class="filter-row-all">
+          ALL
+        </div>
+      </div>
+      <span class="filter-rows-count">
+        {{filterRowRange}}
+      </span>
+    </div>
+  </div>
+  <div class="filter-item-container" [ngClass]="filter_icon_style">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="filter-item-detail">Search</div>
+  </div>
+  <div class="filter-item-container" [ngClass]="filter_icon_style">
+    <i class="fa-solid fa-filter"></i>
+    <div class="filter-item-detail">Filter</div>
+  </div>
+  <div class="filter-item-container" [ngClass]="filter_icon_style">
+    <i class="fa-solid fa-file-arrow-down"></i>
+    <div class="filter-item-detail">Download</div>
+  </div>
+  <div class="filter-item-container" [ngClass]="filter_icon_style">
+    <i class="fa-solid fa-arrows-rotate"></i>
+    <div class="filter-item-detail">Reset</div>
+  </div>
+</div>
 <table class="table">
   <tr class="table-row" [ngClass]="style_class[0]">
-    <ng-container *ngFor="let header of columnHeaderValues;">
+    <ng-container *ngFor="let header of columnHeaderValues">
       <th class="table-heading" [ngClass]="style_class[1]">
         {{ header }}
       </th>
@@ -12,9 +53,9 @@
     *ngFor="let item of table_data; let i = index"
     (click)="sendToOpenModal(item)"
   >
-    <ng-container *ngFor="let key of columnKeyValues;">
+    <ng-container *ngFor="let key of columnKeyValues">
       <td class="table-element">
-        {{item[key]=="" ?'--':item[key]}}
+        {{ item[key] == "" ? "--" : item[key] }}
       </td>
     </ng-container>
   </tr>
