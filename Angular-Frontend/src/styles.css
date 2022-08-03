@@ -251,6 +251,18 @@ body {
 .table-row:hover {
   transform: scale(1.01);
 }
+.no-data-container{
+  width: 100%;
+  display: flex;
+  margin: 70px 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.no-data-img{
+  width: 15%;
+  margin-bottom:20px;
+}
 /* COMMON TABLE STYLING BASED ON COMPONENT */
 /* Zebra s.table-rowiping */
 .customer-table-row:nth-of-type(odd) {

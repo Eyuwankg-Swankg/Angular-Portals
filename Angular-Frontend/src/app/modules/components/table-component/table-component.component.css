@@ -18,6 +18,23 @@
   align-items: center;
   transition: all 0.3s;
   position: relative;
+  animation: showUp 1s ease-in-out;
+}
+@keyframes showUp{
+  0% {
+    transform: translateY(80px) rotate(0.3turn);
+    opacity: 0.1;
+  }
+  50% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  80%{
+    transform: rotate(-0.06turn);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 .filter-item-container:hover {
   transform: translateY(-2px);

@@ -213,7 +213,8 @@ router.post("/saleorderlist", (req, res) => {
       });
     })
     .catch(function (error) {
-      console.log(error);
+      res.send({ data: "NO DATA" });
+      // console.log(error);
     });
 });
 

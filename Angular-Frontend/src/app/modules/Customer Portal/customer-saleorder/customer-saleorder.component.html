@@ -10,15 +10,26 @@
   [breadcrumb_text]="['Customer', 'Sale Order List']"
   (onToDashboard)="toDashboard()"
 ></app-bread-crumb>
-
+<app-loading-screen
+  class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
+  [loading_class]="'customer-loading-screeen'"
+  *ngIf="loadingScreenToggle"
+></app-loading-screen>
 <h2 class="breadcrumb-title">SALE ORDER LIST</h2>
 <app-table-component
   [table_data]="saleOrderData"
   [style_class]="commonStyleValues.tableStyleClass"
   (display_modal)="showModal($event)"
   [column_values]="columnValues"
+  *ngIf="!noDataToggle && !loadingScreenToggle"
 >
 </app-table-component>
+<!-- TODO: NEW ADDITION -->
+<div class="no-data-container" *ngIf="noDataToggle && !loadingScreenToggle">
+  <img src="assets/Images/No-Data.png"  class="no-data-img" />
+  <h2>No Data</h2>
+</div>
+<!--        -->
 <app-modal-box
   *ngIf="modalToggle"
   class="modal-box-outer-container"
@@ -28,8 +39,3 @@
   (close_modal)="closeModal()"
   [modal_style_class]="commonStyleValues.modalStyleClass"
 ></app-modal-box>
-<app-loading-screen
-  class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
-  [loading_class]="'customer-loading-screeen'"
-  *ngIf="loadingScreenToggle"
-></app-loading-screen>

@@ -16,6 +16,9 @@ export class CustomerSaleorderComponent implements OnInit {
   modalTitle = 'SALE ORDER DETAILS';
   modalToggle: boolean = false;
   modalData = {};
+  // TODO: NEW ADDITION 
+  noDataToggle:boolean=true;
+  // 
   columnValues :any = {
     SD_DOC: '',
     ITM_NUMBER: '',
@@ -43,6 +46,8 @@ export class CustomerSaleorderComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.saleOrderData = responseData.data;
+          // TODO: NEW ADDITION
+          this.noDataToggle=false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,
