@@ -16,11 +16,14 @@
   *ngIf="loadingScreenToggle"
 ></app-loading-screen>
 <h2 class="breadcrumb-title">SALE ORDER LIST</h2>
+<!-- TODO: NEW ADDITION page_name -->
 <app-table-component
   [table_data]="saleOrderData"
   [style_class]="commonStyleValues.tableStyleClass"
   (display_modal)="showModal($event)"
   [column_values]="columnValues"
+  [column_data_types]="columnDataType"
+  [page_name]="'SALE ORDER LIST'"
   *ngIf="!noDataToggle && !loadingScreenToggle"
 >
 </app-table-component>

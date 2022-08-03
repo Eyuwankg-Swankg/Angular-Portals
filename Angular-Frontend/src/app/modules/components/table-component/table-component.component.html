@@ -1,39 +1,118 @@
 <div class="filter-container">
-  <div class="filter-item-container" [ngClass]="filter_icon_style">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <div class="filter-item-detail">Search</div>
+  <div class="filter-item-top-container">
+    <div
+      class="filter-item-container"
+      [ngClass]="filter_icon_style"
+      (click)="onShowSearch()"
+    >
+      <i class="fa-solid fa-magnifying-glass"></i>
+      <div class="filter-item-detail">Search</div>
+    </div>
+    <div class="filter-item-box" *ngIf="toggleSearch">
+      <input
+        type="text"
+        id="search-input"
+        name="Search"
+        placeholder="{{ searchPlaceHolder }}"
+        (keyup)="onSearch($event)"
+      />
+    </div>
   </div>
-  <div class="filter-item-container" [ngClass]="filter_icon_style">
-    <i class="fa-solid fa-filter"></i>
-    <div class="filter-item-detail">Filter</div>
+  <div class="filter-item-top-container">
+    <div
+      class="filter-item-container"
+      [ngClass]="filter_icon_style"
+      (click)="onShowFilter()"
+    >
+      <i class="fa-solid fa-filter"></i>
+      <div class="filter-item-detail">Filter</div>
+    </div>
+    <div class="filter-item-box filter-item-date-box" *ngIf="toggleFilter">
+      <div class="filter-item-type-container">
+        <span (click)="changeFilterType()" [ngClass]="toggleFilterType?'filter-item-date-active':'filter-item-date-inactive'"> Date </span>
+        /
+        <span (click)="changeFilterType()" [ngClass]="!toggleFilterType?'filter-item-date-active':'filter-item-date-inactive'"> Range </span>
+      </div>
+      <div class="filter-item-date-container" *ngIf="toggleFilterType">
+        <i class="fa-solid fa-arrow-down-short-wide"></i>
+      </div>
+      <div class="filter-item-range-container"  *ngIf="!toggleFilterType">
+        <i class="fa-solid fa-arrow-up-short-wide"></i>
+      </div>
+    </div>
   </div>
-  <div class="filter-item-container" [ngClass]="filter_icon_style" (click)="exportToExcel()">
-    <i class="fa-solid fa-file-arrow-down"></i>
-    <div class="filter-item-detail">Download</div>
+
+  <div class="filter-item-top-container">
+    <div
+      class="filter-item-container"
+      [ngClass]="filter_icon_style"
+      (click)="sortAscending()"
+    >
+    <i class="fa-solid fa-arrow-down-short-wide"></i>
+      <div class="filter-item-detail">Sort Ascending</div>
+    </div>
   </div>
-  <div class="filter-item-container" [ngClass]="filter_icon_style">
-    <i class="fa-solid fa-arrows-rotate"></i>
-    <div class="filter-item-detail">Reset</div>
+
+  <div class="filter-item-top-container">
+    <div
+      class="filter-item-container"
+      [ngClass]="filter_icon_style"
+      (click)="sortDescending()"
+    >
+    <i class="fa-solid fa-arrow-up-short-wide"></i>
+      <div class="filter-item-detail">Sort Descending</div>
+    </div>
+  </div>
+
+  <div class="filter-item-top-container">
+    <div
+      class="filter-item-container"
+      [ngClass]="filter_icon_style"
+      (click)="exportToExcel()"
+    >
+      <i class="fa-solid fa-file-arrow-down"></i>
+      <div class="filter-item-detail">Download</div>
+    </div>
+  </div>
+  <div class="filter-item-top-container">
+    <div
+      class="filter-item-container"
+      [ngClass]="filter_icon_style"
+      (click)="onReset()"
+    >
+      <i class="fa-solid fa-arrows-rotate"></i>
+      <div class="filter-item-detail">Reset</div>
+    </div>
   </div>
 </div>
-<table class="table" #tableXLSX>
+<div class="pagination-top-container"></div>
+<table class="table" id="tableXLSX">
   <tr class="table-row" [ngClass]="style_class[0]">
-    <ng-container *ngFor="let header of columnHeaderValues">
-      <th class="table-heading" [ngClass]="style_class[1]">
+    <ng-container *ngFor="let header of columnHeaderValues; let ind = index">
+      <th
+        class="table-heading"
+        [ngClass]="
+          ind == selectedColumn
+            ? ['selectedColumn', 'style_class[1]']
+            : [style_class[1]]
+        "
+        (click)="highlightHeader(ind)"
+      >
         {{ header }}
       </th>
     </ng-container>
   </tr>
-  <tr
-    class="table-row"
-    [ngClass]="style_class[0]"
-    *ngFor="let item of currentTableData; let i = index"
-    (click)="sendToOpenModal(item)"
-  >
-    <ng-container *ngFor="let key of columnKeyValues">
-      <td class="table-element">
-        {{ item[key] == "" ? "--" : item[key] }}
-      </td>
-    </ng-container>
-  </tr>
+  <ng-container *ngFor="let item of currentTableData; let i = index">
+    <tr
+      class="table-row"
+      [ngClass]="style_class[0]"
+      (click)="sendToOpenModal(item)"
+    >
+      <ng-container *ngFor="let key of columnKeyValues">
+        <td class="table-element">
+          {{ item[key] == "" ? "--" : item[key] }}
+        </td>
+      </ng-container>
+    </tr>
+  </ng-container>
 </table>

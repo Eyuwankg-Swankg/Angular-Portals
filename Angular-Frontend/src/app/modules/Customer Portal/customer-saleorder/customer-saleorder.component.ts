@@ -16,15 +16,23 @@ export class CustomerSaleorderComponent implements OnInit {
   modalTitle = 'SALE ORDER DETAILS';
   modalToggle: boolean = false;
   modalData = {};
-  // TODO: NEW ADDITION 
-  noDataToggle:boolean=true;
-  // 
-  columnValues :any = {
+  // TODO: NEW ADDITION
+  noDataToggle: boolean = true;
+  //
+  columnValues: any = {
     SD_DOC: '',
     ITM_NUMBER: '',
     REQ_QTY: '',
     CREATION_DATE: '',
     REQ_DATE: '',
+  };
+  // TODO: NEW ADDITION
+  columnDataType: any = {
+    SD_DOC: 'number',
+    ITM_NUMBER: 'number',
+    REQ_QTY: 'number',
+    CREATION_DATE: 'date',
+    REQ_DATE: 'date',
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = customerSalesDataTableHead;
@@ -47,7 +55,7 @@ export class CustomerSaleorderComponent implements OnInit {
         if (responseData.data != 'NO DATA') {
           this.saleOrderData = responseData.data;
           // TODO: NEW ADDITION
-          this.noDataToggle=false;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

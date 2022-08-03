@@ -1,6 +1,79 @@
+.selectedColumn {
+  color: var(--customer-blue);
+  background: #c8cfe6;
+}
+.filter-item-top-container {
+  position: relative;
+  width: 3%;
+  margin-left: 10px;
+}
+.filter-item-box {
+  position: absolute;
+  width: 309px;
+  top: -117px;
+  left: -142px;
+  border: 2px solid var(--customer-blue);
+  border-radius: 5px;
+  padding: 31px 26px;
+  background: snow;
+  animation: showDown 0.3s ease-in;
+  transition: all 0.2s;
+}
+.table-row:hover .filter-item-box {
+}
+#search-input {
+  width: 100%;
+  padding: 5px 10px;
+}
+#search-input::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-weight: bold;
+  text-align: center;
+  color: black;
+}
+@keyframes showDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.filter-item-date-box{
+  width: 300px;
+  top: -86px;
+  left: -122px; 
+  padding: 5px 0px;
+}
+.filter-item-type-container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-weight: bold;
+}
+.filter-item-type-container span{
+  font-weight: bold;
+  text-align: center;
+  width: 35%;
+  padding: 5px 0px;
+}
+.filter-item-date-active{
+  color: var(--customer-blue);
+  border-bottom: 3px solid var(--customer-blue); 
+}
+.filter-item-date-inactive{
+  opacity:0.5;
+}
+.filter-item-date-container{
+  width: 100%;
+}
 .filter-container {
   width: 83%;
   margin: 50px auto;
+  margin-top: 0px;
   padding: 10px 20px;
   display: flex;
   justify-content: flex-end;
@@ -9,8 +82,7 @@
 .filter-item-container {
   cursor: pointer;
   border-radius: 23px;
-  margin-left: 10px;
-  width: 3%;
+  width: 100%;
   padding: 1px;
   padding: 6px 8px;
   display: flex;
@@ -20,7 +92,7 @@
   position: relative;
   animation: showUp 1s ease-in-out;
 }
-@keyframes showUp{
+@keyframes showUp {
   0% {
     transform: translateY(80px) rotate(0.3turn);
     opacity: 0.1;
@@ -29,7 +101,7 @@
     transform: translateY(-10px);
     opacity: 1;
   }
-  80%{
+  80% {
     transform: rotate(-0.06turn);
   }
   100% {
@@ -56,6 +128,7 @@
   transition: all 0.4s;
   animation: popUp 0.3s ease-in;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
   display: none;
 }
 .filter-item-container:hover .filter-item-detail {
@@ -106,7 +179,7 @@
 .filter-row-all {
   width: 20%;
   text-align: center;
-  border:2px solid var(--customer-blue);
+  border: 2px solid var(--customer-blue);
   border-radius: 7px;
 }
 .filter-row-slider {
