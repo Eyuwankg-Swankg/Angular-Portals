@@ -123,12 +123,20 @@ export class TableComponentComponent implements OnInit {
         });
       } else if (this.column_data_types[columnName] == 'string') {
       } else if (this.column_data_types[columnName] == 'date') {
-        // TODO: FIX THIS
-        console.log('date');
         this.currentTableData.sort((a: any, b: any) => {
           const tempA: any = new Date(a[columnName]);
           const tempB: any = new Date(b[columnName]);
-          return tempA - tempB;
+          // TODO: fix for time
+          if (tempA == tempB) {
+            return 0;
+          } else if (tempA == 'Invalid Date') {
+            return -1;
+          } else if (tempB == 'Invalid Date') {
+            return 1;
+          } else {
+            return tempA - tempB;
+          }
+
         });
       }
       console.log(columnName);
@@ -146,10 +154,20 @@ export class TableComponentComponent implements OnInit {
         });
       } else if (this.column_data_types[columnName] == 'string') {
       } else if (this.column_data_types[columnName] == 'date') {
-        // TODO: FIX THIS
         this.currentTableData.sort((a: any, b: any) => {
           const tempA: any = new Date(a[columnName]);
           const tempB: any = new Date(b[columnName]);
+          console.log(`|${tempA}|${tempB}|`)
+          if (tempA == tempB) {
+            return 0;
+          } else if (tempA == 'Invalid Date') {
+            return 1;
+          } else if (tempB == 'Invalid Date') {
+            return -1;
+          } else {
+            return tempB - tempA;
+          }
+
         });
       }
       console.log(columnName);
@@ -180,7 +198,7 @@ export class TableComponentComponent implements OnInit {
   }
 }
 
-// TODO: 
-// ADD SORT FOR DATE
+// TODO:
+// ADD SORT FOR TIME
 // ADD DATE FILTERS
 // PAGINATION

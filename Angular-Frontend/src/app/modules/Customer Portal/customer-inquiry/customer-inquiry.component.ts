@@ -13,6 +13,8 @@ export class CustomerInquiryComponent implements OnInit {
   modalTitle = 'INQUIRY DETAILS';
   modalToggle = false;
   modalData = {};
+    // TODO: NEW ADDITION
+    noDataToggle: boolean = true;
   loadingScreenToggle: boolean = true;
   InquiryList = [
     {
@@ -331,6 +333,12 @@ export class CustomerInquiryComponent implements OnInit {
     ERDAT: 'Record Created On',
     ERZET: 'Entry Time',
   };
+  columnDataType: any = {
+    MANDT: 'number',
+    VBELN: 'number',
+    ERDAT: 'date',
+    ERZET: 'date',
+  };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = inquiryDataTableHead;
   constructor(
@@ -347,6 +355,7 @@ export class CustomerInquiryComponent implements OnInit {
       (responseData) => {
         if (responseData.data != 'NO DATA') {
           this.InquiryList = responseData.data;
+          this.noDataToggle=false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,
