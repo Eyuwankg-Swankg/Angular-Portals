@@ -128,7 +128,40 @@
     </div>
   </div>
 </div>
-<div class="pagination-top-container"></div>
+<div class="pagination-top-container">
+  <div class="pagination-numbers-container">
+    <div
+      class="pagination-left"
+      (click)="goLeftPage(currentTableData.length / 5)"
+    >
+      <i class="fa-solid fa-angle-left"></i>
+    </div>
+    <ng-container
+      *ngFor="
+        let pageNumber of counter(currentTableData.length / 5);
+        let pageIndex = index
+      "
+    >
+      <div
+        class="pagination-numbers"
+        [ngClass]="
+          current_page == pageIndex + 1
+            ? 'pagination-numbers-active'
+            : 'pagination-numbers-inactive'
+        "
+        (click)="changeCurrentPage(pageIndex + 1)"
+      >
+        {{ pageIndex + 1 }}
+      </div>
+    </ng-container>
+    <div
+      class="pagination-right"
+      (click)="goRightPage(currentTableData.length / 5)"
+    >
+      <i class="fa-solid fa-angle-right"></i>
+    </div>
+  </div>
+</div>
 <table class="table" id="tableXLSX">
   <tr class="table-row" [ngClass]="style_class[0]">
     <ng-container *ngFor="let header of columnHeaderValues; let ind = index">
@@ -148,7 +181,7 @@
   <ng-container *ngFor="let item of currentTableData; let i = index">
     <tr
       class="table-row"
-      [ngClass]="style_class[0]"
+      [ngClass]="checkShowPage(i / 5) ? ['style_class[0]'] : ['row-invisibility']"
       (click)="sendToOpenModal(item)"
     >
       <ng-container *ngFor="let key of columnKeyValues">

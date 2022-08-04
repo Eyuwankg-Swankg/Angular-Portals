@@ -10,6 +10,7 @@ import {
 import { utils, WorkBook, WorkSheet, writeFile } from 'xlsx';
 import { ToastrService } from 'ngx-toastr';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { range } from 'rxjs';
 @Component({
   selector: 'app-table-component',
   templateUrl: './table-component.component.html',
@@ -29,6 +30,8 @@ export class TableComponentComponent implements OnInit {
   toggleFilter: boolean = false;
   toggleFilterType: boolean = true;
   searchPlaceHolder: string = '';
+  page_count: number = this.currentTableData.length / 5;
+  current_page: number = 1;
   selectedColumn: number = -1;
 
   @Output() display_modal: EventEmitter<any> = new EventEmitter();
@@ -42,7 +45,8 @@ export class TableComponentComponent implements OnInit {
     console.log(
       this.currentTableData,
       this.columnKeyValues,
-      this.columnHeaderValues
+      this.columnHeaderValues,
+      this.page_count
     );
   }
   highlightHeader(columnName: number): void {
@@ -195,7 +199,6 @@ export class TableComponentComponent implements OnInit {
         this.currentTableData.sort((a: any, b: any) => {
           const tempA: any = new Date(a[columnName]);
           const tempB: any = new Date(b[columnName]);
-          // TODO: fix for time
           if (tempA == tempB) {
             return 0;
           } else if (tempA == 'Invalid Date') {
@@ -256,8 +259,40 @@ export class TableComponentComponent implements OnInit {
   onReset(): void {
     this.currentTableData = this.table_data;
     this.toggleSearch = false;
+    this.toggleFilter = false;
   }
   //////////
+  counter(size: any): any {
+    console.log(size);
+    // const tempArray=[];
+    console.log(new Array(parseInt(size)).keys());
+    // console.log(tempArray);
+    // return tempArray;
+    return [1, 2];
+  }
+  changeCurrentPage(page: number): void {
+    this.current_page = page;
+  }
+  goLeftPage(pageNo:any): void {
+    var tempPageNo=parseInt(pageNo);
+    this.current_page-=1;
+    if(this.current_page==0)
+      this.current_page=tempPageNo;
+  }
+  goRightPage(pageNo:any): void {
+    var tempPageNo=parseInt(pageNo);
+    this.current_page+=1;
+    if(this.current_page>tempPageNo)
+      this.current_page=1;
+  }
+  checkShowPage(rowNo:any):boolean{
+    var tempRowNo=parseInt(rowNo)+1;
+    console.log(tempRowNo,this.current_page);
+    if(tempRowNo==this.current_page)
+      return true;
+    else
+      return false;
+  }
   sendToOpenModal(rowData: any): void {
     this.display_modal.emit(rowData);
   }
@@ -272,5 +307,7 @@ export class TableComponentComponent implements OnInit {
 
 // TODO:
 // CHECK DATE FILTERS
-// PAGINATION
+// CHECK ZEBRA STYLING IN TABLE
+// CHECK DOWNLOAD USING PAGINANTION
+// CHANGE PAGINATION NO
 // ADD SORT FOR TIME
