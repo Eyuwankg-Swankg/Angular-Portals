@@ -29,15 +29,58 @@
     </div>
     <div class="filter-item-box filter-item-date-box" *ngIf="toggleFilter">
       <div class="filter-item-type-container">
-        <span (click)="changeFilterType()" [ngClass]="toggleFilterType?'filter-item-date-active':'filter-item-date-inactive'"> Date </span>
+        <span
+          (click)="changeFilterType()"
+          [ngClass]="
+            toggleFilterType
+              ? 'filter-item-date-active'
+              : 'filter-item-date-inactive'
+          "
+        >
+          Date
+        </span>
         /
-        <span (click)="changeFilterType()" [ngClass]="!toggleFilterType?'filter-item-date-active':'filter-item-date-inactive'"> Range </span>
+        <span
+          (click)="changeFilterType()"
+          [ngClass]="
+            !toggleFilterType
+              ? 'filter-item-date-active'
+              : 'filter-item-date-inactive'
+          "
+        >
+          Range
+        </span>
       </div>
       <div class="filter-item-date-container" *ngIf="toggleFilterType">
-        <i class="fa-solid fa-arrow-down-short-wide"></i>
+        <input
+          type="date"
+          id="Date"
+          name="date"
+          class="filter-item-date-picker"
+        />
+        <div class="filter-item-date-get-btn">
+          <i class="fa-brands fa-get-pocket" (click)="getDateFiltered()"></i>
+        </div>
       </div>
-      <div class="filter-item-range-container"  *ngIf="!toggleFilterType">
-        <i class="fa-solid fa-arrow-up-short-wide"></i>
+      <div class="filter-item-range-container" *ngIf="!toggleFilterType">
+        <div class="filter-item-range-picker-container">
+          <input
+            type="date"
+            id="RangeFrom"
+            name="date1"
+            class="filter-item-range-picker"
+          />
+          --
+          <input
+            type="date"
+            id="RangeTo"
+            name="date2"
+            class="filter-item-range-picker"
+          />
+        </div>
+        <div class="filter-item-date-get-btn">
+          <i class="fa-brands fa-get-pocket" (click)="getRangeFiltered()"></i>
+        </div>
       </div>
     </div>
   </div>
@@ -48,7 +91,7 @@
       [ngClass]="filter_icon_style"
       (click)="sortAscending()"
     >
-    <i class="fa-solid fa-arrow-down-short-wide"></i>
+      <i class="fa-solid fa-arrow-down-short-wide"></i>
       <div class="filter-item-detail">Sort Ascending</div>
     </div>
   </div>
@@ -59,7 +102,7 @@
       [ngClass]="filter_icon_style"
       (click)="sortDescending()"
     >
-    <i class="fa-solid fa-arrow-up-short-wide"></i>
+      <i class="fa-solid fa-arrow-up-short-wide"></i>
       <div class="filter-item-detail">Sort Descending</div>
     </div>
   </div>

@@ -41,39 +41,89 @@
     transform: translateY(0px);
   }
 }
-.filter-item-date-box{
+.filter-item-date-box {
   width: 300px;
-  top: -86px;
-  left: -122px; 
+  top: -135px;
+  left: -137px;
   padding: 5px 0px;
+  background: snow;
+  z-index: 1;
 }
-.filter-item-type-container{
+.filter-item-type-container {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   font-weight: bold;
 }
-.filter-item-type-container span{
+.filter-item-type-container span {
   font-weight: bold;
   text-align: center;
   width: 35%;
   padding: 5px 0px;
 }
-.filter-item-date-active{
+.filter-item-date-active {
   color: var(--customer-blue);
-  border-bottom: 3px solid var(--customer-blue); 
+  border-bottom: 3px solid var(--customer-blue);
 }
-.filter-item-date-inactive{
-  opacity:0.5;
+.filter-item-date-inactive {
+  opacity: 0.5;
 }
-.filter-item-date-container{
+.filter-item-date-container {
   width: 100%;
+  background: snow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 16px;
 }
+.filter-item-range-container{
+  width: 100%;
+  background: snow;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 16px;
+}
+.filter-item-date-picker {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  width: 75%;
+  text-align: center;
+  text-transform: uppercase;
+}
+.filter-item-range-picker{
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  width: 42%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.filter-item-range-picker-container{
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.filter-item-date-get-btn {
+  margin-top: 10px;
+  width: 30%;
+  font-size: 21px;
+  color: var(--customer-blue);
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .filter-container {
   width: 83%;
   margin: 50px auto;
-  margin-top: 0px;
+  margin-top: 25px;
   padding: 10px 20px;
   display: flex;
   justify-content: flex-end;

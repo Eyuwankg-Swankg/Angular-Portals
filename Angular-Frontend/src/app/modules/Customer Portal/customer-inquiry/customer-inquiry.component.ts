@@ -331,13 +331,11 @@ export class CustomerInquiryComponent implements OnInit {
     MANDT: 'Client',
     VBELN: 'Sales Document',
     ERDAT: 'Record Created On',
-    ERZET: 'Entry Time',
   };
   columnDataType: any = {
     MANDT: 'number',
     VBELN: 'number',
     ERDAT: 'date',
-    ERZET: 'date',
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = inquiryDataTableHead;
