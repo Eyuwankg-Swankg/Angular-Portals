@@ -4,8 +4,6 @@ import {
   Input,
   Output,
   EventEmitter,
-  ViewChild,
-  ElementRef,
 } from '@angular/core';
 import { utils, WorkBook, WorkSheet, writeFile } from 'xlsx';
 import { ToastrService } from 'ngx-toastr';
@@ -30,7 +28,7 @@ export class TableComponentComponent implements OnInit {
   toggleFilter: boolean = false;
   toggleFilterType: boolean = true;
   searchPlaceHolder: string = '';
-  page_count: number = this.currentTableData.length / 5;
+  page_count: number = 0;
   current_page: number = 1;
   selectedColumn: number = -1;
 
@@ -40,14 +38,16 @@ export class TableComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentTableData = this.table_data;
+    this.page_count=Math.ceil(this.currentTableData.length/5);
     this.columnKeyValues = Object.keys(this.column_values);
     this.columnHeaderValues = Object.values(this.column_values);
-    console.log(
-      this.currentTableData,
-      this.columnKeyValues,
-      this.columnHeaderValues,
-      this.page_count
-    );
+    // console.log(
+    //   this.currentTableData,
+    //   this.columnKeyValues,
+    //   this.columnHeaderValues,
+    //   this.page_count,
+    //   this.currentTableData.length/5
+    // );
   }
   highlightHeader(columnName: number): void {
     if (this.selectedColumn == columnName) {
@@ -72,8 +72,6 @@ export class TableComponentComponent implements OnInit {
     if (this.selectedColumn == -1 && this.toggleSearch == true) {
       this.toggleSearch = false;
     }
-    console.log(this.columnKeyValues[this.selectedColumn]);
-    console.log(this.selectedColumn);
   }
   // SEARCH
   onShowSearch(): void {
@@ -104,6 +102,8 @@ export class TableComponentComponent implements OnInit {
       }
     }
     this.currentTableData = tempData;
+    this.page_count=Math.ceil(this.currentTableData.length/5);
+    this.current_page = 1;
   }
   /////////////////////
 
@@ -149,6 +149,8 @@ export class TableComponentComponent implements OnInit {
         }
       }
       this.currentTableData = tempData;
+      this.page_count=Math.ceil(this.currentTableData.length/5);
+      this.current_page = 1;
     }
   }
 
@@ -179,6 +181,8 @@ export class TableComponentComponent implements OnInit {
         }
       }
       this.currentTableData = tempData;
+      this.page_count=Math.ceil(this.currentTableData.length/5);
+      this.current_page = 1;
     }
   }
   //////////////////
@@ -258,17 +262,13 @@ export class TableComponentComponent implements OnInit {
   // RESET
   onReset(): void {
     this.currentTableData = this.table_data;
+    this.page_count=Math.ceil(this.currentTableData.length/5);
     this.toggleSearch = false;
     this.toggleFilter = false;
   }
   //////////
   counter(size: any): any {
-    console.log(size);
-    // const tempArray=[];
-    console.log(new Array(parseInt(size)).keys());
-    // console.log(tempArray);
-    // return tempArray;
-    return [1, 2];
+    return [...Array(size).keys()];
   }
   changeCurrentPage(page: number): void {
     this.current_page = page;
@@ -287,7 +287,6 @@ export class TableComponentComponent implements OnInit {
   }
   checkShowPage(rowNo:any):boolean{
     var tempRowNo=parseInt(rowNo)+1;
-    console.log(tempRowNo,this.current_page);
     if(tempRowNo==this.current_page)
       return true;
     else
@@ -306,8 +305,5 @@ export class TableComponentComponent implements OnInit {
 }
 
 // TODO:
-// CHECK DATE FILTERS
-// CHECK ZEBRA STYLING IN TABLE
-// CHECK DOWNLOAD USING PAGINANTION
-// CHANGE PAGINATION NO
+// CHECK TABLE HEIGHT
 // ADD SORT FOR TIME

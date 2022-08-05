@@ -1,5 +1,6 @@
 <div class="filter-container">
   <div class="filter-item-top-container">
+    
     <div
       class="filter-item-container"
       [ngClass]="filter_icon_style"
@@ -17,6 +18,7 @@
         (keyup)="onSearch($event)"
       />
     </div>
+
   </div>
   <div class="filter-item-top-container">
     <div
@@ -132,13 +134,13 @@
   <div class="pagination-numbers-container">
     <div
       class="pagination-left"
-      (click)="goLeftPage(currentTableData.length / 5)"
+      (click)="goLeftPage(page_count)"
     >
       <i class="fa-solid fa-angle-left"></i>
     </div>
     <ng-container
       *ngFor="
-        let pageNumber of counter(currentTableData.length / 5);
+        let pageNumber of counter(page_count);
         let pageIndex = index
       "
     >
@@ -156,7 +158,7 @@
     </ng-container>
     <div
       class="pagination-right"
-      (click)="goRightPage(currentTableData.length / 5)"
+      (click)="goRightPage(page_count)"
     >
       <i class="fa-solid fa-angle-right"></i>
     </div>
@@ -181,7 +183,7 @@
   <ng-container *ngFor="let item of currentTableData; let i = index">
     <tr
       class="table-row"
-      [ngClass]="checkShowPage(i / 5) ? ['style_class[0]'] : ['row-invisibility']"
+      [ngClass]="checkShowPage(i / 5) ? [style_class[0]] : ['row-invisibility']"
       (click)="sendToOpenModal(item)"
     >
       <ng-container *ngFor="let key of columnKeyValues">
