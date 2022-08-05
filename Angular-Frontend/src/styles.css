@@ -283,6 +283,44 @@ body {
   color:snow;
   background:var(--customer-blue);
 }
+
+.customer-selectedColumn {
+  color: var(--customer-blue);
+  background: #c8cfe6;
+}
+.customer-filter-item-box {
+  border: 2px solid var(--customer-blue);
+}
+.customer-filter-item-date-active {
+  color: var(--customer-blue);
+  border-bottom: 3px solid var(--customer-blue);
+}
+.customer-filter-item-date-get-btn {
+  color: var(--customer-blue);
+}
+.customer-filter-item-detail {
+  color: var(--customer-blue);
+}
+.customer-pagination-numbers-active{
+  border: 2px solid var(--customer-blue);
+  background: var(--customer-blue);
+}
+.customer-pagination-numbers-inactive{
+  border: 2px solid var(--customer-blue);
+  color: var(--customer-blue);
+}
+.customer-pagination-numbers:hover{
+  border: 2.5px solid var(--customer-blue);
+}
+.customer-pagination-arrows{
+  color: var(--customer-blue);
+}
+.customer-pagination-arrows:hover{
+  border:2px solid var(--customer-blue);
+}
+.customer-pagination-arrows:active{
+  background: var(--customer-blue);
+}
 /*          */
 /* Zebra s.table-rowiping */
 .employee-table-row:nth-of-type(odd) {

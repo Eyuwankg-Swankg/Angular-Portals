@@ -1,15 +1,14 @@
 <div class="filter-container">
   <div class="filter-item-top-container">
-    
     <div
       class="filter-item-container"
       [ngClass]="filter_icon_style"
       (click)="onShowSearch()"
     >
       <i class="fa-solid fa-magnifying-glass"></i>
-      <div class="filter-item-detail">Search</div>
+      <div class="filter-item-detail" [ngClass]="style_class[6]"  >Search</div>
     </div>
-    <div class="filter-item-box" *ngIf="toggleSearch">
+    <div class="filter-item-box" [ngClass]="style_class[3]" *ngIf="toggleSearch">
       <input
         type="text"
         id="search-input"
@@ -18,7 +17,6 @@
         (keyup)="onSearch($event)"
       />
     </div>
-
   </div>
   <div class="filter-item-top-container">
     <div
@@ -27,15 +25,15 @@
       (click)="onShowFilter()"
     >
       <i class="fa-solid fa-filter"></i>
-      <div class="filter-item-detail">Filter</div>
+      <div class="filter-item-detail" [ngClass]="style_class[6]"  >Filter</div>
     </div>
-    <div class="filter-item-box filter-item-date-box" *ngIf="toggleFilter">
+    <div class="filter-item-box filter-item-date-box"  [ngClass]="style_class[3]" *ngIf="toggleFilter">
       <div class="filter-item-type-container">
         <span
           (click)="changeFilterType()"
           [ngClass]="
             toggleFilterType
-              ? 'filter-item-date-active'
+              ? style_class[4]
               : 'filter-item-date-inactive'
           "
         >
@@ -46,7 +44,7 @@
           (click)="changeFilterType()"
           [ngClass]="
             !toggleFilterType
-              ? 'filter-item-date-active'
+              ? style_class[4]
               : 'filter-item-date-inactive'
           "
         >
@@ -60,7 +58,7 @@
           name="date"
           class="filter-item-date-picker"
         />
-        <div class="filter-item-date-get-btn">
+        <div class="filter-item-date-get-btn" [ngClass]="style_class[5]">
           <i class="fa-brands fa-get-pocket" (click)="getDateFiltered()"></i>
         </div>
       </div>
@@ -80,7 +78,7 @@
             class="filter-item-range-picker"
           />
         </div>
-        <div class="filter-item-date-get-btn">
+        <div class="filter-item-date-get-btn" [ngClass]="style_class[5]">
           <i class="fa-brands fa-get-pocket" (click)="getRangeFiltered()"></i>
         </div>
       </div>
@@ -94,7 +92,7 @@
       (click)="sortAscending()"
     >
       <i class="fa-solid fa-arrow-down-short-wide"></i>
-      <div class="filter-item-detail">Sort Ascending</div>
+      <div class="filter-item-detail" [ngClass]="style_class[6]"  >Sort Ascending</div>
     </div>
   </div>
 
@@ -105,7 +103,7 @@
       (click)="sortDescending()"
     >
       <i class="fa-solid fa-arrow-up-short-wide"></i>
-      <div class="filter-item-detail">Sort Descending</div>
+      <div class="filter-item-detail" [ngClass]="style_class[6]"  >Sort Descending</div>
     </div>
   </div>
 
@@ -116,7 +114,7 @@
       (click)="exportToExcel()"
     >
       <i class="fa-solid fa-file-arrow-down"></i>
-      <div class="filter-item-detail">Download</div>
+      <div class="filter-item-detail" [ngClass]="style_class[6]"  >Download</div>
     </div>
   </div>
   <div class="filter-item-top-container">
@@ -126,40 +124,31 @@
       (click)="onReset()"
     >
       <i class="fa-solid fa-arrows-rotate"></i>
-      <div class="filter-item-detail">Reset</div>
+      <div class="filter-item-detail" [ngClass]="style_class[6]" >Reset</div>
     </div>
   </div>
 </div>
 <div class="pagination-top-container">
   <div class="pagination-numbers-container">
-    <div
-      class="pagination-left"
-      (click)="goLeftPage(page_count)"
-    >
+    <div class="pagination-left" [ngClass]="style_class[10]"  (click)="goLeftPage(page_count)">
       <i class="fa-solid fa-angle-left"></i>
     </div>
     <ng-container
-      *ngFor="
-        let pageNumber of counter(page_count);
-        let pageIndex = index
-      "
+      *ngFor="let pageNumber of counter(page_count); let pageIndex = index"
     >
       <div
-        class="pagination-numbers"
+        class="pagination-numbers" [ngClass]="style_class[9]"
         [ngClass]="
           current_page == pageIndex + 1
-            ? 'pagination-numbers-active'
-            : 'pagination-numbers-inactive'
+            ? [style_class[7],'pagination-numbers-active']
+            : style_class[8]
         "
         (click)="changeCurrentPage(pageIndex + 1)"
       >
         {{ pageIndex + 1 }}
       </div>
     </ng-container>
-    <div
-      class="pagination-right"
-      (click)="goRightPage(page_count)"
-    >
+    <div class="pagination-right" [ngClass]="style_class[10]"  (click)="goRightPage(page_count)">
       <i class="fa-solid fa-angle-right"></i>
     </div>
   </div>
@@ -171,7 +160,7 @@
         class="table-heading"
         [ngClass]="
           ind == selectedColumn
-            ? ['selectedColumn', 'style_class[1]']
+            ? [style_class[2], style_class[1]]
             : [style_class[1]]
         "
         (click)="highlightHeader(ind)"
