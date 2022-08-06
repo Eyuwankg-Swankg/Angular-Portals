@@ -13,6 +13,7 @@ export class VendorGoodsReceiptComponent implements OnInit {
   modalTitle = 'GOODS RECEIPT DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   GoodsReceipt = [];
   columnValues :any = {
@@ -22,6 +23,13 @@ export class VendorGoodsReceiptComponent implements OnInit {
     MAT_DOC: '',
     PLANT:""
   };
+  columnDataType: any = {
+    VENDOR: 'string',
+    MATERIAL: 'number',
+    ENTRY_QNT:"number",
+    MAT_DOC: 'number',
+    PLANT:"number"
+  }
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = vendorGoodsReceiptTableHead;
@@ -45,6 +53,7 @@ export class VendorGoodsReceiptComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.GoodsReceipt = responseData.data;
+          this.noDataToggle=false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

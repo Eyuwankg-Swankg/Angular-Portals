@@ -1,5 +1,5 @@
 {
-  "tableStyleClass": ["vendor-table-row", "vendor-table-heading"],
+  "tableStyleClass": ["vendor-table-row", "vendor-table-heading","vendor-selectedColumn","vendor-filter-item-box","vendor-filter-item-date-active","vendor-filter-item-date-get-btn","vendor-filter-item-detail","vendor-pagination-numbers-active","vendor-pagination-numbers-inactive","vendor-pagination-numbers:hover","vendor-pagination-arrows","vendor-filter-icon"],
   "modalStyleClass": [
     "vendor-modal-box-text-color",
     "vendor-modal-box-title-bottom",

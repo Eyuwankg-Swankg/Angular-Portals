@@ -13,6 +13,7 @@ export class VendorCreditComponent implements OnInit {
   modalTitle = 'CREDIT DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   CreditList = [];
   columnValues :any = {
@@ -20,6 +21,12 @@ export class VendorCreditComponent implements OnInit {
     AMOUNT: '',
     ENTRY_DATE: '',
     DOC_NO: '',
+  };
+  columnDataType: any = {
+    VENDOR: 'string',
+    AMOUNT: 'number',
+    ENTRY_DATE: 'date',
+    DOC_NO: 'number',
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
@@ -44,6 +51,7 @@ export class VendorCreditComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.CreditList = responseData.data;
+          this.noDataToggle = false;
         }else{
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

@@ -16,8 +16,15 @@
   [style_class]="commonStyleValues.tableStyleClass"
   (display_modal)="showModal($event)"
   [column_values]="columnValues"
+  [column_data_types]="columnDataType"
+  [page_name]="'GOODS RECEIPT LIST'"
+  *ngIf="!noDataToggle && !loadingScreenToggle"
 >
 </app-table-component>
+<div class="no-data-container" *ngIf="noDataToggle && !loadingScreenToggle">
+  <img src="assets/Images/No-Data.png"  class="no-data-img" />
+  <h2>No Data</h2>
+</div>
 <app-modal-box
   *ngIf="modalToggle"
   class="modal-box-outer-container"

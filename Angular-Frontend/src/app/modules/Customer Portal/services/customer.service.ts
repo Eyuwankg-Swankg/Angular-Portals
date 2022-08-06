@@ -13,7 +13,6 @@ export class CustomerService {
     try {
       console.log("PERFECTO!!!")
       return JSON.parse(data);
-      // return { customer_id: 1223 };
     } catch (error) {
       return { customer_id: 12 };
     }

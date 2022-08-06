@@ -23,7 +23,6 @@ export class TableComponentComponent implements OnInit {
   currentTableData: any = [];
   columnKeyValues: string[] = [];
   columnHeaderValues: string[] = [];
-  filter_icon_style: any = ['customer-filter-icon'];
   toggleSearch: boolean = false;
   toggleFilter: boolean = false;
   toggleFilterType: boolean = true;
@@ -196,9 +195,28 @@ export class TableComponentComponent implements OnInit {
       var tempData: any = [];
       if (this.column_data_types[columnName] == 'number') {
         this.currentTableData.sort((a: any, b: any) => {
+          if(a[columnName]=='')
+            return 1;
+          if(b[columnName]=='')
+            return -1;
+          if(a[columnName]=='' && a[columnName]==b[columnName])
+            return 0;
           return parseInt(a[columnName]) - parseInt(b[columnName]);
         });
       } else if (this.column_data_types[columnName] == 'string') {
+        this.currentTableData.sort((a: any, b: any) => {
+        if(a[columnName]=='')
+          return 1;
+        if(b[columnName]=='')
+          return -1;
+        if(a[columnName]=='' && a[columnName]==b[columnName])
+          return 0;
+        if(a[columnName]>b[columnName])
+          return 1;
+        else if(a[columnName]<b[columnName])
+          return -1;
+        return 0;
+        });
       } else if (this.column_data_types[columnName] == 'date') {
         this.currentTableData.sort((a: any, b: any) => {
           const tempA: any = new Date(a[columnName]);
@@ -224,10 +242,30 @@ export class TableComponentComponent implements OnInit {
       var columnName = this.columnKeyValues[this.selectedColumn];
       var tempData: any = [];
       if (this.column_data_types[columnName] == 'number') {
+        //TODO: check for empty string
         this.currentTableData.sort((a: any, b: any) => {
+          if(a[columnName]=='')
+            return 1;
+          if(b[columnName]=='')
+            return -1;
+          if(a[columnName]=='' && a[columnName]==b[columnName])
+            return 0;
           return parseInt(b[columnName]) - parseInt(a[columnName]);
         });
       } else if (this.column_data_types[columnName] == 'string') {
+        this.currentTableData.sort((a: any, b: any) => {
+          if(a[columnName]=='')
+            return 1;
+          if(b[columnName]=='')
+            return -1;
+          if(a[columnName]=='' && a[columnName]==b[columnName])
+            return 0;
+          if(a[columnName]>b[columnName])
+            return -1;
+          else if(a[columnName]<b[columnName])
+            return 1;
+          return 0;
+        });
       } else if (this.column_data_types[columnName] == 'date') {
         this.currentTableData.sort((a: any, b: any) => {
           const tempA: any = new Date(a[columnName]);
@@ -305,5 +343,6 @@ export class TableComponentComponent implements OnInit {
 }
 
 // TODO:
+// SEARCH IN CASE INSENSITIVE
 // CHECK TABLE HEIGHT
 // ADD SORT FOR TIME

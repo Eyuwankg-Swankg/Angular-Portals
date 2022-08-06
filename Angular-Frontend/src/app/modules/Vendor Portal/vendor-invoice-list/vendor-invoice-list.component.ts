@@ -13,14 +13,21 @@ export class VendorInvoiceListComponent implements OnInit {
   modalTitle = 'INVOICE DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData :any = {};
   InvoiceList = [];
   columnValues: any = {
-    ENTRY_DATE: '',
     INV_DOC_NO: '',
-    DOC_DATE: '',
     GROSS_AMNT: '',
+    ENTRY_DATE: '',
+    DOC_DATE: '',
   };
+  columnDataType: any = {
+    ENTRY_DATE: 'date',
+    INV_DOC_NO: 'number',
+    DOC_DATE: 'date',
+    GROSS_AMNT: 'number',
+  }
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = vendorInvoiceDetailTableHead;
@@ -44,6 +51,7 @@ export class VendorInvoiceListComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.InvoiceList = responseData.data;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

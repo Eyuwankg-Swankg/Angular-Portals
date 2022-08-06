@@ -13,13 +13,20 @@ export class VendorPaymentAgingComponent implements OnInit {
   modalTitle = 'Payment Aging Details';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   PaymentAging = [];
   columnValues :any = {
     VENDOR: '',
-    AMOUNT: '',
     DOC_NO: '',
+    AMOUNT: '',
     ENTRY_DATE: '',
+  };
+  columnDataType: any = {
+    VENDOR: 'string',
+    AMOUNT: 'number',
+    DOC_NO: 'number',
+    ENTRY_DATE: 'date',
   };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
@@ -44,6 +51,7 @@ export class VendorPaymentAgingComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.PaymentAging = responseData.data;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

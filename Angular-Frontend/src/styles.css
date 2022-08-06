@@ -347,6 +347,54 @@ body {
 .vendor-table-row:hover .table-element {
   background: #bc4465;
 }
+.vendor-filter-icon{
+  border: 2px solid var(--vendor-pink);
+  color:var(--vendor-pink);
+}
+.vendor-filter-icon:hover{
+  color:snow;
+  background:var(--vendor-pink);
+}
+
+.vendor-selectedColumn {
+  color: var(--vendor-pink);
+  background: #ffe5ea;;
+}
+.vendor-filter-item-box {
+  border: 2px solid var(--vendor-pink);
+}
+.vendor-filter-item-date-active {
+  color: var(--vendor-pink);
+  border-bottom: 3px solid var(--vendor-pink);
+}
+.vendor-filter-item-date-get-btn {
+  color: var(--vendor-pink);
+}
+.vendor-filter-item-detail {
+  color: var(--vendor-pink);
+}
+.vendor-pagination-numbers-active{
+  border: 2px solid var(--vendor-pink);
+  background: var(--vendor-pink);
+}
+.vendor-pagination-numbers-inactive{
+  border: 2px solid var(--vendor-pink);
+  color: var(--vendor-pink);
+}
+.vendor-pagination-numbers:hover{
+  border: 2.5px solid var(--vendor-pink);
+}
+.vendor-pagination-arrows{
+  color: var(--vendor-pink);
+}
+.vendor-pagination-arrows:hover{
+  border:2px solid var(--vendor-pink) !important;
+}
+.vendor-pagination-arrows:active{
+  background: var(--vendor-pink);
+  border:2px solid var(--vendor-pink) !important;
+}
+
 /*          */
 /* END OF TABLE STYLES */
 

@@ -12,8 +12,8 @@ export class VendorService {
     var data: any = localStorage.getItem('Vendor');
     try {
       console.log("PERFECTO!!!")
-      return JSON.parse(data);
-      //return { vendor_id: '5' };
+      // return JSON.parse(data);
+      return { vendor_id: 'MOHANRAJ' };
     } catch (error) {
       return { vendor_id: 'MOHANRAJ' };
     }

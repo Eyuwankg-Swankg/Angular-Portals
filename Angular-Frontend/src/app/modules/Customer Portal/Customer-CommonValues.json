@@ -1,5 +1,5 @@
 {
-  "tableStyleClass": ["customer-table-row", "customer-table-heading","customer-selectedColumn","customer-filter-item-box","customer-filter-item-date-active","customer-filter-item-date-get-btn","customer-filter-item-detail","customer-pagination-numbers-active","customer-pagination-numbers-inactive","customer-pagination-numbers:hover","customer-pagination-arrows"],
+  "tableStyleClass": ["customer-table-row", "customer-table-heading","customer-selectedColumn","customer-filter-item-box","customer-filter-item-date-active","customer-filter-item-date-get-btn","customer-filter-item-detail","customer-pagination-numbers-active","customer-pagination-numbers-inactive","customer-pagination-numbers:hover","customer-pagination-arrows","customer-filter-icon"],
   "modalStyleClass": [
     "customer-modal-box-text-color",
     "customer-modal-box-title-bottom",

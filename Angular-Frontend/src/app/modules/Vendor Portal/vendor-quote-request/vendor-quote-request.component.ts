@@ -13,6 +13,7 @@ export class VendorQuoteRequestComponent implements OnInit {
   modalTitle = 'QUOTE REQUEST DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   QuoteRequest = [];
   columnValues :any = {
@@ -21,6 +22,12 @@ export class VendorQuoteRequestComponent implements OnInit {
     BUKRS:"",
     AEDAT: '',
   };
+  columnDataType: any = {
+    MANDT:"number",
+    EBELN:"number",
+    BUKRS:"number",
+    AEDAT: "date",
+  }
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = vendorRequestForQuotationTableHead;
@@ -44,6 +51,7 @@ export class VendorQuoteRequestComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.QuoteRequest = responseData.data;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

@@ -13,6 +13,7 @@ export class VendorDebitComponent implements OnInit {
   modalTitle = 'DEBIT DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   DebitList = [];
   columnValues : any = {
@@ -21,6 +22,12 @@ export class VendorDebitComponent implements OnInit {
     ENTRY_DATE: '',
     DOC_NO: '',
   };
+  columnDataType: any = {
+    VENDOR: 'string',
+    AMOUNT: 'number',
+    ENTRY_DATE: 'date',
+    DOC_NO: 'number',
+  }
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = vendorCreditDebitDemoTableHead;
@@ -44,6 +51,7 @@ export class VendorDebitComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.DebitList = responseData.data;
+          this.noDataToggle = false;
         }
         else{
           this.toaster.error('NO DATA', '', {

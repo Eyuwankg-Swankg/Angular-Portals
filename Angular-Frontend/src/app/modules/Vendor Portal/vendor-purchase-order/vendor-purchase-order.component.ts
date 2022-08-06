@@ -13,6 +13,7 @@ export class VendorPurchaseOrderComponent implements OnInit {
   modalTitle = 'PURCHASE ORDER DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   PurchaseOrder = [];
   columnValues = {
@@ -20,6 +21,11 @@ export class VendorPurchaseOrderComponent implements OnInit {
     SHORT_TEXT:"Description",
     NET_PRICE:"Net price"
   };
+  columnDataType: any = {
+    PO_NUMBER:"number",
+    SHORT_TEXT:"string",
+    NET_PRICE:"number"
+  }
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
   modalDataHeader=vendorPurchaseOrderTableHead;
@@ -35,6 +41,7 @@ export class VendorPurchaseOrderComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.PurchaseOrder = responseData.data;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,
