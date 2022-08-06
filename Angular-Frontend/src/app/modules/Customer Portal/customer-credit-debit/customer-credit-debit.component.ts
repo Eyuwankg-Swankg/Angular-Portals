@@ -17,6 +17,8 @@ export class CustomerCreditDebitComponent implements OnInit {
   DebitList = {};
   loadingScreenToggle: boolean = true;
   toggleCreditDebit: boolean = true;
+  noDataToggleCredit:boolean=true;
+  noDataToggleDebit:boolean=true;
   customerDetails: any = {};
   columnValuesCredit :any = {
     CUSTOMER:"",
@@ -24,11 +26,23 @@ export class CustomerCreditDebitComponent implements OnInit {
     AMOUNT: '',
     BILL_DOC: '',
   };
+  columnDataTypeCredit:any = {
+    CUSTOMER:"number",
+    ENTRY_DATE:"date",
+    AMOUNT: ' number',
+    BILL_DOC: 'number',
+  };
   columnValuesDebit :any = {
     CUSTOMER:"",
     ENTRY_DATE:"",
     AMOUNT: '',
     BILL_DOC: '',
+  };
+  columnDataTypeDebit:any = {
+    CUSTOMER:"number",
+    ENTRY_DATE:"date",
+    AMOUNT: ' number',
+    BILL_DOC: 'number',
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = customerCreditDebitTableHead;
@@ -53,6 +67,7 @@ export class CustomerCreditDebitComponent implements OnInit {
       (responseData) => {
         if (responseData.data != 'NO DATA') {
           this.CreditList = responseData.data;
+          this.noDataToggleCredit=false;
         } else {
           this.toaster.error('NO CREDIT DATA ', '', {
             timeOut: 1500,
@@ -72,6 +87,7 @@ export class CustomerCreditDebitComponent implements OnInit {
       (responseData) => {
         if (responseData.data != 'NO DATA') {
           this.DebitList = responseData.data;
+          this.noDataToggleDebit=false;
         } else {
           this.toaster.error('NO DEBIT DATA ', '', {
             timeOut: 1500,

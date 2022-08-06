@@ -364,6 +364,7 @@ router.post("/deliverylist", (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.send({ data: "NO DATA" });
     });
 });
 
@@ -417,6 +418,7 @@ router.post("/paymentaging", (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.send({ data: "NO DATA" });
     });
 });
 
@@ -466,6 +468,7 @@ router.post("/debitmemo", (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.send({ data: "NO DATA" });
     });
 });
 
@@ -515,6 +518,7 @@ router.post("/creditmemo", (req, res) => {
     })
     .catch(function (error) {
       console.log(error);
+      res.send({ data: "NO DATA" });
     });
 });
 

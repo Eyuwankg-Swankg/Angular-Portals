@@ -15,6 +15,7 @@ export class CustomerOverallSalesComponent implements OnInit {
   loadingScreenToggle: boolean = true;
   modalTitle = 'OVERALL SALES DETAILS';
   modalToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   columnValues: any = {
     SD_DOC: '',
@@ -22,6 +23,13 @@ export class CustomerOverallSalesComponent implements OnInit {
     REQ_QTY: '',
     CREATION_DATE: '',
     REQ_DATE: '',
+  };
+  columnDataType: any = {
+    SD_DOC: 'number',
+    ITM_NUMBER: 'number',
+    REQ_QTY: 'number',
+    CREATION_DATE: 'date',
+    REQ_DATE: 'date',
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = customerSalesDataTableHead;
@@ -43,6 +51,7 @@ export class CustomerOverallSalesComponent implements OnInit {
         console.log(responseData.data);
         if (responseData.data != 'NO DATA') {
           this.overallSalesData = responseData.data;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

@@ -305,6 +305,5 @@ export class TableComponentComponent implements OnInit {
 }
 
 // TODO:
-// CHECK REUSABILITY COLOR OF TABLE COMPONENT
 // CHECK TABLE HEIGHT
 // ADD SORT FOR TIME

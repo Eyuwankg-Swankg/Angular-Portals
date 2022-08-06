@@ -15,13 +15,19 @@ export class CustomerDeliveryComponent implements OnInit {
   modalData = {};
   loadingScreenToggle: boolean = true;
   DeliveryList = [];
+  noDataToggle: boolean = true;
   customerDetails: any = {};
   columnValues :any = {
     MANDT: 'Client',
     VBELN: 'Delivery',
     MATNR: 'Material Number',
     ERDAT: 'Entry Date',
-    ERZET: 'Entry Time',
+  };
+  columnDataType: any = {
+    MANDT: 'number',
+    VBELN: 'number',
+    MATNR: 'number',
+    ERDAT: 'date',
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = customerListOfDeliveryTableHead;
@@ -44,6 +50,7 @@ export class CustomerDeliveryComponent implements OnInit {
         console.log('Delivery Data', responseData.data);
         if (responseData.data != []) {
           this.DeliveryList = responseData.data;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

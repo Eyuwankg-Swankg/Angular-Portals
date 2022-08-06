@@ -14,6 +14,7 @@ export class CustomerInvoiceComponent implements OnInit {
   modalToggle = false;
   modalData :any = {};
   loadingScreenToggle: boolean = true;
+  noDataToggle: boolean = true;
   customerDetails: any = {};
   InvoiceList = [];
   columnValues :any= {
@@ -21,6 +22,12 @@ export class CustomerInvoiceComponent implements OnInit {
     VBELN: '',
     FKDAT: '',
     NETWR: '',
+  };
+  columnDataType: any = {
+    MANDT: 'number',
+    VBELN: 'number',
+    FKDAT: 'date',
+    NETWR: 'number',
   };
   commonStyleValues:any=CommonValues;
   modalDataHeader: any = invoiceDetailsTableHead;
@@ -41,6 +48,7 @@ export class CustomerInvoiceComponent implements OnInit {
       (responseData) => {
         if (responseData.data != "NO DATA") {
           this.InvoiceList = responseData.data;
+          this.noDataToggle = false;
         }
         else{
           this.toaster.error('NO DATA', '', {

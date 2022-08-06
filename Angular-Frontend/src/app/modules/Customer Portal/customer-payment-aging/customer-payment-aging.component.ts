@@ -15,6 +15,7 @@ export class CustomerPaymentAgingComponent implements OnInit {
   modalData = {};
   PaymentAgingList = {};
   loadingScreenToggle: boolean = true;
+  noDataToggle: boolean = true;
   customerDetails: any = {};
   columnValues :any= {
     COMP_CODE: '',
@@ -22,6 +23,13 @@ export class CustomerPaymentAgingComponent implements OnInit {
     AMOUNT: '',
     FISC_YEAR: '',
     ENTRY_DATE: '',
+  };
+  columnDataType: any = {
+    COMP_CODE: 'number',
+    CUSTOMER: 'number',
+    AMOUNT: 'number',
+    FISC_YEAR: 'number',
+    ENTRY_DATE: 'date',
   };
   commonStyleValues:any=CommonValues;
   modalDataHeader: any = customerPaymentAndAgingTableHead;
@@ -42,6 +50,7 @@ export class CustomerPaymentAgingComponent implements OnInit {
       (responseData) => {
         if (responseData.data!= 'NO DATA') {
           this.PaymentAgingList = responseData.data;
+          this.noDataToggle = false;
         }
         else{
           this.toaster.error('NO DATA', '', {

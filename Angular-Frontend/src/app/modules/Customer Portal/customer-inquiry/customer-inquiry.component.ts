@@ -13,8 +13,7 @@ export class CustomerInquiryComponent implements OnInit {
   modalTitle = 'INQUIRY DETAILS';
   modalToggle = false;
   modalData = {};
-    // TODO: NEW ADDITION
-    noDataToggle: boolean = true;
+  noDataToggle: boolean = true;
   loadingScreenToggle: boolean = true;
   InquiryList = [
     {

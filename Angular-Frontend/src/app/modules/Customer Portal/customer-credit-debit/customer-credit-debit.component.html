@@ -27,6 +27,13 @@
     DEBIT
   </span>
 </div>
+<!-- TODO: fix this -->
+<app-loading-screen
+  class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
+  [loading_class]="'customer-loading-screeen'"
+  *ngIf="loadingScreenToggle"
+></app-loading-screen>
+
 <!-- CREDIT TABLE -->
 <ng-container *ngIf="toggleCreditDebit">
   <app-table-component
@@ -34,8 +41,15 @@
     [style_class]="commonStyleValues.tableStyleClass"
     (display_modal)="showModal($event)"
     [column_values]="columnValuesCredit"
+    [column_data_types]="columnDataTypeCredit"
+  [page_name]="'CREDIT LIST'"
+  *ngIf="!noDataToggleCredit && !loadingScreenToggle"
   >
   </app-table-component>
+  <div class="no-data-container" *ngIf="noDataToggleCredit && !loadingScreenToggle">
+    <img src="assets/Images/No-Data.png"  class="no-data-img" />
+    <h2>No Data</h2>
+  </div>
 </ng-container>
 <!-- DEBIT TABLE -->
 <ng-container *ngIf="!toggleCreditDebit">
@@ -44,8 +58,15 @@
     [style_class]="commonStyleValues.tableStyleClass"
     (display_modal)="showModal($event)"
     [column_values]="columnValuesDebit"
+    [column_data_types]="columnDataTypeDebit"
+  [page_name]="'DEBIT LIST'"
+  *ngIf="!noDataToggleDebit && !loadingScreenToggle"
   >
   </app-table-component>
+  <div class="no-data-container" *ngIf="noDataToggleDebit && !loadingScreenToggle">
+    <img src="assets/Images/No-Data.png"  class="no-data-img" />
+    <h2>No Data</h2>
+  </div>
 </ng-container>
 
 <app-modal-box
@@ -57,9 +78,3 @@
   (close_modal)="closeModal()"
   [modal_style_class]="commonStyleValues.modalStyleClass"
 ></app-modal-box>
-<!-- TODO: fix this -->
-<app-loading-screen
-  class="loading-screen-container {{ loadingScreenToggle ? '' : 'fadeaway' }}"
-  [loading_class]="'customer-loading-screeen'"
-  *ngIf="loadingScreenToggle"
-></app-loading-screen>
