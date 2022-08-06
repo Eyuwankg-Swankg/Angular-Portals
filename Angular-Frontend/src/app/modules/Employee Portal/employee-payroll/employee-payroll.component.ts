@@ -13,6 +13,7 @@ export class EmployeePayrollComponent implements OnInit {
   modalTitle = 'PAYROLL DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData: any = {};
   PayrollData = [];
   columnValues :any = {
@@ -21,6 +22,12 @@ export class EmployeePayrollComponent implements OnInit {
     PAYTYPE_TEXT: '',
     SEQUENCENUMBER: '',
   };
+  columnDataType: any = {
+    FPPERIOD: 'number',
+    PAYDATE: 'date',
+    PAYTYPE_TEXT: 'string',
+    SEQUENCENUMBER: 'number',
+  }
   employeeDetails = {};
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = employeePaySlipTableHead;
@@ -42,6 +49,7 @@ export class EmployeePayrollComponent implements OnInit {
       (responseData) => {
         if (responseData.data.PayrollDetails != '') {
           this.PayrollData = responseData.data.PayrollDetails;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

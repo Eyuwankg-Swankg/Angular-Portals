@@ -13,13 +13,22 @@ export class EmployeeLeaveDataComponent implements OnInit {
   modalTitle = 'LEAVE DATA DETAILS';
   modalToggle = false;
   loadingScreenToggle: boolean = false;
+  noDataToggle: boolean = true;
   modalData = {};
   LeaveData = [];
   columnValues :any = {
-    ABSENCEDAYS: '',
     EMPLOYEENO: '',
-    NAMEOFABSENCETYPE: '',
     VALIDBEGIN: '',
+    VALIDEND:'',
+    ABSENCEDAYS: '',
+    NAMEOFABSENCETYPE: '',
+  };
+  columnDataType: any = {
+    EMPLOYEENO: 'number',
+    VALIDBEGIN: 'date',
+    VALIDEND:'date',
+    ABSENCEDAYS: 'number',
+    NAMEOFABSENCETYPE: 'string',
   };
   employeeDetails = {};
   commonStyleValues: any = CommonValues;
@@ -43,6 +52,7 @@ export class EmployeeLeaveDataComponent implements OnInit {
         this.LeaveData = responseData.data;
         if (responseData.data.LeaveDataDetails != '') {
           this.LeaveData = responseData.data.LeaveDataDetails;
+          this.noDataToggle = false;
         } else {
           this.toaster.error('NO DATA', '', {
             timeOut: 1500,

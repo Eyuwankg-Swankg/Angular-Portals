@@ -1,5 +1,5 @@
 {
-  "tableStyleClass": ["employee-table-row", "employee-table-heading"],
+  "tableStyleClass": ["employee-table-row", "employee-table-heading","employee-selectedColumn","employee-filter-item-box","employee-filter-item-date-active","employee-filter-item-date-get-btn","employee-filter-item-detail","employee-pagination-numbers-active","employee-pagination-numbers-inactive","employee-pagination-numbers:hover","employee-pagination-arrows","employee-filter-icon"],
   "modalStyleClass": [
     "employee-modal-box-text-color",
     "employee-modal-box-title-bottom",

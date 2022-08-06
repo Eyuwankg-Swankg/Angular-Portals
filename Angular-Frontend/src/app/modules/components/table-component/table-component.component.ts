@@ -96,7 +96,7 @@ export class TableComponentComponent implements OnInit {
     var tempData = [];
     for (var item of this.table_data) {
       var itemData = item[this.columnKeyValues[this.selectedColumn]];
-      if (searchInput.value == itemData.substr(0, searchInput.value.length)) {
+      if (searchInput.value.toLowerCase() == itemData.substr(0, searchInput.value.length).toLowerCase()) {
         tempData.push(item);
       }
     }

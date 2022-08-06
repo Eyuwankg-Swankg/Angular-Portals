@@ -335,6 +335,53 @@ body {
 .employee-table-row:hover .table-element {
   background: #148082;
 }
+.employee-filter-icon{
+  border: 2px solid var(--employee-green);
+  color:var(--employee-green);
+}
+.employee-filter-icon:hover{
+  color:snow;
+  background:var(--employee-green);
+}
+
+.employee-selectedColumn {
+  color: var(--employee-green);
+  background: #c7f5f7;
+}
+.employee-filter-item-box {
+  border: 2px solid var(--employee-green);
+}
+.employee-filter-item-date-active {
+  color: var(--employee-green);
+  border-bottom: 3px solid var(--employee-green);
+}
+.employee-filter-item-date-get-btn {
+  color: var(--employee-green);
+}
+.employee-filter-item-detail {
+  color: var(--employee-green);
+}
+.employee-pagination-numbers-active{
+  border: 2px solid var(--employee-green);
+  background: var(--employee-green);
+}
+.employee-pagination-numbers-inactive{
+  border: 2px solid var(--employee-green);
+  color: var(--employee-green);
+}
+.employee-pagination-numbers:hover{
+  border: 2.5px solid var(--employee-green);
+}
+.employee-pagination-arrows{
+  color: var(--employee-green);
+}
+.employee-pagination-arrows:hover{
+  border:2px solid var(--employee-green) !important;
+}
+.employee-pagination-arrows:active{
+  background: var(--employee-green);
+  border:2px solid var(--employee-green) !important;
+}
 /*          */
 /* Zebra s.table-rowiping */
 .vendor-table-row:nth-of-type(odd) {

@@ -12,7 +12,8 @@ export class EmployeeService {
     var data: any = localStorage.getItem('Employee');
     try {
       console.log('PERFECTO!!!');
-      return JSON.parse(data);
+      // return JSON.parse(data);
+      return { employee_id: '3'};
     } catch (error) {
       return { employee_id: '3'};
     }
