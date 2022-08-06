@@ -275,14 +275,11 @@
 .pagination-right{
   margin-left:35px;
 }
-/* TODO: FIX THIS */
 .pagination-left:hover,.pagination-right:hover{
-  border:2px solid var(--customer-blue);
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2); 
   transform: scale(1.05);
 }
 .pagination-left:active,.pagination-right:active{
-  background: var(--customer-blue);
   transition: 0.2s;
   transform: translateY(1px);
   color:snow;

@@ -316,11 +316,13 @@ body {
   color: var(--customer-blue);
 }
 .customer-pagination-arrows:hover{
-  border:2px solid var(--customer-blue);
+  border:2px solid var(--customer-blue) !important;
 }
 .customer-pagination-arrows:active{
   background: var(--customer-blue);
+  border:2px solid var(--customer-blue) !important;
 }
+
 /*          */
 /* Zebra s.table-rowiping */
 .employee-table-row:nth-of-type(odd) {
