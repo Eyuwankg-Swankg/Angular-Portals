@@ -18,16 +18,16 @@ export class CustomerInvoiceComponent implements OnInit {
   customerDetails: any = {};
   InvoiceList = [];
   columnValues :any= {
-    MANDT: '',
     VBELN: '',
     FKDAT: '',
     NETWR: '',
+    FKART:"",FKART_RL:""
   };
   columnDataType: any = {
-    MANDT: 'number',
     VBELN: 'number',
     FKDAT: 'date',
     NETWR: 'number',
+    FKART:"string",FKART_RL:"string"
   };
   commonStyleValues:any=CommonValues;
   modalDataHeader: any = invoiceDetailsTableHead;

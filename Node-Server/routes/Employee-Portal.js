@@ -203,6 +203,7 @@ router.post("/employee_payslip", (req, res) => {
      <urn:ZFM_SAKTHI_EMP_PAYSLIP>
         <PERSONALNO>${req.body.employee_id}</PERSONALNO>
         <SEQNO>${req.body.sequence_no}</SEQNO>
+        <PAYSLIPVARIENT>1</PAYSLIPVARIENT>
      </urn:ZFM_SAKTHI_EMP_PAYSLIP>
   </soapenv:Body>
 </soapenv:Envelope>`;

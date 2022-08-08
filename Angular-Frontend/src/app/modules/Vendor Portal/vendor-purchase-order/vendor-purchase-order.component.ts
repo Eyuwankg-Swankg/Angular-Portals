@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { VendorService } from '../service/vendor.service';
 import CommonValues from '../Vendor-CommonValues.json';
-import vendorPurchaseOrderTableHead from "./Vendor-Purchase-Order"
+import vendorPurchaseOrderTableHead from './Vendor-Purchase-Order';
 @Component({
   selector: 'app-vendor-purchase-order',
   templateUrl: './vendor-purchase-order.component.html',
@@ -17,19 +17,27 @@ export class VendorPurchaseOrderComponent implements OnInit {
   modalData = {};
   PurchaseOrder = [];
   columnValues = {
-    PO_NUMBER:"Purchase Document No",
-    SHORT_TEXT:"Description",
-    NET_PRICE:"Net price"
+    PO_NUMBER: 'Purchase Document No',
+    SHORT_TEXT: 'Description',
+    INFO_REC: 'Purchase Info Record',
+    DISP_QUAN: 'Display quantity',
+    NET_PRICE: 'Net price',
   };
   columnDataType: any = {
-    PO_NUMBER:"number",
-    SHORT_TEXT:"string",
-    NET_PRICE:"number"
-  }
+    PO_NUMBER: 'number',
+    SHORT_TEXT: 'string',
+    INFO_REC:"number",
+    DISP_QUAN:"number",
+    NET_PRICE: 'number',
+  };
   vendorDetails = {};
   commonStyleValues: any = CommonValues;
-  modalDataHeader=vendorPurchaseOrderTableHead;
-  constructor(private vendorService: VendorService,private toaster: ToastrService, private router: Router) {}
+  modalDataHeader = vendorPurchaseOrderTableHead;
+  constructor(
+    private vendorService: VendorService,
+    private toaster: ToastrService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loadingScreenToggle = !this.loadingScreenToggle;

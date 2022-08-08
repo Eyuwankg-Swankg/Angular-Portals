@@ -13,23 +13,23 @@ export class CustomerPaymentAgingComponent implements OnInit {
   modalTitle = 'PAYMENT & AGING DETAILS';
   modalToggle = false;
   modalData = {};
-  PaymentAgingList = {};
+  PaymentAgingList:any = {};
   loadingScreenToggle: boolean = true;
   noDataToggle: boolean = true;
-  customerDetails: any = {};
+  customerDetails: any = [];
   columnValues :any= {
-    COMP_CODE: '',
     CUSTOMER: '',
     AMOUNT: '',
     FISC_YEAR: '',
     ENTRY_DATE: '',
+    AGING:""
   };
   columnDataType: any = {
-    COMP_CODE: 'number',
     CUSTOMER: 'number',
     AMOUNT: 'number',
     FISC_YEAR: 'number',
     ENTRY_DATE: 'date',
+    AGING:"number"
   };
   commonStyleValues:any=CommonValues;
   modalDataHeader: any = customerPaymentAndAgingTableHead;
@@ -50,6 +50,16 @@ export class CustomerPaymentAgingComponent implements OnInit {
       (responseData) => {
         if (responseData.data!= 'NO DATA') {
           this.PaymentAgingList = responseData.data;
+          const currentDate = new Date();
+          for (let i = 0; i < this.PaymentAgingList.length; i++) {
+            const entryDate: any = new Date(this.PaymentAgingList[i]['ENTRY_DATE']);
+            const difference_in_date =
+              currentDate.getTime() - entryDate.getTime();
+            const difference_in_days: any = Math.trunc(
+              difference_in_date / (1000 * 3600 * 24)
+            );
+            this.PaymentAgingList[i]['AGING'] = `${difference_in_days}`;
+          }
           this.noDataToggle = false;
         }
         else{

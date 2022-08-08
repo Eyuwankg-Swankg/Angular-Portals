@@ -327,14 +327,18 @@ export class CustomerInquiryComponent implements OnInit {
   ];
   customerDetails: any = {};
   columnValues = {
-    MANDT: 'Client',
     VBELN: 'Sales Document',
     ERDAT: 'Record Created On',
+    ANGDT:"Inquiry Validity From",
+    VDATU:"Requested delivery date",
+    NETWR:"Net Value of the Sales Order"
   };
   columnDataType: any = {
-    MANDT: 'number',
     VBELN: 'number',
     ERDAT: 'date',
+    ANGDT:'date',
+    VDATU:"date",
+    NETWR:'number'
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = inquiryDataTableHead;

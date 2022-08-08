@@ -22,26 +22,26 @@ export class CustomerCreditDebitComponent implements OnInit {
   customerDetails: any = {};
   columnValuesCredit :any = {
     CUSTOMER:"",
+    BILL_DOC: '',
     ENTRY_DATE:"",
     AMOUNT: '',
-    BILL_DOC: '',
   };
   columnDataTypeCredit:any = {
     CUSTOMER:"number",
     ENTRY_DATE:"date",
-    AMOUNT: ' number',
+    AMOUNT: 'number',
     BILL_DOC: 'number',
   };
   columnValuesDebit :any = {
     CUSTOMER:"",
-    ENTRY_DATE:"",
-    AMOUNT: '',
     BILL_DOC: '',
+    ENTRY_DATE:"",
+    AMOUNT: ''
   };
   columnDataTypeDebit:any = {
     CUSTOMER:"number",
     ENTRY_DATE:"date",
-    AMOUNT: ' number',
+    AMOUNT: 'number',
     BILL_DOC: 'number',
   };
   commonStyleValues: any = CommonValues;

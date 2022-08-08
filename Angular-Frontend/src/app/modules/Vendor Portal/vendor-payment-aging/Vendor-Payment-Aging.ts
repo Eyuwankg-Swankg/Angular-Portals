@@ -1,4 +1,5 @@
 const vendorPaymentAndAgingTableHead={
+  "AGING":"Aging Days",
   "COMP_CODE": "Company Code",
   "VENDOR": "Vendor No",
   "SP_GL_IND": "Special G/L Indicator",

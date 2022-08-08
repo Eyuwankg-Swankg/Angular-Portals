@@ -17,13 +17,14 @@ export class EmployeePayrollComponent implements OnInit {
   modalData: any = {};
   PayrollData = [];
   columnValues :any = {
-    FPPERIOD: '',
-    PAYDATE: '',
+    SEQUENCENUMBER:"",
     PAYTYPE_TEXT: '',
-    SEQUENCENUMBER: '',
+    FPBEGIN:"",
+    PAYDATE: '',  
+    PAYID:"",
   };
   columnDataType: any = {
-    FPPERIOD: 'number',
+    FPBEGIN:"date",
     PAYDATE: 'date',
     PAYTYPE_TEXT: 'string',
     SEQUENCENUMBER: 'number',

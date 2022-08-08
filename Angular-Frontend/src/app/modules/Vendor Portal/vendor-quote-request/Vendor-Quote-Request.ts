@@ -1,6 +1,6 @@
 const vendorRequestForQuotationTableHead={
   "MANDT": "Client",
-  "EBELN": "Purchasing Docu No",
+  "EBELN": "Purchasing Doc No",
   "BUKRS": "Company Code",
   "BSTYP": "pruchasing Document",
   "BSART": "Purchasing Document Type",

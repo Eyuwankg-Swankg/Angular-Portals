@@ -17,16 +17,16 @@ export class VendorQuoteRequestComponent implements OnInit {
   modalData = {};
   QuoteRequest = [];
   columnValues :any = {
-    MANDT:"",
     EBELN:"",
-    BUKRS:"",
+    LIFNR:"",
     AEDAT: '',
+    KDATE:"",
   };
   columnDataType: any = {
-    MANDT:"number",
     EBELN:"number",
-    BUKRS:"number",
     AEDAT: "date",
+    LIFNR:"number",
+    KDATE:"date"
   }
   vendorDetails = {};
   commonStyleValues: any = CommonValues;

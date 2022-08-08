@@ -19,17 +19,17 @@ export class CustomerOverallSalesComponent implements OnInit {
   modalData = {};
   columnValues: any = {
     SD_DOC: '',
-    ITM_NUMBER: '',
+    SHORT_TEXT:"",
     REQ_QTY: '',
-    CREATION_DATE: '',
     REQ_DATE: '',
+    NET_VAL_HD:""
   };
   columnDataType: any = {
     SD_DOC: 'number',
-    ITM_NUMBER: 'number',
+    SHORT_TEXT:"string",
     REQ_QTY: 'number',
-    CREATION_DATE: 'date',
     REQ_DATE: 'date',
+    NET_VAL_HD:"number"
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = customerSalesDataTableHead;

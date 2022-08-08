@@ -16,15 +16,6 @@
   </app-portal-card>
   <app-portal-card
     class="card card-container"
-    (click)="goToPurchaseOrder()"
-    [image_path]="cardImage.purchaseOrder"
-    [portal_name]="cardName[1]"
-    [overlay_color]="cardOverlayColor.purchaseOrder"
-    style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
-  >
-  </app-portal-card>
-  <app-portal-card
-    class="card card-container"
     (click)="goToGoodsReceipt()"
     [image_path]="cardImage.goodsReceipt"
     [portal_name]="cardName[2]"
@@ -32,6 +23,15 @@
     style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
   >
   </app-portal-card>
+  <app-portal-card
+  class="card card-container"
+  (click)="goToPurchaseOrder()"
+  [image_path]="cardImage.purchaseOrder"
+  [portal_name]="cardName[1]"
+  [overlay_color]="cardOverlayColor.purchaseOrder"
+  style="box-shadow: 4px 4px 5px 3px #d9728e; border: 1px solid #d9728e"
+>
+</app-portal-card>
   <app-portal-card
     class="card card-container"
     (click)="goToFinanciaSheet()"

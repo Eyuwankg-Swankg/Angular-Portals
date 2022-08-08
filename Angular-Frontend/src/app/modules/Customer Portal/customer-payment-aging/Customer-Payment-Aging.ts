@@ -1,4 +1,5 @@
 const customerPaymentAndAgingTableHead={
+  "AGING":"Aging Days",
   "COMP_CODE": "Company Code",
   "CUSTOMER": "Customer No",
   "SP_GL_IND": "Special G/L Indicator",

@@ -18,16 +18,16 @@ export class CustomerDeliveryComponent implements OnInit {
   noDataToggle: boolean = true;
   customerDetails: any = {};
   columnValues :any = {
-    MANDT: 'Client',
     VBELN: 'Delivery',
     MATNR: 'Material Number',
     ERDAT: 'Entry Date',
+    LFIMG:"",ORMNG:""
   };
   columnDataType: any = {
-    MANDT: 'number',
     VBELN: 'number',
     MATNR: 'number',
     ERDAT: 'date',
+    LFIMG:"number",ORMNG:"number"
   };
   commonStyleValues: any = CommonValues;
   modalDataHeader: any = customerListOfDeliveryTableHead;

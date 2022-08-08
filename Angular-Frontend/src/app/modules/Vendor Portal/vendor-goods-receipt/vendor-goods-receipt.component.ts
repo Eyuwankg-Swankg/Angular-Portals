@@ -21,14 +21,14 @@ export class VendorGoodsReceiptComponent implements OnInit {
     MATERIAL: '',
     ENTRY_QNT:"",
     MAT_DOC: '',
-    PLANT:""
+    MOVE_TYPE:""
   };
   columnDataType: any = {
     VENDOR: 'string',
     MATERIAL: 'number',
     ENTRY_QNT:"number",
     MAT_DOC: 'number',
-    PLANT:"number"
+    MOVE_TYPE:"string"
   }
   vendorDetails = {};
   commonStyleValues: any = CommonValues;

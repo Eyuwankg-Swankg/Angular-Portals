@@ -544,11 +544,6 @@ export var VendorProfileHeaders: any = [
     title: 'Second telephone number',
     value: '',
   },
-  {
-    key: 'FORMOFADDR',
-    title: 'Title',
-    value: '',
-  },
 ];
 export var EmployeeProfileHeader: any = [
   {
@@ -715,11 +710,6 @@ export var EmployeeProfileHeader: any = [
   {
     key: 'ANRED',
     title: 'Form-of-Address Key',
-    value: '',
-  },
-  {
-    key: 'TITEL',
-    title: 'Title',
     value: '',
   },
 ];
